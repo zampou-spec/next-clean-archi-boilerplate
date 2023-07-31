@@ -1,10 +1,13 @@
-import { AppProps } from "next/app";
-import theme from "shared/styles/theme";
-import { ThemeProvider } from "@mui/material/styles";
+import { AppProps } from 'next/app';
+import { theme, globalStyles } from 'shared/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline, GlobalStyles } from '@mui/material';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <GlobalStyles styles={globalStyles} />
       <Component {...pageProps} />
     </ThemeProvider>
   );
