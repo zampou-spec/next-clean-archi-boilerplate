@@ -1,8 +1,5 @@
 import Button from '@mui/material/Button';
-const Home = () => (
-  <Button variant="contained" color="secondary" disableElevation>
-    Hello word
-  </Button>
-);
+import HomeTemplate from 'infrastructure/ui/templates/Home';
+const Home = () => <HomeTemplate />;
 
 export default Home;
