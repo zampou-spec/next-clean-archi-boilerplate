@@ -1,6 +1,6 @@
 import { Montserrat } from 'next/font/google';
 import { red, pink } from '@mui/material/colors';
-import { Theme, createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 export const montserrat = Montserrat({
   display: 'swap',

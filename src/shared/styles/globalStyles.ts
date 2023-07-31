@@ -1,5 +1,5 @@
 export const globalStyles = {
   body: {
-    background: 'red'
+    background: '#f1f1f1'
   }
 };
