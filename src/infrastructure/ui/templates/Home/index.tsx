@@ -1,20 +1,13 @@
-import { Icon } from 'shared/styles';
-import { Button } from '@mui/material';
+'use client';
 import styles from './HomeTemplate.module.scss';
+
+import Layout from '~/infrastructure/ui/layouts';
 
 const HomeTemplate = () => {
   return (
-    <div className={styles.homeTemplate}>
-      <Button
-        disableElevation
-        color="secondary"
-        variant="contained"
-        className={styles.helloWord}
-        startIcon={<Icon icon="mdi:account" />}
-      >
-        Hello word
-      </Button>
-    </div>
+    <Layout>
+      <h1>Home Page</h1>
+    </Layout>
   );
 };
 

@@ -1,4 +1,7 @@
+// jest.config.ts
+
 export default {
+  preset: 'ts-jest',
   roots: ['<rootDir>/src', '<rootDir>/tests'],
   collectCoverageFrom: ['<rootDir>/src/**/*.{ts,tsx}', '!<rootDir>/src/main/**/*', '!<rootDir>/src/**/index.ts', '!**/*.d.ts'],
   clearMocks: true,
@@ -7,8 +10,8 @@ export default {
   testEnvironment: 'jest-environment-jsdom',
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   moduleNameMapper: {
-    '^/(.*)$': '<rootDir>/src/$1',
-    'tests/(.*)': '<rootDir>/tests/$1'
+    '~/tests/(.*)': '<rootDir>/tests/$1',
+    '~/(.*)': '<rootDir>/src/$1'
   },
   transform: {
     '^.+\\.(t|j)sx?$': [
@@ -35,5 +38,6 @@ export default {
         }
       }
     ]
-  }
+  },
+  transformIgnorePatterns: ['node_modules/(?!ky)/']
 };
