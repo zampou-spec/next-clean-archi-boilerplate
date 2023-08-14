@@ -1,5 +1,5 @@
 'use client';
-import { Icon } from '~/shared/styles';
+import { Iconify } from '~/shared/ui/styles';
 import { User } from '~/domain/entities';
 import { AppBar, Toolbar, Button } from '@mui/material';
 import { signIn, signOut, useSession } from 'next-auth/react';
@@ -25,7 +25,7 @@ const Header = () => {
               disableElevation
               variant="contained"
               onClick={() => signIn()}
-              startIcon={<Icon icon="mdi:account" />}
+              startIcon={<Iconify icon="mdi:account" />}
             >
               Se connecter
             </Button>

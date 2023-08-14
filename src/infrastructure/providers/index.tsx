@@ -2,7 +2,7 @@
 import { ReactNode } from 'react';
 import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme, globalStyles } from '~/shared/styles';
+import { theme, globalStyles } from '~/shared/ui/styles';
 import { CssBaseline, GlobalStyles } from '@mui/material';
 
 interface RootProviderProps {

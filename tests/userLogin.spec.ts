@@ -1,8 +1,9 @@
 import { userFactory } from '~/infrastructure/factories';
 
 describe('User handler fetches', () => {
+  const userUseCase = userFactory();
+
   it('Get user success', async () => {
-    const userUseCase = userFactory();
     const res = await userUseCase.login('test@example.com', 'password');
 
     if (res.isRight()) {
@@ -13,7 +14,6 @@ describe('User handler fetches', () => {
   });
 
   it('Get user Error', async () => {
-    const userUseCase = userFactory();
     const res = await userUseCase.login('test@example.com', 'passwo');
 
     if (res.isLeft()) {
