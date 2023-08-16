@@ -14,7 +14,6 @@ const BootstrapInput: StyledComponent<{ xs?: 'xs' } & InputBaseProps> = styled(I
       position: 'relative',
       backgroundColor: '#fcfcfb',
       color: theme.palette.common.black,
-      '-webkit-text-fill-color': 'none',
       border: error ? `1px solid ${theme.palette.error.main}` : '1px solid #ced4da',
       ...(endAdornment ? { padding: '8px 55px 8px 10px!important' } : { padding: '8px 12px' }),
       transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),

@@ -1,4 +1,3 @@
-'use client';
 import styles from './HomeTemplate.module.scss';
 
 import Layout from '~/infrastructure/ui/layouts';

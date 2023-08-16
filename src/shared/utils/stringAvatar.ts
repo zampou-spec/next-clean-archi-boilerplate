@@ -1,6 +1,6 @@
 const stringToColor = (string: string) => {
-  let hash = 0;
   let i;
+  let hash = 0;
 
   for (i = 0; i < string.length; i += 1) {
     hash = string.charCodeAt(i) + ((hash << 5) - hash);
@@ -17,12 +17,21 @@ const stringToColor = (string: string) => {
 };
 
 export const stringAvatar = (name: string) => {
+  let localName = '';
+  const splitName = name.split(' ');
+
+  if (splitName.length == 1) {
+    localName = `${splitName[0][0]}`;
+  } else {
+    localName = `${splitName[0][0]}${splitName[1][0]}`;
+  }
+
   return {
     sx: {
       fontSize: '16px',
       fontWeight: '500',
       bgcolor: stringToColor(name)
     },
-    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
+    children: localName.toUpperCase()
   };
 };

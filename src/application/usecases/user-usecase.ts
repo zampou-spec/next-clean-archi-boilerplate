@@ -8,13 +8,17 @@ export class UserUseCase implements IUserUseCase {
     this.userStorage = userStorage;
   }
 
-  async login(email: string, password: string): IUserUseCase.output {
-    const result = await this.userStorage.login(email, password);
+  async signIn(id: string, password: string, mode: string): IUserUseCase.output {
+    const result = await this.userStorage.signIn(id, password, mode);
 
     if (result.isLeft()) {
       return left(result.value);
     }
 
     return right(result.value);
+  }
+
+  async signOut(token?: string) {
+    await this.userStorage.signOut(token);
   }
 }

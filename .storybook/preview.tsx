@@ -1,7 +1,6 @@
 import React from 'react';
-import { theme } from '../src/shared/ui/theme';
 import type { Preview } from '@storybook/react';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import RootProvider from '../src/infrastructure/providers';
 
 const preview: Preview = {
   parameters: {
@@ -15,10 +14,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+      <RootProvider>
         <Story />
-      </ThemeProvider>
+      </RootProvider>
     )
   ]
 };

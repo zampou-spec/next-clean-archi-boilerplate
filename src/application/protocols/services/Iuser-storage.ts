@@ -2,7 +2,8 @@ import { Either } from '~/shared/either';
 import { User } from '~/domain/entities';
 
 export interface IUserStorage {
-  login(email: string, password: string): IUserStorage.output;
+  signOut: (token?: string) => void;
+  signIn(email: string, password: string, mode: string): IUserStorage.output;
 }
 
 export namespace IUserStorage {

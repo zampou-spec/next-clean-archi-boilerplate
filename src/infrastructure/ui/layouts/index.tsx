@@ -1,16 +1,21 @@
+'use client';
 import React, { ReactNode } from 'react';
-import Header from '~/infrastructure/ui/organismes/header';
+import { User } from '~/domain/entities';
+import { useSession } from 'next-auth/react';
+import Header from '~/infrastructure/ui/organismes/Header';
 
-import styles from './Layout.module.scss'
+import styles from './Layout.module.scss';
 
 export type LayoutProps = {
   children: ReactNode;
 };
 
 const Layout = ({ children }: LayoutProps) => {
+  const { data: session } = useSession();
+
   return (
     <>
-      <Header />
+      <Header user={session?.user as User} />
       <div className={styles.layout}>{children}</div>
     </>
   );

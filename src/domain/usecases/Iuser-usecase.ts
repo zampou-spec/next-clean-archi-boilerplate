@@ -2,7 +2,8 @@ import { Either } from '~/shared/either';
 import { User } from '~/domain/entities';
 
 export interface IUserUseCase {
-  login: (email: string, password: string) => IUserUseCase.output;
+  signOut: (token?: string) => void;
+  signIn: (email: string, password: string, mode: string) => IUserUseCase.output;
 }
 
 export namespace IUserUseCase {

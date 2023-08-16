@@ -1,6 +1,6 @@
 'use client';
-import { Iconify } from '~/shared/ui/styles';
 import { User } from '~/domain/entities';
+import { Iconify } from '~/shared/ui/styles';
 import { AppBar, Toolbar, Button } from '@mui/material';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import UserMenu from '~/infrastructure/ui/molecules/UserMenu';
@@ -8,33 +8,28 @@ import LogoHeader from '~/infrastructure/ui/atoms/logo/header';
 
 import styles from './Header.module.scss';
 
-const Header = () => {
-  const { data: session } = useSession();
+interface HeaderProps {
+  user?: User;
+}
 
+const Header = ({ user }: HeaderProps) => {
   return (
     <AppBar color="secondary" position="fixed" className={styles.header}>
       <Toolbar disableGutters className={styles.headerContent}>
-        <LogoHeader />
+        <LogoHeader className={styles.login} />
 
-        {session?.user ? (
-          <UserMenu user={session?.user as User} onLogout={() => signOut()} />
+        {user ? (
+          <UserMenu user={user} onLogout={() => signOut()} />
         ) : (
           <div className={styles.auth}>
-            <Button
-              color="primary"
-              disableElevation
-              variant="contained"
-              onClick={() => signIn()}
-              startIcon={<Iconify icon="mdi:account" />}
-            >
+            <Button color="primary" variant="contained" onClick={() => signIn()} startIcon={<Iconify icon="mdi:login-variant" />}>
               Se connecter
             </Button>
             <Button
               color="primary"
-              disableElevation
               variant="contained"
-              href="/auth/signin"
-              startIcon={<Icon icon="mdi:account" />}
+              href='/auth/signin'
+              startIcon={<Iconify icon="mdi:text-box-outline" />}
             >
               S'inscrire
             </Button>

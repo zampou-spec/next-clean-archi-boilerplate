@@ -1,3 +1,4 @@
+import { User } from '~/domain/entities';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import { userFactory } from '~/infrastructure/factories';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -6,14 +7,12 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'credentials',
-      credentials: {
-        email: { label: 'Email', type: 'email', name: 'email' },
-        password: { label: 'Password', type: 'password', name: 'password' }
-      },
+      credentials: {},
       async authorize(credentials, req) {
-        const { email, password } = credentials as any;
         const userUseCase = userFactory();
-        const res = await userUseCase.login(email, password);
+        const { id, password, login_mode } = credentials as any;
+
+        const res = await userUseCase.signIn(id, password, login_mode);
 
         if (res.isRight()) {
           return res.value as any;
@@ -27,15 +26,22 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt'
   },
   pages: {
-    signIn: '/auth/login'
+    signIn: '/auth/signin'
   },
   callbacks: {
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
     async session({ session, token, user }) {
-      session.user = token;
+      session.user = token as User;
       return session;
+    }
+  },
+  events: {
+    async signOut({ token }) {
+      const { access_token } = token;
+      const userUseCase = userFactory();
+      await userUseCase.signOut(access_token as string);
     }
   }
 };

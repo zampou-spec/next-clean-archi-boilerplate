@@ -1,5 +1,5 @@
-import SigninTemplate from '~/infrastructure/ui/templates/Auth/signin';
+import SignInTemplate from '~/infrastructure/ui/templates/Auth/SignIn';
 
-const LoginPage = () => <SigninTemplate />;
+const SignInPage = () => <SignInTemplate />;
 
-export default LoginPage;
+export default SignInPage;

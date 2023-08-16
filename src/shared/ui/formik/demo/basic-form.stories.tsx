@@ -3,11 +3,11 @@ import { Form, Formik } from 'formik';
 import { Button, Stack } from '@mui/material';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { FKSelect } from '../FKSelect';
 import FKTextField from '../FKTextField';
-import FKNumberFormat from '../FKNumericFormat';
-import { FKPhoneNumber } from '../FKPhoneNumber';
+import FKSelectField from '../FKSelectField';
 import FKPasswordField from '../FKPasswordField';
+import FKPhoneNumberField from '../FKPhoneNumberField';
+import FKNumericFormatField from '../FKNumericFormatField';
 
 const Template = () => {
   const initialValues = {
@@ -45,7 +45,7 @@ const Template = () => {
           <Stack maxWidth="400px" spacing={3}>
             <FKTextField label="Nom & Premon(s)" name="name" autoComplete="username" />
             <FKTextField label="E-mail" type="email" name="email" autoComplete="username" />
-            <FKPhoneNumber
+            <FKPhoneNumberField
               fullWidth
               name="phoneNumber"
               label="Numero de telephone"
@@ -54,7 +54,7 @@ const Template = () => {
                 setFieldValue('phoneNumber', value.phone);
               }}
             />
-            <FKSelect
+            <FKSelectField
               label="Select Form"
               name="selec"
               options={[
@@ -64,7 +64,7 @@ const Template = () => {
               ]}
             />
             <FKPasswordField label="Mot de passe" name="password" />
-            <FKNumberFormat label="Number Truck" name="numm" />
+            <FKNumericFormatField label="Number Truck" name="numm" />
             <Button type="submit" variant="contained">
               Envoyez
             </Button>
