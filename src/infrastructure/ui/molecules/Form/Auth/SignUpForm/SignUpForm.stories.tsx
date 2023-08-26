@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import SignUpForm from '.';
 
 const meta = {
-  title: 'form/auth/Sign Up Form',
+  title: 'molecules/Form/auth/Sign Up Form',
   component: SignUpForm,
   args: {},
   argTypes: {}

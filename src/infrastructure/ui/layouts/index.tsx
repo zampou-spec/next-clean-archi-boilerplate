@@ -16,7 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header user={session?.user as User} />
-      <div className={styles.layout}>{children}</div>
+      <main className={styles.layout}>{children}</main>
     </>
   );
 };

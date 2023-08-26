@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { FieldProps, getIn } from 'formik';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,7 +11,6 @@ import { FormHelperText as MuiFormHelperText } from '@mui/material';
 const NumericFormatField = React.forwardRef(
   (
     {
-      type,
       form,
       field,
       label,
@@ -48,7 +48,9 @@ const NumericFormatField = React.forwardRef(
             })
           }
           inputRef={ref}
+          onChange={onChange}
           error={Boolean(hasError)}
+          defaultValue={defaultValue}
         />
         <MuiFormHelperText error={!!hasError} data-testid="helper-text">
           {hasError ? fieldErrorMessage : helperText}
@@ -59,3 +61,4 @@ const NumericFormatField = React.forwardRef(
 );
 
 export default NumericFormatField;
+NumericFormatField.displayName = 'NumericFormatField';

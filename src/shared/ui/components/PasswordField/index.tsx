@@ -1,7 +1,8 @@
-import { forwardRef, useState } from 'react';
-import { IconButton, Typography } from '@mui/material';
-import TextField, { TextFieldProps } from '../TextField';
+'use client';
 import Iconify from '../Iconify';
+import { IconButton } from '@mui/material';
+import { forwardRef, useState } from 'react';
+import TextField, { TextFieldProps } from '../TextField';
 
 export const PasswordField = forwardRef<unknown, TextFieldProps>((props, ref) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -37,6 +38,5 @@ export const PasswordField = forwardRef<unknown, TextFieldProps>((props, ref) =>
   );
 });
 
-PasswordField.displayName = 'PasswordField';
-
 export default PasswordField;
+PasswordField.displayName = 'PasswordField';

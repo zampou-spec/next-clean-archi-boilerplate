@@ -1,5 +1,4 @@
 'use client';
-
 import { Form, Formik } from 'formik';
 import { toast } from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
@@ -7,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Yup from '~/shared/settings/yup-setup';
 import { useState, SyntheticEvent } from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Button, Stack, Box, Tab, Grid } from '@mui/material';
+import { Button, Stack, Box, Tab, Unstable_Grid2 as Grid } from '@mui/material';
 import { FKPasswordField, FKPhoneNumberField, FKTextField } from '~/shared/ui/formik';
 
 import styles from './SignInForm.module.scss';
@@ -54,7 +53,7 @@ const SignInForm = () => {
 
         if (res?.ok) {
           toast.success('Connexion réussite');
-          router.push(res?.url as string);
+          router.push('/dashboard');
         } else {
           toast.error('Identifiant ou mot de passe incorrect.');
         }
@@ -64,7 +63,7 @@ const SignInForm = () => {
         <Form className={styles.signInForm}>
           <Stack maxWidth="450px" spacing={2.5}>
             <Grid container columnSpacing={1} rowSpacing={2.5}>
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <TabContext value={tabSelected}>
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList
@@ -88,15 +87,15 @@ const SignInForm = () => {
                       autoComplete="username"
                       label="Numéro de téléphone"
                       helperText="Numéro avec prefix, exemple: +225 xx xx xx xx xx"
-                      onChange={(value) => setFieldValue('mobile_number', value.phone)}
+                      onChange={(value) => setFieldValue('mobile_number', value)}
                     />
                   </TabPanel>
                 </TabContext>
               </Grid>
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <FKPasswordField fullWidth label="Mot de passe" name="password" autoComplete="password" />
               </Grid>
-              <Grid item xs={12} sx={{ mt: 1.5 }}>
+              <Grid xs={12} sx={{ mt: 1.5 }}>
                 <Button fullWidth type="submit" variant="contained">
                   Envoyez
                 </Button>

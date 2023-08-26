@@ -1,0 +1,27 @@
+.statisticCard {
+  .container {
+    display: flex;
+    align-items: center;
+    padding-bottom: 16px !important;
+    justify-content: space-between;
+
+    .content {
+      flex: 1;
+      color: #000;
+
+      .title {
+        color: inherit;
+      }
+
+      .description {
+        color: inherit;
+        font-weight: 400;
+      }
+    }
+
+    .iconContainer {
+      width: 70px;
+      height: 70px;
+    }
+  }
+}

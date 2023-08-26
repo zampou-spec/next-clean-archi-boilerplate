@@ -1,13 +1,11 @@
-import { Components, Theme, alpha } from '@mui/material';
-
-const muiLoadingButton = (theme: Theme): Components<Omit<Theme, 'component'>>['MuiLoadingButton'] => ({
+const muiLoadingButton = () => ({
   defaultProps: {
     size: 'medium',
     variant: 'contained',
     disableElevation: true
   },
   styleOverrides: {
-    root: ({ color, variant, size, disabled }: any) => ({
+    root: () => ({
       '&.MuiButton-text': {
         '& .MuiLoadingButton-startIconPendingStart': {
           marginLeft: 0

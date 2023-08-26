@@ -1,27 +1,34 @@
-import { Components, Theme, alpha } from '@mui/material';
+import { Theme, alpha } from '@mui/material';
 
-const muiButton = (theme: Theme): Components<Omit<Theme, 'component'>>['MuiButton'] => ({
+type ownerStateType = {
+  ownerState: {
+    color: string;
+    disabled: boolean;
+  };
+};
+
+const muiButton = (theme: Theme) => ({
   defaultProps: {
     size: 'medium',
     variant: 'contained',
     disableElevation: true
   },
   styleOverrides: {
-    root: ({ ownerState: { color, variant, size, disabled } }) => ({
+    root: ({ ownerState }: ownerStateType) => ({
       fontWeight: 'bold',
       border: '2px solid',
       padding: '5px 10px',
       borderRadius: '4px',
-      ...(disabled && {
+      ...(ownerState?.disabled && {
         border: '2px solid !important'
       }),
-      ...(disabled &&
-        color === 'primary' && {
+      ...(ownerState?.disabled &&
+        ownerState?.color === 'primary' && {
           background: `${alpha(theme.palette.primary.main, 0.8)} !important`,
           borderColor: `${alpha(theme.palette.primary.main, 0.2)} !important`
         }),
-      ...(disabled &&
-        color === 'error' && {
+      ...(ownerState?.disabled &&
+        ownerState?.color === 'error' && {
           background: `${alpha(theme.palette.error.main, 0.8)} !important`,
           borderColor: `${alpha(theme.palette.error.main, 0.2)} !important`
         })

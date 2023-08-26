@@ -8,6 +8,12 @@ import FKSelectField from '../FKSelectField';
 import FKPasswordField from '../FKPasswordField';
 import FKPhoneNumberField from '../FKPhoneNumberField';
 import FKNumericFormatField from '../FKNumericFormatField';
+import { getCountryName } from '~/shared/utils/getCountryName';
+
+export type onChangeProps = {
+  phone: string;
+  country: string;
+};
 
 const Template = () => {
   const initialValues = {
@@ -40,7 +46,7 @@ const Template = () => {
         console.log('**************************');
       }}
     >
-      {({ errors, touched, setFieldValue }) => (
+      {({ setFieldValue }) => (
         <Form>
           <Stack maxWidth="400px" spacing={3}>
             <FKTextField label="Nom & Premon(s)" name="name" autoComplete="username" />
@@ -50,8 +56,11 @@ const Template = () => {
               name="phoneNumber"
               label="Numero de telephone"
               onChange={(value) => {
-                setFieldValue('country', value.country);
-                setFieldValue('phoneNumber', value.phone);
+                const phone = `${value}` || '';
+                const country = getCountryName(value);
+
+                setFieldValue('country', country);
+                setFieldValue('phoneNumber', phone);
               }}
             />
             <FKSelectField
@@ -83,6 +92,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => <Template />,
+  render: () => <Template />,
   args: {}
 };

@@ -1,18 +1,19 @@
-import React, { ReactNode } from 'react';
+'use client';
 import { FieldProps, getIn } from 'formik';
 import BootstrapInput from '../BootstrapInput';
 import FormControl from '@mui/material/FormControl';
+import { ReactNode, forwardRef, FocusEvent } from 'react';
 import InputLabel, { InputLabelProps } from '@mui/material/InputLabel';
 import { FormHelperText as MuiFormHelperText, InputBaseProps } from '@mui/material';
 
 export interface TextFieldProps extends InputBaseProps {
-  helperText?: any;
   label?: ReactNode;
   controlId?: string;
+  helperText?: string | boolean;
   inputLabelProps?: InputLabelProps;
 }
 
-export const TextField = React.forwardRef(
+export const TextField = forwardRef(
   (
     {
       label,
@@ -41,18 +42,18 @@ export const TextField = React.forwardRef(
           </InputLabel>
         )}
         <BootstrapInput
-          // disabled={disabled ?? form?.isSubmitting}
           {...rest}
           {...field}
           onBlur={
             onBlur ??
-            ((e: React.FocusEvent<HTMLInputElement>) => {
+            ((e: FocusEvent<HTMLInputElement>) => {
               field?.onBlur(e ?? field?.name);
             })
           }
           ref={ref}
           inputRef={ref}
           error={!!hasError}
+          disabled={disabled}
           fullWidth={fullWidth}
           data-testid="input-field"
         />
@@ -65,3 +66,4 @@ export const TextField = React.forwardRef(
 );
 
 export default TextField;
+TextField.displayName = 'TextField';

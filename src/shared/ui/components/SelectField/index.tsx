@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+'use client';
 import { ActionMeta } from 'react-select';
 import { getIn, FieldProps } from 'formik';
 import InputLabel from '@mui/material/InputLabel';
@@ -6,77 +6,85 @@ import FormControl from '@mui/material/FormControl';
 import MuiFormHelperText from '@mui/material/FormHelperText';
 import ReactSelect, { ReactSelectProps } from './ReactSelect';
 
-export const SelectField = forwardRef(
-  (
-    {
-      id,
-      label,
-      helperText,
-      error,
-      fullWidth,
-      field,
-      form: { touched, setFieldValue, isSubmitting, errors },
-      options,
-      onChange,
-      isDisabled,
-      onBlur,
-      value,
-      ...selectProps
-    }: ReactSelectProps & FieldProps,
-    ref: any
-  ) => {
-    const fieldErrorMessage = getIn(errors, field?.name);
-    const hasError: boolean = getIn(touched, field?.name) && !!fieldErrorMessage;
+type optionType = {
+  id?: number | string;
+  value: number | string;
+  label: number | string;
+};
 
-    const handleChange = (selectedOption: any, actionMeta: ActionMeta<unknown>) => {
-      if (!onChange) {
-        setFieldValue(field.name, selectedOption?.value);
-      } else {
-        onChange(selectedOption, actionMeta);
+const isOptionType = (obj: object): obj is optionType => {
+  return 'value' in obj && 'label' in obj;
+};
+
+export const SelectField = ({
+  id,
+  label,
+  helperText,
+  error,
+  fullWidth,
+  field,
+  form: { touched, setFieldValue, errors },
+  options,
+  onChange,
+  isDisabled,
+  value,
+  ...selectProps
+}: ReactSelectProps & FieldProps) => {
+  const fieldErrorMessage = getIn(errors, field?.name);
+  const hasError: boolean = getIn(touched, field?.name) && !!fieldErrorMessage;
+
+  const handleChange = (selectedOption: unknown, actionMeta: ActionMeta<unknown>) => {
+    if (!onChange) {
+      if (isOptionType(selectedOption as object)) {
+        console.log(selectedOption);
+        setFieldValue(field.name, (selectedOption as optionType).value);
       }
-    };
+    } else {
+      onChange(selectedOption, actionMeta);
+    }
+  };
 
-    const getValue = () => {
-      if (options) {
-        return (options || []).find((option: any) => option.value === field.value || option.id === field.value);
-      }
+  const getValue = () => {
+    if (options) {
+      return ((options as optionType[]) || []).find((option) => option.value === field.value || option.id === field.value);
+    }
 
-      if (value) {
-        return value;
-      }
+    if (value) {
+      return value;
+    }
 
-      return undefined;
-    };
+    return undefined;
+  };
 
-    return (
-      <FormControl id={field?.name} variant="standard" error={error || hasError} fullWidth={fullWidth}>
-        {label && (
-          <InputLabel
-            sx={{
-              position: 'inherit'
-            }}
-            htmlFor={field?.name}
-          >
-            {label}
-          </InputLabel>
-        )}
-        <ReactSelect
-          error={hasError}
-          {...field}
-          {...selectProps}
-          id={field?.name}
-          inputId={field?.name}
-          value={getValue()}
-          onChange={handleChange}
-          instanceId={field?.name}
-          onBlur={field.onBlur(field.name)}
-          options={options}
-          ref={ref}
-        />
-        <MuiFormHelperText error={hasError}>{hasError ? fieldErrorMessage : helperText}</MuiFormHelperText>
-      </FormControl>
-    );
-  }
-);
+  return (
+    <FormControl id={field?.name || id} variant="standard" error={error || hasError} fullWidth={fullWidth}>
+      {label && (
+        <InputLabel
+          sx={{
+            position: 'inherit'
+          }}
+          htmlFor={field?.name}
+        >
+          {label}
+        </InputLabel>
+      )}
+      <ReactSelect
+        error={hasError}
+        {...field}
+        {...selectProps}
+        id={field?.name}
+        inputId={field?.name || id}
+        value={getValue()}
+        onChange={handleChange}
+        instanceId={field?.name}
+        onBlur={field.onBlur(field.name)}
+        options={options}
+        isDisabled={isDisabled}
+      />
+      <MuiFormHelperText error={hasError}>{hasError ? fieldErrorMessage : helperText}</MuiFormHelperText>
+    </FormControl>
+  );
+};
 
 export default SelectField;
+SelectField.displayName = 'SelectField';

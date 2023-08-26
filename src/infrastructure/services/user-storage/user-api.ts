@@ -10,20 +10,24 @@ export class UserApi implements IUserStorage {
     try {
       const res = await apiClient.post('api/auth/login', { json: { id, password, mode } });
       user = await res.json();
-    } catch (error: any) {
+    } catch (error) {
       return left(new Error('Credential is not correct.'));
     }
 
     return right(user);
   }
 
-  async signOut(token?: string) {
+  async signOut(token?: string): IUserStorage.outputSigOut {
     try {
       await apiClient.post('api/auth/signout', {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-    } catch (error) {}
+
+      return right(null);
+    } catch (error) {
+      return left(new Error('signOut Error'));
+    }
   }
 }

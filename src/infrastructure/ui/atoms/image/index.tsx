@@ -18,14 +18,14 @@ interface ImageProps {
   imageSize?: imageSize;
   customSize?: customSize;
   src: string | NextImage.StaticImageData;
-  className?: string | number | symbol | any | undefined;
+  className?: string | number | symbol | undefined;
 }
 
 const Image = ({ src, alt, imageSize, customSize, className }: ImageProps) => {
   return (
     <div
       className={classNames(styles.imageContainer, {
-        [className]: Boolean(className)
+        [className || '']: Boolean(className)
       })}
       style={customSize}
     >

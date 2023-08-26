@@ -1,5 +1,6 @@
-import { Icon, IconifyIcon } from '@iconify/react';
+'use client';
 import { Box, BoxProps } from '@mui/material';
+import { Icon, IconifyIcon } from '@iconify/react';
 
 type IconifyProps = {
   icon: IconifyIcon | string;

@@ -1,0 +1,135 @@
+.playerWrapper {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  position: relative;
+
+  @media (min-width: 768px) {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: unset;
+  }
+
+  .overlay {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: opacity 0.3s ease-in-out;
+    background-color: rgba(184, 0, 68, 0.43);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &.show {
+      opacity: 1 !important;
+    }
+
+    .playerTop {
+      height: 100px;
+      display: flex;
+      padding: 20px;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(184, 0, 66, 1) 40%, rgba(184, 0, 66, 0) 100%);
+
+      text-align: center;
+
+      h6 {
+        color: #fff;
+        font-size: 13px;
+      }
+
+      @media (min-width: 768px) {
+        height: 145px;
+
+        h6 {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .playerBottom {
+      height: 150px;
+      padding: 10px 0;
+      background: linear-gradient(0deg, rgba(184, 0, 66, 1) 40%, rgba(184, 0, 66, 0) 100%);
+
+      @media (min-width: 768px) {
+        height: 100px;
+        padding-bottom: 105px;
+      }
+
+      .prettoSlider {
+        padding: 0 20px;
+      }
+
+      .playAction {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 2px;
+        padding-right: 8px;
+        align-items: center;
+        justify-content: space-between;
+
+        .left {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-right: 13px;
+
+          @media (min-width: 768px) {
+            width: unset;
+          }
+
+          .volume {
+            display: flex;
+            align-items: center;
+          }
+        }
+
+        .right {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          @media (min-width: 768px) {
+            width: unset;
+          }
+        }
+      }
+    }
+
+    .playerCenter {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .playing {
+        position: relative;
+        width: 70px;
+        height: 50px;
+        background-color: #b80042;
+        padding: 0 15px;
+        border-radius: 50% / 11%;
+
+        svg {
+          z-index: 2;
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          background: inherit;
+          top: 10%;
+          bottom: 10%;
+          right: -5%;
+          left: -4.5%;
+          border-radius: 5% / 50%;
+        }
+      }
+    }
+  }
+}

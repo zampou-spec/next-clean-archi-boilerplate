@@ -1,32 +1,26 @@
+'use client';
 import 'react-phone-number-input/style.css';
 import './phone-input.css';
 
-import { forwardRef } from 'react';
+import { Component, forwardRef } from 'react';
 import PhoneNumberInput from './PhoneNumberInput';
-import locale from 'react-phone-number-input/locale/fr.json';
-import PhoneInput, { parsePhoneNumber } from 'react-phone-number-input';
+import PhoneInput from 'react-phone-number-input';
 
-const getCountryName = (phone: any) => {
-  const countryCode = parsePhoneNumber(`${phone}`)?.country || '';
-  const country = countryCode !== '' ? locale[countryCode] : '';
-  return country;
+export type PhoneNumberFieldProps = {
+  field: Component;
+  onChange: (value: undefined) => void;
 };
 
-const PhoneNumberField = forwardRef(({ ref: _ref, field, form, onChange, ...props }: any, ref) => (
+const PhoneNumberField = forwardRef(({ field, ...props }: PhoneNumberFieldProps, ref) => (
   <PhoneInput
     {...props}
-    form={form}
     field={field}
     inputRef={ref}
     limitMaxLength
     inputComponent={PhoneNumberInput}
     style={{ width: '100% !important' }}
-    onChange={(value) => {
-      const phone = value || '';
-      const country = getCountryName(value);
-      onChange({ phone, country });
-    }}
   />
 ));
 
 export default PhoneNumberField;
+PhoneNumberField.displayName = 'PhoneNumberField';

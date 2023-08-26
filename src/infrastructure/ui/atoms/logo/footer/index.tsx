@@ -1,9 +1,8 @@
-import Link from "next/link";
-import Image from "components/image";
+import Link from 'next/link';
+import Image from '~/infrastructure/ui/atoms/image';
+import logo from '~/infrastructure/ui/assets/images/logo.svg';
 
-import logo from "assets/images/logo.png";
-
-import styles from "./LogoFooter.module.scss";
+import styles from './LogoFooter.module.scss';
 
 const LogoFooter = () => {
   return (
@@ -13,11 +12,11 @@ const LogoFooter = () => {
         alt="header logo"
         imageSize={{
           width: 4724,
-          height: 2480,
+          height: 2480
         }}
         customSize={{
           width: 210,
-          height: "auto",
+          height: 'auto'
         }}
       />
     </Link>

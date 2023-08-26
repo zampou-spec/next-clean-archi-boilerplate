@@ -5,16 +5,16 @@ import muiButton from './Button';
 import muiLoadingButton from './LoadingButton';
 
 // InputBase
+import muiInputBase from './InputBase';
 import muiInputLabel from './InputLabel';
 import muiHelperText from './HelperText';
 import muiInputAdornment from './InputAdornment';
-import muiInputBase from './InputBase';
 
-export default function components(theme: Theme): any {
+export default function components(theme: Theme) {
   return {
     // Button
     MuiButton: muiButton(theme),
-    MuiLoadingButton: muiLoadingButton(theme),
+    MuiLoadingButton: muiLoadingButton(),
 
     // InputBase
     MuiInputBase: muiInputBase(theme),

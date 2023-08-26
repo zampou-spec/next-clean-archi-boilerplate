@@ -3,11 +3,9 @@ import Link from 'next/link';
 import { User } from '~/domain/entities';
 import { stringAvatar } from '~/shared/utils';
 import { useState, MouseEvent, useEffect } from 'react';
-import { Menu, IconButton, MenuItem, Typography, Tooltip, Avatar, Paper } from '@mui/material';
+import { Menu, IconButton, MenuItem, Typography, Tooltip, Avatar } from '@mui/material';
 
 import styles from './UserMenu.module.scss';
-
-const settings = ['Profile'];
 
 export type UserMenuProps = {
   user: User;

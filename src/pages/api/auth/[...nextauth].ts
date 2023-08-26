@@ -3,22 +3,30 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
 import { userFactory } from '~/infrastructure/factories';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+type CredentialsProps = {
+  id: string;
+  password: string;
+  login_mode: string;
+};
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'credentials',
       credentials: {},
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const userUseCase = userFactory();
-        const { id, password, login_mode } = credentials as any;
+        const { id, password, login_mode } = credentials as CredentialsProps;
 
         const res = await userUseCase.signIn(id, password, login_mode);
 
         if (res.isRight()) {
-          return res.value as any;
+          const user = res.value;
+
+          return Promise.resolve(user);
         }
 
-        return null;
+        return Promise.resolve(null);
       }
     })
   ],
@@ -32,7 +40,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       session.user = token as User;
       return session;
     }

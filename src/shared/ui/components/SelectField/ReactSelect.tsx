@@ -1,22 +1,21 @@
+'use client';
 import { Typography } from '@mui/material';
+import { ReactNode, useMemo } from 'react';
 import pxToRem from '~/shared/utils/pxToRem';
+import { useTheme } from '@mui/material/styles';
 import Select, { StylesConfig } from 'react-select';
-import { alpha, useTheme } from '@mui/material/styles';
-import { ReactNode, forwardRef, useMemo } from 'react';
-import { Props as RSSelectProps, ActionMeta } from 'react-select';
+import { Props as RSSelectProps } from 'react-select';
 
 export type ReactSelectProps = RSSelectProps & {
   size?: 'medium' | 'small';
   label?: ReactNode;
-  helperText?: any;
+  helperText?: ReactNode;
   controlId?: string;
   fullWidth?: boolean;
   error?: boolean;
-  onChange?: (newValue: unknown, actionMeta: ActionMeta<unknown>) => void;
 };
 
-export const ReactSelect = forwardRef<any, ReactSelectProps>((props, ref) => {
-  const { error, ...rest } = props;
+export const ReactSelect = ({ error, ...props }: ReactSelectProps) => {
   const theme = useTheme();
 
   const styles = useMemo<StylesConfig>(
@@ -63,7 +62,7 @@ export const ReactSelect = forwardRef<any, ReactSelectProps>((props, ref) => {
       container: (provided) => ({
         ...provided
       }),
-      placeholder: (base, props) => ({
+      placeholder: (base) => ({
         ...base,
         color: '#b6b6b5'
       }),
@@ -83,24 +82,21 @@ export const ReactSelect = forwardRef<any, ReactSelectProps>((props, ref) => {
         borderRaduis: 10
       })
     }),
-    [error]
+    [error, theme]
   );
 
   return (
     <Select
-      {...rest}
+      {...props}
       styles={styles}
       components={{
         IndicatorSeparator: () => null,
         NoOptionsMessage
       }}
-      ref={ref}
       classNamePrefix="react__select"
     />
   );
-});
-
-export default ReactSelect;
+};
 
 const NoOptionsMessage = () => {
   return (
@@ -109,3 +105,6 @@ const NoOptionsMessage = () => {
     </Typography>
   );
 };
+
+export default ReactSelect;
+ReactSelect.displayName = 'ReactSelect';

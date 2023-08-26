@@ -1,6 +1,6 @@
-import { Components, Theme } from '@mui/material';
+import { Theme } from '@mui/material';
 
-const muiHelperText = (theme: Theme): Components<Omit<Theme, 'component'>>['MuiFormHelperText'] => {
+const muiHelperText = (theme: Theme) => {
   return {
     styleOverrides: {
       root: {

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Paper, Typography, Stack, Box } from '@mui/material';
+import { Paper, Typography, Stack } from '@mui/material';
 import LogoHeader from '~/infrastructure/ui/atoms/logo/header';
 import LoginForm from '~/infrastructure/ui/molecules/Form/Auth/SignInForm';
 
@@ -17,9 +17,9 @@ const SignIn = () => {
       <LoginForm />
       <Stack alignItems="center" className={styles.footer}>
         <Typography variant="body2" className={styles.text}>
-          Vous n'avez pas de compte ?{' '}
+          Vous n&apos;avez pas de compte ?{' '}
           <Link href="/auth/signup" passHref className={styles.signin}>
-            S'inscrire ici
+            S&apos;inscrire ici
           </Link>
         </Typography>
       </Stack>

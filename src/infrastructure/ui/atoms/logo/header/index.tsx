@@ -6,7 +6,7 @@ import logo from '~/infrastructure/ui/assets/images/logo.svg';
 import styles from './LogoHeader.module.scss';
 
 interface LogoHeaderProps {
-  className?: string | number | symbol | any | undefined;
+  className?: string | number | symbol | undefined;
 }
 
 const LogoHeader = ({ className }: LogoHeaderProps) => {
@@ -20,7 +20,7 @@ const LogoHeader = ({ className }: LogoHeaderProps) => {
           height: 100
         }}
         className={classNames(styles.logoHeader, {
-          [className]: Boolean(className)
+          [className || '']: Boolean(className)
         })}
       />
     </Link>

@@ -1,6 +1,6 @@
-import { Components, inputBaseClasses, Theme, inputLabelClasses } from '@mui/material';
+import { Components, inputBaseClasses, Theme } from '@mui/material';
 
-export default function FormControl(_theme: Theme): Components<Omit<Theme, 'component'>>['MuiFormControl'] {
+export default function FormControl(): Components<Omit<Theme, 'component'>>['MuiFormControl'] {
   return {
     styleOverrides: {
       root: () => ({

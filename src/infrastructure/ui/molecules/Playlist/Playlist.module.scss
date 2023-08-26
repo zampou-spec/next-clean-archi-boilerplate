@@ -1,0 +1,31 @@
+.playlist {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 55px 1fr;
+
+  background-color: #fff;
+
+  .header {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-bottom-width: 1px;
+
+    color: #000;
+
+    svg {
+      margin-right: 12px;
+    }
+
+    p {
+      display: inline-block;
+      font-size: 16px;
+    }
+  }
+
+  .playlistContainer {
+    padding: 0 15px;
+    overflow-x: scroll;
+  }
+}

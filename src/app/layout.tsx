@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 import RootProvider from '~/infrastructure/providers';
+import { SessionProviderProps } from 'next-auth/react';
 
 interface RootLayoutProps {
-  session: any;
   children: ReactNode;
+  session: SessionProviderProps['session'];
 }
 
 const RootLayout = ({ children, session }: RootLayoutProps) => (

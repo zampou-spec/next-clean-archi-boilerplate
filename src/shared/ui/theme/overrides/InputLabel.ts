@@ -1,6 +1,6 @@
-import { Components, Theme } from '@mui/material';
+import { Theme } from '@mui/material';
 
-const muiInputLabel = (theme: Theme): Components<Omit<Theme, 'component'>>['MuiInputLabel'] => {
+const muiInputLabel = (theme: Theme) => {
   return {
     styleOverrides: {
       root: {

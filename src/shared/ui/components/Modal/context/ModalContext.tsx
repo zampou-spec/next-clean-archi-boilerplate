@@ -1,19 +1,16 @@
-import React from "react";
+'use client';
+import React, { Dispatch, ReactNode, createContext, SetStateAction } from 'react';
 
 export type ModalProviderProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-type State = [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+type State = [boolean, Dispatch<SetStateAction<boolean>>];
 
-export const ModalContext = React.createContext<State | undefined>(undefined);
+export const ModalContext = createContext<State | undefined>(undefined);
 
-export const ModalProvider = ({
-  children,
-}: ModalProviderProps): JSX.Element => {
+export const ModalProvider = ({ children }: ModalProviderProps): JSX.Element => {
   const state = React.useState(false);
 
-  return (
-    <ModalContext.Provider value={state}>{children}</ModalContext.Provider>
-  );
+  return <ModalContext.Provider value={state}>{children}</ModalContext.Provider>;
 };

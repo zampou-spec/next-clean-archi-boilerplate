@@ -1,4 +1,4 @@
-import Iconify from '../../Iconify';
+// import Iconify from '../../Iconify';
 import { ModalProps } from './Modal.type';
 import { alpha, Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 
@@ -34,7 +34,7 @@ const ModalLayout = ({ dialogTitleProps, title, children, contentProps, onClose,
           }
         }}
       >
-        <Iconify icon="ic:round-close" />
+        {/* <Iconify icon="ic:round-close" /> */}
       </IconButton>
     </DialogTitle>
     <DialogContent {...contentProps}>{children}</DialogContent>

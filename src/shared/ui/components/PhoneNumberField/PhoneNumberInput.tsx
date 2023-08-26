@@ -1,5 +1,6 @@
-import React from 'react';
+'use client';
 import { FieldProps, getIn } from 'formik';
+import { ReactNode, forwardRef } from 'react';
 import { TextFieldProps } from '../TextField';
 import BootstrapInput from '../BootstrapInput';
 import { FormControl, FormHelperText, InputLabel, InputLabelProps } from '@mui/material';
@@ -10,12 +11,12 @@ export type FieldBaseProps = {
   placeholder: string;
   name: string;
   helperText: string;
-  label: string | React.ReactNode;
+  label: string | ReactNode;
   xs?: 'xs';
   inputLabelProps: InputLabelProps;
 };
 
-const PhoneNumberInput = React.forwardRef<unknown, TextFieldProps & FieldProps>((props, ref) => {
+const PhoneNumberInput = forwardRef<unknown, TextFieldProps & FieldProps>((props, ref) => {
   const { label, controlId, inputLabelProps, helperText, error, field, form, fullWidth, ...rest } = props;
 
   const fieldErrorMessage = field?.name && getIn(form?.errors, field?.name);
@@ -44,3 +45,4 @@ const PhoneNumberInput = React.forwardRef<unknown, TextFieldProps & FieldProps>(
 });
 
 export default PhoneNumberInput;
+PhoneNumberInput.displayName = 'PhoneNumberInput';
