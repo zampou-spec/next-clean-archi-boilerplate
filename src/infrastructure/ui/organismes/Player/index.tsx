@@ -1,41 +1,41 @@
 'use client';
-import { useState } from 'react';
 import { Box } from '@mui/material';
 import classNames from 'classnames';
+import { useEffect, useState } from 'react';
 import { Chapter, Video } from '~/domain/entities';
 import Playlist from '~/infrastructure/ui/molecules/Playlist';
 import VideoPlayer from '~/infrastructure/ui/molecules/VideoPalyer';
+import { useGetChapterAndVideos } from '~/infrastructure/api/chapter/getChapterAndVideos';
 
 import styles from './Player.module.scss';
 
-const data: Chapter[] = [
-  {
-    title: '1. Porjet de fete de pain',
-    videos: [
-      {
-        title: 'salsa dance de kiffante',
-        image: 'https://placehold.co/200/webp',
-        videoUrl: 'https://youtu.be/fhrV-83Av2k'
-      },
-      {
-        title: 'salsa dance de kiff',
-        image: 'https://placehold.co/200/webp',
-        videoUrl: 'https://youtu.be/vwGp16NXgQU'
-      },
-      {
-        title: 'Salsa Beginners 1 - Étape de base de la salsa pour le débutant absolu - Explication détaillée',
-        videoUrl: 'https://youtu.be/wV8cDpJa2f4',
-        image: 'https://placehold.co/200/webp'
-      }
-    ]
-  }
-];
+type infosType = {
+  id: number;
+  lock: boolean;
+  title: string;
+};
 
-interface PlayerProps {
+export type playerDataType = {
+  infos: infosType;
+  chapters: Chapter[];
+};
+
+type PlayerProps = {
+  courseId: number;
   className?: string | number | symbol | undefined;
-}
-const Player = ({ className }: PlayerProps) => {
+};
+
+const Player = ({ courseId, className }: PlayerProps) => {
   const [selectedVideo, setSelectedVideo] = useState<Video | undefined>();
+  const { data } = useGetChapterAndVideos({ course_id: courseId, user_id: 1 });
+
+  useEffect(() => {
+    if (data?.chapters.length !== 0) {
+      setSelectedVideo(data?.chapters[0].videos[0]);
+    } else {
+      setSelectedVideo(undefined);
+    }
+  }, [data]);
 
   const handleClick = (video: Video) => setSelectedVideo(video);
 
@@ -46,9 +46,9 @@ const Player = ({ className }: PlayerProps) => {
       })}
     >
       <Box color={styles.video}>
-        <VideoPlayer title={selectedVideo?.title} url={selectedVideo?.videoUrl} />
+        <VideoPlayer title={selectedVideo?.title} url={selectedVideo?.video_url} />
       </Box>
-      <Playlist data={data} className={styles.list} onClick={handleClick} />
+      <Playlist data={data?.chapters as Chapter[]} lock={data?.infos?.lock} className={styles.list} onClick={handleClick} />
     </Box>
   );
 };

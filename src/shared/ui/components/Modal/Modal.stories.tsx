@@ -2,10 +2,9 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Button, DialogContentText } from '@mui/material';
 
 import Modal from './components/Modal';
-import { ModalCloseButton } from './components/ModalCloseButton';
-import { ModalOpenButton } from './components/ModalOpenButton';
-import { ModalProvider } from './context/ModalContext';
 import { ModalProps } from './components/Modal.type';
+import { ModalProvider } from './context/ModalContext';
+import { ModalCloseButton, ModalOpenButton } from '~/shared/ui/components/Modal/components';
 
 export default {
   title: 'components/Modal',
@@ -17,7 +16,7 @@ const Template: StoryFn<ModalProps> = (args) => (
   <ModalProvider>
     <Modal {...args} />
     <ModalOpenButton>
-      <Button>Click to open</Button>
+      <Button>Click to open jj</Button>
     </ModalOpenButton>
   </ModalProvider>
 );

@@ -1,104 +1,91 @@
 'use client';
 import { useMemo } from 'react';
+import classNames from 'classnames';
+import { useRouter } from 'next/navigation';
+import { Iconify } from '~/shared/ui/components';
+import Image from '~/infrastructure/ui/atoms/Image';
+import { Button, NoSsr, Typography } from '@mui/material';
+import { truncateString } from '~/shared/utils/truncateString';
 import { MaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
+import CRUDCourseModal from 'src/infrastructure/ui/molecules/Modal/CRUDCourseModal';
 
 import styles from './CoursesTable.module.scss';
-import { NoSsr } from '@mui/material';
-import classNames from 'classnames';
 
-type Person = {
-  name: {
-    firstName: string;
-    lastName: string;
-  };
-  address: string;
-  city: string;
-  state: string;
+export type CoursesDatable = {
+  id: number;
+  name: string;
+  image: string;
+  price_online: number;
+  price_classroom: number;
+  description: string;
 };
 
-const data: Person[] = [
-  {
-    name: {
-      firstName: 'John',
-      lastName: 'Doe'
-    },
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky'
-  },
-  {
-    name: {
-      firstName: 'Jane',
-      lastName: 'Doe'
-    },
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio'
-  },
-  {
-    name: {
-      firstName: 'Joe',
-      lastName: 'Doe'
-    },
-    address: '566 Brakus Inlet',
-    city: 'South Linda',
-    state: 'West Virginia'
-  },
-  {
-    name: {
-      firstName: 'Kevin',
-      lastName: 'Vandy'
-    },
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska'
-  },
-  {
-    name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs'
-    },
-    address: '32188 Larkin Turnpike',
-    city: 'Omaha',
-    state: 'Nebraska'
-  }
-];
-
 interface CoursesTableProps {
+  data: CoursesDatable[];
   className?: string | number | symbol | undefined;
 }
 
-const CoursesTable = ({ className }: CoursesTableProps) => {
-  const columns = useMemo<MRT_ColumnDef<Person>[]>(
+const CoursesTable = ({ data, className }: CoursesTableProps) => {
+  const router = useRouter();
+
+  const columns = useMemo<MRT_ColumnDef<CoursesDatable>[]>(
     () => [
       {
-        accessorKey: 'name.firstName',
-        header: 'First Name',
+        accessorKey: 'id',
+        header: 'ID',
+        size: 5
+      },
+      {
+        accessorKey: 'name',
+        header: 'Nom du cours',
         size: 150
       },
       {
-        accessorKey: 'name.lastName',
-        header: 'Last Name',
-        size: 150
+        accessorKey: 'image',
+        header: 'Image',
+        size: 150,
+        Cell: ({ cell }) => {
+          const image = cell.getValue<string>();
+
+          return (
+            <Image
+              src={image}
+              alt=""
+              imageSize={{
+                width: 100,
+                height: 100
+              }}
+            />
+          );
+        }
       },
       {
-        accessorKey: 'address',
-        header: 'Address',
-        size: 200
+        accessorKey: 'price_online',
+        header: 'Prix en ligne',
+        size: 50
       },
       {
-        accessorKey: 'city',
-        header: 'City',
-        size: 150
+        accessorKey: 'price_classroom',
+        header: 'Prix en presentiel',
+        size: 50
       },
       {
-        accessorKey: 'state',
-        header: 'State',
-        size: 150
+        accessorKey: 'description',
+        header: 'Description',
+        size: 300,
+        Cell: ({ cell }) => {
+          const description = cell.getValue<string>();
+          return <Typography variant="body2">{truncateString(description, 95)}</Typography>;
+        }
       }
     ],
     []
   );
+
+  const seeCourseDetails = (id: number | string) => {
+    const path = `/dashboard/admin/courses/${id}`;
+    router.push(path);
+  };
 
   return (
     <div
@@ -107,7 +94,87 @@ const CoursesTable = ({ className }: CoursesTableProps) => {
       })}
     >
       <NoSsr>
-        <MaterialReactTable columns={columns} data={data} />
+        <MaterialReactTable
+          data={data}
+          enableRowActions
+          columns={columns}
+          positionActionsColumn="last"
+          renderRowActions={({ row }) => {
+            const course: CoursesDatable = {
+              id: row.getValue<number>('id'),
+              name: row.getValue<string>('name'),
+              image: row.getValue<string>('image'),
+              price_online: row.getValue<number>('price_online'),
+              price_classroom: row.getValue<number>('price_classroom'),
+              description: row.getValue<string>('description')
+            };
+
+            return (
+              <div
+                style={{
+                  display: 'flex',
+                  gap: 10,
+                  justifyContent: 'center'
+                }}
+              >
+                <CRUDCourseModal
+                  type="edit"
+                  course={course}
+                  button={
+                    <Button variant="contained">
+                      <Iconify icon="mdi:pencil" fontSize={20} />
+                    </Button>
+                  }
+                  title="Mettre a jours le cours"
+                />
+                <Button variant="contained" onClick={() => seeCourseDetails(course.id)}>
+                  <Iconify icon="mdi:eye" fontSize={20} />
+                </Button>
+
+                <CRUDCourseModal
+                  type="delete"
+                  course={course}
+                  button={
+                    <Button variant="contained" color="error">
+                      <Iconify icon="mdi:delete" fontSize={20} />
+                    </Button>
+                  }
+                  title="Supprimer le cours"
+                />
+              </div>
+            );
+          }}
+          renderTopToolbarCustomActions={() => {
+            const course: CoursesDatable = {
+              id: 0,
+              name: '',
+              image: '',
+              description: '',
+              price_online: 0,
+              price_classroom: 0
+            };
+
+            return (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}
+              >
+                <CRUDCourseModal
+                  type="create"
+                  course={course}
+                  button={
+                    <Button variant="contained">
+                      <Iconify icon="mdi:plus" fontSize={20} />
+                    </Button>
+                  }
+                  title="Crée un cours"
+                />
+              </div>
+            );
+          }}
+        />
       </NoSsr>
     </div>
   );

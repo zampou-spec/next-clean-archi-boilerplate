@@ -1,8 +1,7 @@
-import CourseDetailsTemplate from '~/infrastructure/ui/templates/Dashboard/Admin/Courses/CourseDetails';
+import CourseDetailsTemplate from 'src/infrastructure/ui/templates/Dashboard/Admin/CourseDetails';
 
-const CourseDetailsPage = ({ params }: { params: { courseId: number | string } }) => {
-  console.log(params);
-  return <CourseDetailsTemplate />;
+const CourseDetailsPage = ({ params }: { params: { courseId: number } }) => {
+  return <CourseDetailsTemplate courseId={params.courseId} />;
 };
 
 export default CourseDetailsPage;

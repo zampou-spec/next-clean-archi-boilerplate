@@ -1,5 +1,5 @@
-// import Iconify from '../../Iconify';
 import { ModalProps } from './Modal.type';
+import { Iconify } from '~/shared/ui/components';
 import { alpha, Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 
 const ModalLayout = ({ dialogTitleProps, title, children, contentProps, onClose, PaperProps, width, ...props }: ModalProps) => (
@@ -8,9 +8,9 @@ const ModalLayout = ({ dialogTitleProps, title, children, contentProps, onClose,
     PaperProps={{
       sx: {
         borderRadius: 2,
-        minWidth: ['100%', 265],
-        minHeight: ['100%', 365],
-        maxWidth: '80%',
+        // minWidth: ['100%', 265],
+        // minHeight: ['100%', 365],
+        // maxWidth: '80%',
         ...PaperProps?.sx,
         width
       },
@@ -34,7 +34,7 @@ const ModalLayout = ({ dialogTitleProps, title, children, contentProps, onClose,
           }
         }}
       >
-        {/* <Iconify icon="ic:round-close" /> */}
+        <Iconify icon="ic:round-close" />
       </IconButton>
     </DialogTitle>
     <DialogContent {...contentProps}>{children}</DialogContent>

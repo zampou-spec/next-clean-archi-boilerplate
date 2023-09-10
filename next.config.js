@@ -6,7 +6,7 @@ const nextConfig = {
     appDir: true
   },
   images: {
-    domains: ['placehold.co']
+    domains: ['placehold.co', 'localhost', 'i.ytimg.com']
   }
 };
 

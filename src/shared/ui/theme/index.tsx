@@ -3,8 +3,8 @@ import { frFR } from '@mui/material/locale';
 import pxToRem from '~/shared/utils/pxToRem';
 import { Montserrat } from 'next/font/google';
 import { pink, red } from '@mui/material/colors';
-import { Shadows, alpha, createTheme, useTheme, Components } from '@mui/material';
 import { responsiveFontSizes } from '~/shared/utils/responsiveFontSizes';
+import { Shadows, alpha, createTheme, useTheme, Components } from '@mui/material';
 
 export const montserrat = Montserrat({
   display: 'swap',

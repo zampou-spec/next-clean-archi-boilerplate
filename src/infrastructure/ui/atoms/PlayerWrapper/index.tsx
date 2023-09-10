@@ -13,6 +13,7 @@ import styles from './PlayerWrapper.module.scss';
 
 interface PlayerWrapperProps {
   title?: string;
+  url: string | undefined;
   children: (props: ReactPlayerProps) => ReactNode;
   className?: string | number | symbol | undefined;
 }
@@ -35,7 +36,7 @@ const formatPlayerTime = (seconds: number | string): string => {
   return `${mm}:${ss}`;
 };
 
-const inverseTimeCalcul = (left: number | string, right: number | string): number | string => {
+const inverseTimeCalc = (left: number | string, right: number | string): number | string => {
   if (typeof left === 'string' || typeof right === 'string') {
     return '';
   }
@@ -43,15 +44,15 @@ const inverseTimeCalcul = (left: number | string, right: number | string): numbe
   return left - right;
 };
 
-const PlayerWrapper = ({ title, children, className }: PlayerWrapperProps) => {
+const PlayerWrapper = ({ title, url, children, className }: PlayerWrapperProps) => {
+  const reactPlayerRef = useRef<ReactPlayer>();
+  const controlPanelRef = useRef<HTMLElement>();
+  const playerWrapperRef = useRef<HTMLElement>();
   const [full, setFull] = useState(false);
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(0.5);
-  const reactPlayerRef = useRef<ReactPlayer>();
-  const controlPanelRef = useRef<HTMLElement>();
   const [playing, setPlaying] = useState(false);
   const [seeking, setSeeking] = useState(false);
-  const playerWrapperRef = useRef<HTMLElement>();
   const [waitFirtLoad, setWaitFirtLoad] = useState(false);
   const [showControlPanel, setShowControlPanel] = useState(true);
   const [timeFormatDIsplay, setTimeFormatDIsplay] = useState(true);
@@ -61,6 +62,13 @@ const PlayerWrapper = ({ title, children, className }: PlayerWrapperProps) => {
     played: 0,
     playedSeconds: 0
   });
+
+  // const [showChildren, setShowChildren] = useState(true);
+
+  useEffect(() => {
+    // setShowChildren(false);
+    handlePause();
+  }, [url]);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -95,7 +103,7 @@ const PlayerWrapper = ({ title, children, className }: PlayerWrapperProps) => {
     };
 
     function handleKeyPress(event: KeyboardEvent) {
-      if (event.key === ' ') {
+      if (event.key === ' ' && (event.target as HTMLElement)?.tagName !== 'INPUT') {
         event.preventDefault();
       }
     }
@@ -140,9 +148,9 @@ const PlayerWrapper = ({ title, children, className }: PlayerWrapperProps) => {
     setShowControlPanel(true);
   };
 
-  const toggleFullScreen = () => {
+  const toggleFullScreen = async () => {
     setFull((fulls) => !fulls);
-    screenfull.toggle(playerWrapperRef.current);
+    await screenfull.toggle(playerWrapperRef.current);
   };
 
   const handleProgress = (changeState: OnProgressProps) => {
@@ -151,17 +159,17 @@ const PlayerWrapper = ({ title, children, className }: PlayerWrapperProps) => {
     }
   };
 
-  const handleVolumeChange = (e: Event | SyntheticEvent, newValue: number | number[]) => {
+  const handleVolumeChange = (_e: Event | SyntheticEvent, newValue: number | number[]) => {
     if (typeof newValue === 'number') {
       const parsedValue = newValue / 100;
       const roundedValue = parseFloat(parsedValue.toFixed(1));
 
       setVolume(roundedValue);
-      setMuted(newValue === 0 ? true : false);
+      setMuted(newValue === 0);
     }
   };
 
-  const handleOnSeekChange = (e: Event | SyntheticEvent, newValue: number | number[]) => {
+  const handleOnSeekChange = (_e: Event | SyntheticEvent, newValue: number | number[]) => {
     if (typeof newValue === 'number') {
       const value = newValue / 100;
       setPlayerProgress({
@@ -171,7 +179,7 @@ const PlayerWrapper = ({ title, children, className }: PlayerWrapperProps) => {
     }
   };
 
-  const handleOnSeekMouseUp = (e: Event | SyntheticEvent, newValue: number | number[]) => {
+  const handleOnSeekMouseUp = (_e: Event | SyntheticEvent, newValue: number | number[]) => {
     if (typeof newValue === 'number') {
       const value = newValue / 100;
       setSeeking(false);
@@ -187,7 +195,7 @@ const PlayerWrapper = ({ title, children, className }: PlayerWrapperProps) => {
   const handleOnSeekMouseDown = () => setSeeking(true);
   const elapsedTime = timeFormatDIsplay
     ? formatPlayerTime(currentTime)
-    : `-${formatPlayerTime(inverseTimeCalcul(duration, currentTime))}`;
+    : `-${formatPlayerTime(inverseTimeCalc(duration, currentTime))}`;
   const handleTimeFormatDIsplay = () => setTimeFormatDIsplay(!timeFormatDIsplay);
 
   return (
@@ -269,17 +277,25 @@ const PlayerWrapper = ({ title, children, className }: PlayerWrapperProps) => {
           </Box>
         </Box>
       </Box>
-      <NoSsr>
+      <NoSsr defer={true}>
         {children({
           muted,
           volume,
           playing,
+          url: url,
           controls: false,
           onPlay: handlePlay,
           ref: reactPlayerRef,
           onPause: handlePause,
           onEnded: handleEnded,
-          onProgress: handleProgress
+          onProgress: handleProgress,
+          onError: () => handlePause()
+          // onReady: () => {
+          //   setShowChildren(true);
+          // },
+          // className: classNames({
+          //   [styles.children]: !showChildren
+          // })
         })}
       </NoSsr>
     </Box>

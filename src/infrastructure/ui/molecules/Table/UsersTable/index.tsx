@@ -1,100 +1,86 @@
 'use client';
 import { useMemo } from 'react';
-import { NoSsr } from '@mui/material';
+import classNames from 'classnames';
+import { Chip, NoSsr } from '@mui/material';
+import { MRT_Localization_FR } from 'material-react-table/locales/fr';
 import { MaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
+import RemoveSoldModal from '~/infrastructure/ui/molecules/Modal/RemoveSoldModal';
 
 import styles from './UserTable.module.scss';
-import classNames from 'classnames';
 
-type Person = {
-  name: {
-    firstName: string;
-    lastName: string;
-  };
-  address: string;
-  city: string;
-  state: string;
+export type SubscribesData = {
+  name: string;
+  type: string;
+  sold: number | null;
 };
 
-const data: Person[] = [
-  {
-    name: {
-      firstName: 'John',
-      lastName: 'Doe'
-    },
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky'
-  },
-  {
-    name: {
-      firstName: 'Jane',
-      lastName: 'Doe'
-    },
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio'
-  },
-  {
-    name: {
-      firstName: 'Joe',
-      lastName: 'Doe'
-    },
-    address: '566 Brakus Inlet',
-    city: 'South Linda',
-    state: 'West Virginia'
-  },
-  {
-    name: {
-      firstName: 'Kevin',
-      lastName: 'Vandy'
-    },
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska'
-  },
-  {
-    name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs'
-    },
-    address: '32188 Larkin Turnpike',
-    city: 'Omaha',
-    state: 'Nebraska'
-  }
-];
+export type UsersDataTable = {
+  id: string;
+  name: string;
+  email: string;
+  mobile_number: string;
+  subscribes: SubscribesData[];
+};
 
 interface UsersTableProps {
+  data: UsersDataTable[];
   className?: string | number | symbol | undefined;
 }
 
-const UsersTable = ({ className }: UsersTableProps) => {
-  const columns = useMemo<MRT_ColumnDef<Person>[]>(
+const UsersTable = ({ data, className }: UsersTableProps) => {
+  const columns = useMemo<MRT_ColumnDef<UsersDataTable>[]>(
     () => [
       {
-        accessorKey: 'name.firstName',
-        header: 'First Name',
+        accessorKey: 'id',
+        header: 'ID',
         size: 150
       },
       {
-        accessorKey: 'name.lastName',
-        header: 'Last Name',
+        accessorKey: 'name',
+        header: 'Nom Complet',
         size: 150
       },
       {
-        accessorKey: 'address',
-        header: 'Address',
+        accessorKey: 'email',
+        header: 'E-amil',
+        size: 150
+      },
+      {
+        accessorKey: 'mobile_number',
+        header: 'Numéro de téléphone',
         size: 200
       },
       {
-        accessorKey: 'city',
-        header: 'City',
-        size: 150
-      },
-      {
-        accessorKey: 'state',
-        header: 'State',
-        size: 150
+        accessorKey: 'subscribes',
+        header: 'Souscriptions',
+        Cell: ({ cell }) => {
+          const subscribes = cell.getValue<SubscribesData[]>();
+
+          return (
+            <div
+              style={{
+                display: 'flex',
+                gap: '5px',
+                flexWrap: 'wrap'
+              }}
+            >
+              {subscribes?.length ? (
+                subscribes.map((subscribe, key) => {
+                  let label = `${subscribe.name} - ${subscribe.type}`;
+
+                  if (subscribe.sold && subscribe.type === 'classroom') {
+                    label += ` - ${subscribe.sold}`;
+                    return <Chip key={key} size="small" color="success" label={label} />;
+                  } else if (subscribe.type === 'online') {
+                    return <Chip key={key} size="small" color="success" label={label} />;
+                  }
+                })
+              ) : (
+                <Chip size="small" color="error" label="Pas souscription" />
+              )}
+            </div>
+          );
+        }
       }
     ],
     []
@@ -107,7 +93,35 @@ const UsersTable = ({ className }: UsersTableProps) => {
       })}
     >
       <NoSsr>
-        <MaterialReactTable data={data} columns={columns} />
+        <MaterialReactTable
+          data={data}
+          enableRowActions
+          positionActionsColumn="last"
+          renderRowActions={({ row }) => {
+            const idRow = row.getValue<string>('id');
+            const subscribes = row.getValue<SubscribesData[]>('subscribes');
+            const filteredSubscribes = subscribes.filter((subscribe) => {
+              if (subscribe?.sold) return subscribe.type !== 'online' && subscribe.sold > 0;
+            });
+
+            return (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}
+              >
+                {filteredSubscribes.length ? (
+                  <RemoveSoldModal userId={idRow} subscribes={filteredSubscribes} />
+                ) : (
+                  <Chip size="small" color="error" label="Pas d'action" />
+                )}
+              </div>
+            );
+          }}
+          columns={columns}
+          localization={MRT_Localization_FR}
+        />
       </NoSsr>
     </div>
   );

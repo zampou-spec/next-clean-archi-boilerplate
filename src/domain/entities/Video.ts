@@ -1,5 +1,7 @@
 export type Video = {
+  id: string;
   title: string;
   image: string;
-  videoUrl: string;
+  video_url: string;
+  lock?: boolean;
 };

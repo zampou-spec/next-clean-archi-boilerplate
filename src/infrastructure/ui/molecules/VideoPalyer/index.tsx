@@ -9,31 +9,32 @@ interface VideoPlayerProps {
   className?: string | number | symbol | undefined;
 }
 
-const VideoPlayer = ({ url, title, className }: VideoPlayerProps) => {
-  return (
-    <PlayerWrapper className={classNames({ [className || '']: Boolean(className) })} title={title}>
-      {(props: ReactPlayerProps) => (
-        <ReactPlayer
-          {...props}
-          config={{
-            youtube: {
-              playerVars: {
-                controls: 0,
-                showinfo: 0,
-                modestbranding: 0,
-                loop: 1,
-                rel: 0,
-                disablekb: 1
-              }
+const VideoPlayer = ({ url, title, className }: VideoPlayerProps) => (
+  <PlayerWrapper url={url} title={title} className={classNames({ [className || '']: Boolean(className) })}>
+    {(props: ReactPlayerProps) => (
+      <ReactPlayer
+        {...props}
+        config={{
+          youtube: {
+            playerVars: {
+              rel: 0,
+              loop: 1,
+              autohide: 1,
+              showinfo: 0,
+              controls: 0,
+              disablekb: 1,
+              wmode: 'opaque',
+              modestbranding: 0,
+              origin: 'http://localhost:3000'
             }
-          }}
-          url={url}
-          width="100%"
-          height="100%"
-        />
-      )}
-    </PlayerWrapper>
-  );
-};
+          }
+        }}
+        width="100%"
+        height="100%"
+        fallback={<div>...loading</div>}
+      />
+    )}
+  </PlayerWrapper>
+);
 
 export default VideoPlayer;

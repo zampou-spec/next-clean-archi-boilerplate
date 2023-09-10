@@ -1,7 +1,7 @@
 import ModalLayout from './ModalLayout';
 import { ModalProps } from './Modal.type';
 import callAll from '~/shared/utils/callAll';
-import { useModalContext } from '../context/useModal';
+import { useModalContext } from '~/shared/ui/components';
 
 export function Modal({ onClose, ...props }: Omit<ModalProps, 'open'>) {
   const [open, setIsOpen] = useModalContext();

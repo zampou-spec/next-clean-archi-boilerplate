@@ -9,7 +9,7 @@ type State = [boolean, Dispatch<SetStateAction<boolean>>];
 
 export const ModalContext = createContext<State | undefined>(undefined);
 
-export const ModalProvider = ({ children }: ModalProviderProps): JSX.Element => {
+export const ModalProvider = ({ children }: ModalProviderProps) => {
   const state = React.useState(false);
 
   return <ModalContext.Provider value={state}>{children}</ModalContext.Provider>;

@@ -2,19 +2,19 @@
 import classNames from 'classnames';
 import { StaticImageData } from 'next/image';
 import Iconify from '~/shared/ui/components/Iconify';
-import Image from '~/infrastructure/ui/atoms/image';
+import Image from 'src/infrastructure/ui/atoms/Image';
 import { truncateString } from '~/shared/utils/truncateString';
 import { Box, Card, CardActionArea, CardContent, Typography } from '@mui/material';
 
 import styles from './PlaylistItem.module.scss';
 
-interface PlaylistItemProps {
+type PlaylistItemProps = {
   title: string;
   lock?: boolean;
   active?: boolean;
   onClick?: () => void;
   src: string | StaticImageData;
-}
+};
 
 const PlaylistItem = ({ src, onClick, title, lock = false, active = false }: PlaylistItemProps) => {
   return (
@@ -26,16 +26,7 @@ const PlaylistItem = ({ src, onClick, title, lock = false, active = false }: Pla
     >
       <CardActionArea onClick={onClick} className={styles.cardActionArea}>
         <Box className={styles.imgContent}>
-          <Image
-            src={src}
-            alt={title}
-            imageSize={{
-              width: 200,
-              height: 200
-            }}
-            className={styles.img}
-          />
-
+          <Image src={src} alt={title} className={styles.img} />
           {lock && (
             <div className={styles.lock}>
               <Iconify icon="mdi:lock" fontSize="20px" color="#fff" />

@@ -3,7 +3,7 @@ import { User } from '~/domain/entities';
 import { signIn, signOut } from 'next-auth/react';
 import { AppBar, Toolbar, Button } from '@mui/material';
 import UserMenu from '~/infrastructure/ui/molecules/UserMenu';
-import LogoHeader from '~/infrastructure/ui/atoms/logo/header';
+import LogoHeader from 'src/infrastructure/ui/atoms/Logo/Header';
 
 import styles from './Header.module.scss';
 import { Iconify } from '~/shared/ui/components';

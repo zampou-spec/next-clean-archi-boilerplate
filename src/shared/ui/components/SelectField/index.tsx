@@ -6,9 +6,9 @@ import FormControl from '@mui/material/FormControl';
 import MuiFormHelperText from '@mui/material/FormHelperText';
 import ReactSelect, { ReactSelectProps } from './ReactSelect';
 
-type optionType = {
+export type optionType = {
   id?: number | string;
-  value: number | string;
+  value: number | string | object;
   label: number | string;
 };
 
@@ -28,6 +28,7 @@ export const SelectField = ({
   onChange,
   isDisabled,
   value,
+  defaultValue,
   ...selectProps
 }: ReactSelectProps & FieldProps) => {
   const fieldErrorMessage = getIn(errors, field?.name);
@@ -36,7 +37,6 @@ export const SelectField = ({
   const handleChange = (selectedOption: unknown, actionMeta: ActionMeta<unknown>) => {
     if (!onChange) {
       if (isOptionType(selectedOption as object)) {
-        console.log(selectedOption);
         setFieldValue(field.name, (selectedOption as optionType).value);
       }
     } else {
@@ -69,6 +69,7 @@ export const SelectField = ({
         </InputLabel>
       )}
       <ReactSelect
+        defaultValue={defaultValue}
         error={hasError}
         {...field}
         {...selectProps}

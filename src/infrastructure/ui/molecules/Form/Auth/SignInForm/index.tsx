@@ -1,20 +1,21 @@
 'use client';
 import { Form, Formik } from 'formik';
 import { toast } from 'react-hot-toast';
+import { LoadingButton } from '@mui/lab';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Yup from '~/shared/settings/yup-setup';
 import { useState, SyntheticEvent } from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Button, Stack, Box, Tab, Unstable_Grid2 as Grid } from '@mui/material';
+import { Stack, Box, Tab, Unstable_Grid2 as Grid } from '@mui/material';
 import { FKPasswordField, FKPhoneNumberField, FKTextField } from '~/shared/ui/formik';
 
 import styles from './SignInForm.module.scss';
 
 const SignInForm = () => {
   const router = useRouter();
-
   const [tabSelected, setTabSelected] = useState('email');
+  const [disabledBtnIfOK, setDisabledBtnIfOK] = useState(false);
 
   const initialValues = {
     email: '',
@@ -52,6 +53,7 @@ const SignInForm = () => {
         });
 
         if (res?.ok) {
+          setDisabledBtnIfOK(true);
           toast.success('Connexion réussite');
           router.push('/dashboard');
         } else {
@@ -59,7 +61,7 @@ const SignInForm = () => {
         }
       }}
     >
-      {({ setFieldValue }) => (
+      {({ setFieldValue, isSubmitting }) => (
         <Form className={styles.signInForm}>
           <Stack maxWidth="450px" spacing={2.5}>
             <Grid container columnSpacing={1} rowSpacing={2.5}>
@@ -96,9 +98,9 @@ const SignInForm = () => {
                 <FKPasswordField fullWidth label="Mot de passe" name="password" autoComplete="password" />
               </Grid>
               <Grid xs={12} sx={{ mt: 1.5 }}>
-                <Button fullWidth type="submit" variant="contained">
+                <LoadingButton fullWidth loading={isSubmitting} disabled={disabledBtnIfOK} type="submit" variant="contained">
                   Envoyez
-                </Button>
+                </LoadingButton>
               </Grid>
             </Grid>
           </Stack>

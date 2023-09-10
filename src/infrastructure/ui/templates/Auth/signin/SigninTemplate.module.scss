@@ -1,4 +1,4 @@
-.loginTemplate {
+.signInTemplate {
   width: 100vw;
   height: 100vh;
 
@@ -8,4 +8,33 @@
   justify-content: center;
 
   padding: 10px 10px;
+
+  .signIn {
+    padding-bottom: 25px;
+
+    .header {
+      padding: 10px 12px;
+
+      .logo {
+        width: 200px;
+        height: auto;
+      }
+
+      .text {
+        color: #000;
+        text-align: center;
+      }
+    }
+
+    .footer {
+      margin-top: 20px;
+      .text {
+        .signUp {
+          color: #b80042;
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
+    }
+  }
 }

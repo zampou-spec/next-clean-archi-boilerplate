@@ -21,12 +21,10 @@ export const authOptions: NextAuthOptions = {
         const res = await userUseCase.signIn(id, password, login_mode);
 
         if (res.isRight()) {
-          const user = res.value;
-
-          return Promise.resolve(user);
+          return res.value;
         }
 
-        return Promise.resolve(null);
+        return null;
       }
     })
   ],

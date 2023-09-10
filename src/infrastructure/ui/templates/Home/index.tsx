@@ -1,14 +1,11 @@
-// import styles from './HomeTemplate.module.scss';
-
-import Player from '~/infrastructure/ui/organismes/Player';
-
 import Layout from '~/infrastructure/ui/layouts';
+
+import styles from './HomeTemplate.module.scss';
 
 const HomeTemplate = () => {
   return (
     <Layout>
-      <h1>Home Page</h1>
-      <Player />
+      <h1 className={styles.homeTemplate}>Home Page</h1>
     </Layout>
   );
 };

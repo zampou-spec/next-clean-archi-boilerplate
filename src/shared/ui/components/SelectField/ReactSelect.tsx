@@ -89,6 +89,7 @@ export const ReactSelect = ({ error, ...props }: ReactSelectProps) => {
     <Select
       {...props}
       styles={styles}
+      menuPosition="fixed"
       components={{
         IndicatorSeparator: () => null,
         NoOptionsMessage
