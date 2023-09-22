@@ -1,7 +1,5 @@
 import CourseDetailsTemplate from 'src/infrastructure/ui/templates/Dashboard/Admin/CourseDetails';
 
-const CourseDetailsPage = ({ params }: { params: { courseId: number } }) => {
-  return <CourseDetailsTemplate courseId={params.courseId} />;
-};
+const CourseDetailsPage = ({ params }: { params: { courseId: number } }) => <CourseDetailsTemplate courseId={params.courseId} />;
 
 export default CourseDetailsPage;

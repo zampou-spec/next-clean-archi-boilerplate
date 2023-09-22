@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import 'next-auth';
 import { User } from '~/domain/entities';
 
 declare module 'next-auth' {

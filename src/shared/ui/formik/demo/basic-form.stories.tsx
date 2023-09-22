@@ -7,17 +7,10 @@ import FKTextField from '../FKTextField';
 import FKSelectField from '../FKSelectField';
 import FKPasswordField from '../FKPasswordField';
 import FKPhoneNumberField from '../FKPhoneNumberField';
-import FKNumericFormatField from '../FKNumericFormatField';
 import { getCountryName } from '~/shared/utils/getCountryName';
-
-export type onChangeProps = {
-  phone: string;
-  country: string;
-};
 
 const Template = () => {
   const initialValues = {
-    numm: '',
     name: '',
     email: '',
     selec: null,
@@ -27,7 +20,6 @@ const Template = () => {
   };
 
   const validationSchema = Yup.object({
-    numm: Yup.number().required('Ce champ est require'),
     name: Yup.string().required('Ce champ est require'),
     selec: Yup.number().required('Ce champ est require'),
     country: Yup.string().required('Ce champ est require'),
@@ -73,7 +65,6 @@ const Template = () => {
               ]}
             />
             <FKPasswordField label="Mot de passe" name="password" />
-            <FKNumericFormatField label="Number Truck" name="numm" />
             <Button type="submit" variant="contained">
               Envoyez
             </Button>

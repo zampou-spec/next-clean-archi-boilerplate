@@ -1,0 +1,22 @@
+.solds {
+  max-width: 1000px;
+  margin: 30px auto 0;
+
+  .addContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 147px;
+
+    .add {
+      width: 70px;
+      height: 70px;
+    }
+
+    .add, .add:hover {
+      background: #e8d0d9;
+    }
+  }
+}

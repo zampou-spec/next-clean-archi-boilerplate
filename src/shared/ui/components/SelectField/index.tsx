@@ -82,7 +82,7 @@ export const SelectField = ({
         options={options}
         isDisabled={isDisabled}
       />
-      <MuiFormHelperText error={hasError}>{hasError ? fieldErrorMessage : helperText}</MuiFormHelperText>
+      <MuiFormHelperText error={Boolean(hasError)}>{hasError ? fieldErrorMessage : helperText}</MuiFormHelperText>
     </FormControl>
   );
 };

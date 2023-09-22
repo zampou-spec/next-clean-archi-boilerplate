@@ -12,7 +12,7 @@ const useCreateChapter = (onSuccess?: () => void) =>
       if (onSuccess) onSuccess();
       toast.success('Chapitre crée avec succès');
 
-      await queryClient.invalidateQueries({ queryKey: ['get-all-chapters'] });
+      await queryClient.invalidateQueries({ queryKey: ['get-course-chapters'] });
       await queryClient.invalidateQueries({ queryKey: ['get-course-videos'] });
     },
     onError: () => toast.error('Une erreur ses produits veilleurs réessayait plus tard')

@@ -5,17 +5,17 @@ import { useEffect, useState } from 'react';
 
 import styles from './Image.module.scss';
 
-interface imageSize {
+type ImageSize = {
   width: number | string;
   height: number | string;
-}
+};
 
-interface ImageProps {
+type ImageProps = {
   alt: string;
-  imageSize?: imageSize;
+  imageSize?: ImageSize;
   src: string | NextImage.StaticImageData;
   className?: string | number | symbol | undefined;
-}
+};
 
 const Image = ({ src, alt, imageSize, className }: ImageProps) => {
   const [localImageSize, setLocalImageSize] = useState<{ width: number; height: number }>({ width: 200, height: 200 });

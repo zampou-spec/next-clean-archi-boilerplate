@@ -5,16 +5,23 @@ import logo from '~/infrastructure/ui/assets/images/logo.svg';
 
 import styles from './LogoHeader.module.scss';
 
-interface LogoHeaderProps {
-  className?: string | number | symbol | undefined;
-}
+type ImageSize = {
+  width: number | string;
+  height: number | string;
+};
 
-const LogoHeader = ({ className }: LogoHeaderProps) => {
+type LogoHeaderProps = {
+  imageSize?: ImageSize;
+  className?: string | number | symbol | undefined;
+};
+
+const LogoHeader = ({ imageSize, className }: LogoHeaderProps) => {
   return (
     <Link href="/" passHref>
       <Image
         src={logo}
         alt="header logo"
+        imageSize={imageSize}
         className={classNames(styles.logoHeader, {
           [className || '']: Boolean(className)
         })}

@@ -1,14 +1,15 @@
 'use client';
-import Iconify from '../Iconify';
+import { MouseEvent } from 'react';
+import { Iconify } from '../Iconify';
 import { IconButton } from '@mui/material';
 import { forwardRef, useState } from 'react';
-import TextField, { TextFieldProps } from '../TextField';
+import { TextField, TextFieldProps } from '../TextField';
 
 export const PasswordField = forwardRef<unknown, TextFieldProps>((props, ref) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleShowPasswordChange = () => setShowPassword(!showPassword);
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 

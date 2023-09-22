@@ -2,6 +2,7 @@
 import { useMemo } from 'react';
 import classNames from 'classnames';
 import { Chip, NoSsr } from '@mui/material';
+import { useGetAllUser } from '~/infrastructure/api';
 import { MRT_Localization_FR } from 'material-react-table/locales/fr';
 import { MaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
 import RemoveSoldModal from '~/infrastructure/ui/molecules/Modal/RemoveSoldModal';
@@ -22,12 +23,13 @@ export type UsersDataTable = {
   subscribes: SubscribesData[];
 };
 
-interface UsersTableProps {
-  data: UsersDataTable[];
+type UsersTableProps = {
   className?: string | number | symbol | undefined;
-}
+};
 
-const UsersTable = ({ data, className }: UsersTableProps) => {
+const UsersTable = ({ className }: UsersTableProps) => {
+  const { data } = useGetAllUser();
+
   const columns = useMemo<MRT_ColumnDef<UsersDataTable>[]>(
     () => [
       {
@@ -64,11 +66,11 @@ const UsersTable = ({ data, className }: UsersTableProps) => {
                 flexWrap: 'wrap'
               }}
             >
-              {subscribes?.length ? (
+              {subscribes && subscribes?.length > 0 ? (
                 subscribes.map((subscribe, key) => {
                   let label = `${subscribe.name} - ${subscribe.type}`;
 
-                  if (subscribe.sold && subscribe.type === 'classroom') {
+                  if (subscribe.type === 'classroom') {
                     label += ` - ${subscribe.sold}`;
                     return <Chip key={key} size="small" color="success" label={label} />;
                   } else if (subscribe.type === 'online') {
@@ -93,35 +95,37 @@ const UsersTable = ({ data, className }: UsersTableProps) => {
       })}
     >
       <NoSsr>
-        <MaterialReactTable
-          data={data}
-          enableRowActions
-          positionActionsColumn="last"
-          renderRowActions={({ row }) => {
-            const idRow = row.getValue<string>('id');
-            const subscribes = row.getValue<SubscribesData[]>('subscribes');
-            const filteredSubscribes = subscribes.filter((subscribe) => {
-              if (subscribe?.sold) return subscribe.type !== 'online' && subscribe.sold > 0;
-            });
+        {data && (
+          <MaterialReactTable
+            data={data}
+            enableRowActions
+            columns={columns}
+            positionActionsColumn="last"
+            renderRowActions={({ row }) => {
+              const idRow = row.getValue<string>('id');
+              const subscribes = row.getValue<SubscribesData[]>('subscribes');
+              const filteredSubscribes = subscribes.filter((subscribe) => {
+                if (subscribe?.sold) return subscribe.type !== 'online' && subscribe.sold > 0;
+              });
 
-            return (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center'
-                }}
-              >
-                {filteredSubscribes.length ? (
-                  <RemoveSoldModal userId={idRow} subscribes={filteredSubscribes} />
-                ) : (
-                  <Chip size="small" color="error" label="Pas d'action" />
-                )}
-              </div>
-            );
-          }}
-          columns={columns}
-          localization={MRT_Localization_FR}
-        />
+              return (
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                  }}
+                >
+                  {filteredSubscribes.length ? (
+                    <RemoveSoldModal userId={idRow} subscribes={filteredSubscribes} />
+                  ) : (
+                    <Chip size="small" color="error" label="Pas d'action" />
+                  )}
+                </div>
+              );
+            }}
+            localization={MRT_Localization_FR}
+          />
+        )}
       </NoSsr>
     </div>
   );

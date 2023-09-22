@@ -11,12 +11,12 @@ import { ReactNode, useEffect, useRef, useState, SyntheticEvent } from 'react';
 
 import styles from './PlayerWrapper.module.scss';
 
-interface PlayerWrapperProps {
+type PlayerWrapperProps = {
   title?: string;
   url: string | undefined;
   children: (props: ReactPlayerProps) => ReactNode;
   className?: string | number | symbol | undefined;
-}
+};
 
 const formatPlayerTime = (seconds: number | string): string => {
   if (typeof seconds === 'string' || isNaN(seconds)) {
@@ -53,20 +53,17 @@ const PlayerWrapper = ({ title, url, children, className }: PlayerWrapperProps) 
   const [volume, setVolume] = useState(0.5);
   const [playing, setPlaying] = useState(false);
   const [seeking, setSeeking] = useState(false);
-  const [waitFirtLoad, setWaitFirtLoad] = useState(false);
+  const [waitFirstLoad, setWaitFirstLoad] = useState(false);
   const [showControlPanel, setShowControlPanel] = useState(true);
   const [timeFormatDIsplay, setTimeFormatDIsplay] = useState(true);
   const [playerProgress, setPlayerProgress] = useState({
     loaded: 0,
-    loadedSeconds: 0,
     played: 0,
-    playedSeconds: 0
+    playedSeconds: 0,
+    loadedSeconds: 0
   });
 
-  // const [showChildren, setShowChildren] = useState(true);
-
   useEffect(() => {
-    // setShowChildren(false);
     handlePause();
   }, [url]);
 
@@ -94,7 +91,7 @@ const PlayerWrapper = ({ title, url, children, className }: PlayerWrapperProps) 
 
     const handleMouseLeave = () => {
       if (playing) {
-        if (waitFirtLoad) setShowControlPanel(false);
+        if (waitFirstLoad) setShowControlPanel(false);
 
         if (timeoutId) {
           clearTimeout(timeoutId);
@@ -120,12 +117,12 @@ const PlayerWrapper = ({ title, url, children, className }: PlayerWrapperProps) 
       controlPanel?.removeEventListener('mouseleave', handleMouseLeave);
       controlPanel?.removeEventListener('mousemove', showOverlayOnMouseMove);
     };
-  }, [playing, waitFirtLoad]);
+  }, [playing, waitFirstLoad]);
 
   const handlePlay = () => {
-    if (!waitFirtLoad) {
+    if (!waitFirstLoad) {
       const timeoutId = setTimeout(() => {
-        setWaitFirtLoad(true);
+        setWaitFirstLoad(true);
         clearTimeout(timeoutId);
         setShowControlPanel(false);
       }, 3500);
@@ -134,7 +131,7 @@ const PlayerWrapper = ({ title, url, children, className }: PlayerWrapperProps) 
 
   const handlePause = () => {
     setPlaying(false);
-    setWaitFirtLoad(false);
+    setWaitFirstLoad(false);
     setShowControlPanel(true);
   };
 
@@ -290,12 +287,6 @@ const PlayerWrapper = ({ title, url, children, className }: PlayerWrapperProps) 
           onEnded: handleEnded,
           onProgress: handleProgress,
           onError: () => handlePause()
-          // onReady: () => {
-          //   setShowChildren(true);
-          // },
-          // className: classNames({
-          //   [styles.children]: !showChildren
-          // })
         })}
       </NoSsr>
     </Box>

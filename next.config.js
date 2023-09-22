@@ -6,6 +6,7 @@ const nextConfig = {
     appDir: true
   },
   images: {
+    dangerouslyAllowSVG: true,
     domains: ['placehold.co', 'localhost', 'i.ytimg.com']
   }
 };

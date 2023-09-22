@@ -1,0 +1,34 @@
+.img {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.unlockCourseModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  .price {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+
+    border-radius: 5px;
+    border: #b80042 dashed 2px;
+
+    padding: 5px 10px;
+
+    p {
+      color: #b80042;
+    }
+  }
+
+  .description {
+    text-align: center;
+  }
+}

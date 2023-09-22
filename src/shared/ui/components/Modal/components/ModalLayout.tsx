@@ -8,9 +8,6 @@ const ModalLayout = ({ dialogTitleProps, title, children, contentProps, onClose,
     PaperProps={{
       sx: {
         borderRadius: 2,
-        // minWidth: ['100%', 265],
-        // minHeight: ['100%', 365],
-        // maxWidth: '80%',
         ...PaperProps?.sx,
         width
       },

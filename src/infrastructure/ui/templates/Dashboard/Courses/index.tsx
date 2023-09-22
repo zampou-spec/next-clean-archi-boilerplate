@@ -1,7 +1,12 @@
+import Section from '~/infrastructure/ui/atoms/Section';
+import Courses from '~/infrastructure/ui/organismes/Courses';
+
 import styles from './CoursesDashboard.module.scss';
 
-const CoursesDashboard = () => {
-  return <h1 className={styles.coursesDashboard}>Course Dashboard</h1>;
-};
+const CoursesDashboard = () => (
+  <Section className={styles.coursesDashboard}>
+    <Courses />
+  </Section>
+);
 
 export default CoursesDashboard;

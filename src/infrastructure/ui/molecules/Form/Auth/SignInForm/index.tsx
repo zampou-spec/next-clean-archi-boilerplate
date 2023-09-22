@@ -88,7 +88,7 @@ const SignInForm = () => {
                       name="mobile_number"
                       autoComplete="username"
                       label="Numéro de téléphone"
-                      helperText="Numéro avec prefix, exemple: +225 xx xx xx xx xx"
+                      helperText="Exemple: +225 xx xx xx xx xx"
                       onChange={(value) => setFieldValue('mobile_number', value)}
                     />
                   </TabPanel>

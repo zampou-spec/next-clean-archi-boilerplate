@@ -12,7 +12,7 @@ const useDeleteChapter = (onSuccess?: () => void) =>
       if (onSuccess) onSuccess();
       toast.success('Chapitre supprimer avec succès');
 
-      await queryClient.invalidateQueries({ queryKey: ['get-all-chapters'] });
+      await queryClient.invalidateQueries({ queryKey: ['get-course-chapters'] });
       await queryClient.invalidateQueries({ queryKey: ['get-course-videos'], refetchType: 'all' });
     },
     onError: () => toast.error('Une erreur ses produits veilleurs réessayait plus tard')

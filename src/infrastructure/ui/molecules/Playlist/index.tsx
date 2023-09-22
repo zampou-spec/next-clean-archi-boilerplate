@@ -25,7 +25,7 @@ const Playlist = ({ data, lock, onClick, className }: PlaylistProps) => {
   };
 
   useEffect(() => {
-    if (data?.length !== 0) {
+    if (data && data?.length > 0) {
       const video = data[0].videos[0];
       setSelectedVideo(video);
     } else {

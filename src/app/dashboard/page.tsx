@@ -1,3 +1,5 @@
-const DashboardPage = () => <h1>Dashboard User Page</h1>;
+import HomeDashboard from '~/infrastructure/ui/templates/Dashboard/Home';
+
+const DashboardPage = () => <HomeDashboard />;
 
 export default DashboardPage;

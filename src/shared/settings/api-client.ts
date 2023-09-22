@@ -56,7 +56,7 @@ const kyDefaultOptions: Options = {
 
 const apiClient = ky
   .create({
-    prefixUrl: 'http://localhost:8000'
+    prefixUrl: 'http://localhost:8000' //'http://127.0.0.1:8000'
   })
   .extend(kyDefaultOptions);
 

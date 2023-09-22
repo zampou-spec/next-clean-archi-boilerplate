@@ -1,0 +1,27 @@
+.soldCard {
+  max-width: 180px;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .sold {
+      width: 75px;
+      height: 75px;
+      margin-bottom: 10px;
+
+      h4 {
+        color: #ffffff;
+        text-align: center;
+        text-transform: uppercase;
+      }
+    }
+
+    .title {
+      font-size: 14px;
+      text-align: center;
+    }
+  }
+
+}

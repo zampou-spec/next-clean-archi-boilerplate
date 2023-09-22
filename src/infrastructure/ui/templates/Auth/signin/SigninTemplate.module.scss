@@ -18,6 +18,10 @@
       .logo {
         width: 200px;
         height: auto;
+
+        img {
+          height: auto;
+        }
       }
 
       .text {
@@ -28,7 +32,11 @@
 
     .footer {
       margin-top: 20px;
+
       .text {
+        padding: 0 20px;
+        text-align: center;
+
         .signUp {
           color: #b80042;
           font-weight: bold;

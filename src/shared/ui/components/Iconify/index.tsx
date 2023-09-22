@@ -6,8 +6,7 @@ type IconifyProps = {
   icon: IconifyIcon | string;
 } & BoxProps;
 
-export const Iconify = ({ icon, ...props }: IconifyProps) => {
-  return <Box component={Icon} icon={icon} {...props} />;
-};
+export const Iconify = ({ icon, ...props }: IconifyProps) => <Box component={Icon} icon={icon} {...props} />;
 
 export default Iconify;
+Iconify.displayName = 'Iconify';
