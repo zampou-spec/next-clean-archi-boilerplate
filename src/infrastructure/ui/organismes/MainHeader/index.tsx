@@ -12,7 +12,7 @@ interface HeaderProps {
   user?: User;
 }
 
-const Header = ({ user }: HeaderProps) => {
+const MainHeader = ({ user }: HeaderProps) => {
   return (
     <AppBar color="secondary" position="fixed" className={styles.header}>
       <Toolbar disableGutters className={styles.headerContent}>
@@ -34,4 +34,4 @@ const Header = ({ user }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default MainHeader;
