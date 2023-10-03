@@ -32,11 +32,7 @@ const HeroSlider = () => {
 
   return (
     <Box className={classNames('heroSlider', styles.heroSlider)}>
-      <AliceCarousel
-        mouseTracking
-        disableButtonsControls
-        items={[<Slide key={3} image={slide1} />, ...slides]}
-      />
+      <AliceCarousel mouseTracking disableButtonsControls items={[<Slide key={3} image={slide1} />, ...slides]} />
     </Box>
   );
 };
