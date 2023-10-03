@@ -56,7 +56,7 @@ const kyDefaultOptions: Options = {
 
 const apiClient = ky
   .create({
-    prefixUrl: process.env.BACKEND_URL || 'https://api-vamos.mlmhipe.com'
+    prefixUrl: 'https://api-vamos.mlmhipe.com'
   })
   .extend(kyDefaultOptions);
 
