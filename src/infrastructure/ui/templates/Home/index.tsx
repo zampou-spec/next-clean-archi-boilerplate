@@ -1,7 +1,9 @@
-import { Box, Typography, Button, NoSsr } from '@mui/material';
 import Layout from '~/infrastructure/ui/layouts';
+import CTA from '~/infrastructure/ui//molecules/CTA';
 import Section from '~/infrastructure/ui/atoms/Section';
 import Teams from '~/infrastructure/ui/organismes/Teams';
+// import Eshop from '~/infrastructure/ui/organismes/Eshop';
+import { Box, Typography, Button, NoSsr } from '@mui/material';
 import SectionTitle from '~/infrastructure/ui/atoms/SectionTitle';
 import AllCourses from '~/infrastructure/ui/organismes/AllCourses';
 import HeroSlider from '~/infrastructure/ui/molecules/Slider/HeroSlider';
@@ -14,6 +16,7 @@ const HomeTemplate = () => {
   return (
     <Layout>
       <HeroSlider />
+      <CTA />
       <Section>
         <SectionTitle>Cours et Tutos</SectionTitle>
         <AllCourses />
@@ -56,6 +59,7 @@ const HomeTemplate = () => {
           <PartnersSlider />
         </NoSsr>
       </Section>
+      {/* <Eshop /> */}
       <div style={{ height: 500, width: '100%', background: 'coral' }}></div>
     </Layout>
   );

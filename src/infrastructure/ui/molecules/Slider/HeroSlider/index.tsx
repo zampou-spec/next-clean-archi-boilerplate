@@ -23,7 +23,9 @@ const Slide = ({ image }: SlideProps) => {
 };
 
 const HeroSlider = () => {
-  const slides = [...Array.from({ length: 10 })].map((_, i) => <Slide key={i} image="https://picsum.photos/id/26/3744.webp" />);
+  const slides = [...Array.from({ length: 2 })].map((_, i) => (
+    <Slide key={i} image={`https://picsum.photos/id/26${i}/3744.webp`} />
+  ));
   return (
     <Box className={classNames('heroSlider', styles.heroSlider)}>
       <AliceCarousel mouseTracking disableButtonsControls items={slides} />

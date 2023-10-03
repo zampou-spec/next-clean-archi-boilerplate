@@ -1,0 +1,38 @@
+.cta {
+  background: #b80042;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+  padding-top: 25px !important;
+  padding-bottom: 25px !important;
+  margin-top: 0px !important;
+
+  @media (min-width: 1024px) {
+    height: 150px;
+  }
+
+  .text {
+    // max-width: 50%;
+    .title,
+    .subtitle {
+      color: #fff !important;
+    }
+
+    .subtitle {
+      padding-top: 10px;
+    }
+  }
+
+  .action {
+    color: #b80042;
+    background: #fff;
+    padding: 10px 20px;
+    width: 100%;
+
+    @media (min-width: 1024px) {
+      width: unset;
+    }
+  }
+}
