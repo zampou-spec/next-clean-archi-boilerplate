@@ -1,0 +1,19 @@
+.heroSlider .alice-carousel__dots {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  bottom: 75px;
+  transform: translateX(-50%);
+}
+
+.heroSlider .alice-carousel__dots-item {
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+  border: 2px solid #fff;
+
+}
+
+.heroSlider .alice-carousel__dots-item:not(.__custom):hover, .heroSlider .alice-carousel__dots-item:not(.__custom).__active {
+  background-color: #fff;
+}

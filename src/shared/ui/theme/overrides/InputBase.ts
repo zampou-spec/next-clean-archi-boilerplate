@@ -1,5 +1,6 @@
 import pxToRem from '~/shared/utils/pxToRem';
-import { alpha, InputBaseProps, Theme } from '@mui/material';
+import { alpha } from '@mui/material/styles';
+import { InputBaseProps, Theme } from '@mui/material';
 
 const muiInputBase = (theme: Theme) => {
   return {

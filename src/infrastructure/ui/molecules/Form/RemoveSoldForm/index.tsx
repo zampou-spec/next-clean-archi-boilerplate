@@ -8,13 +8,13 @@ import { Stack, Unstable_Grid2 as Grid } from '@mui/material';
 import { optionType, useModalContext } from '~/shared/ui/components';
 import { useRemoveSold, removeSoldMutationType } from '~/infrastructure/api';
 import { SubscribesData } from '~/infrastructure/ui/molecules/Table/UsersTable';
-import { RemoveSoldModalBasicProps } from '~/infrastructure/ui/molecules/Modal/RemoveSoldModal';
+import { RemoveSoldModalProps } from '~/infrastructure/ui/molecules/Modal/RemoveSoldModal';
 
 export type initialValuesType = {
   courses: SubscribesData | null;
 };
 
-const RemoveSoldForm = ({ userId, subscribes }: RemoveSoldModalBasicProps) => {
+const RemoveSoldForm = ({ userId, subscribes }: RemoveSoldModalProps) => {
   const [, setModal] = useModalContext();
   const { mutate: removeSoldMutation } = useRemoveSold(() => setModal(false));
   const [subscribesOption, setSubscribesOption] = useState<optionType[]>([]);

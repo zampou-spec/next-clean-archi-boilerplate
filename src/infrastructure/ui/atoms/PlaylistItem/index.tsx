@@ -1,7 +1,7 @@
 'use client';
 import classNames from 'classnames';
 import { StaticImageData } from 'next/image';
-import { Iconify } from '~/shared/ui/components';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import Image from 'src/infrastructure/ui/atoms/Image';
 import { truncateString } from '~/shared/utils/truncateString';
 import { Box, Card, CardActionArea, CardContent, Typography } from '@mui/material';

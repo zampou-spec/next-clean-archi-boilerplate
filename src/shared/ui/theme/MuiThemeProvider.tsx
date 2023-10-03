@@ -1,6 +1,6 @@
 import theme from '.';
 import deepmerge from 'deepmerge';
-import { ThemeProvider, Theme } from '@mui/material';
+import { ThemeProvider, Theme } from '@mui/material/styles';
 
 export interface ThemeProviderProps {
   outerTheme?: Partial<Theme>;

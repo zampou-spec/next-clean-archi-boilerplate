@@ -10,12 +10,12 @@ import { useModalContext } from '~/shared/ui/components';
 import { useEditChapter } from '~/infrastructure/api';
 import { useCreateChapter } from '~/infrastructure/api/chapter/createChapter';
 
-type EditOrCreateCourseForm = {
+type EditOrCreateChapterFormProps = {
   chapter: ChapterDatable;
   type: 'edit' | 'create';
 };
 
-const EditOrCreateChapterForm = ({ type, chapter }: EditOrCreateCourseForm) => {
+const EditOrCreateChapterForm = ({ type, chapter }: EditOrCreateChapterFormProps) => {
   const [, setModal] = useModalContext();
   const closeModal = () => setModal(false);
   const { mutate: editChapter } = useEditChapter(closeModal);

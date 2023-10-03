@@ -9,7 +9,7 @@ type AddSoldProps = {
 const AddSoldModal = ({ button }: AddSoldProps) => {
   return (
     <ModalProvider>
-      <Modal width="450px" title="Basic Remove Sold">
+      <Modal width="450px" title="Acheter des seances (4)">
         <AddSoldForm />
       </Modal>
       <ModalOpenButton>{button}</ModalOpenButton>

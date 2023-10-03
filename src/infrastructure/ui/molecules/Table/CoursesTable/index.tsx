@@ -1,7 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import classNames from 'classnames';
-import { Iconify } from '~/shared/ui/components';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import Image from '~/infrastructure/ui/atoms/Image';
 import { useGetAllCourses } from '~/infrastructure/api';
 import { Button, NoSsr, Typography } from '@mui/material';

@@ -1,8 +1,8 @@
-export type New = {
+export type News = {
   id: number | string;
   title: string;
   image: string;
   author: string;
-  category: string[];
   description: string;
+  category: string[] | string;
 };

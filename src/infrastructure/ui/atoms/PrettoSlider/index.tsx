@@ -1,4 +1,5 @@
-import { Slider, styled } from '@mui/material';
+import { Slider } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const PrettoSlider = styled(Slider)({
   color: '#fff',

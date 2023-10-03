@@ -4,14 +4,14 @@ import { ChapterDatable } from '~/infrastructure/ui/molecules/Table/ChapterTable
 import DeleteChapterForm from '~/infrastructure/ui/molecules/Form/Chapter/DeleteChapterForm';
 import EditOrCreateChapterForm from 'src/infrastructure/ui/molecules/Form/Chapter/EditOrCreateChapterForm';
 
-export type EditOrCreateCourseModalProps = {
+export type CRUDChapterModalProps = {
   title: string;
   button: ReactElement;
   chapter: ChapterDatable;
   type: 'edit' | 'create' | 'delete';
 };
 
-const CRUDChapterModal = ({ type, title, button, chapter }: EditOrCreateCourseModalProps) => {
+const CRUDChapterModal = ({ type, title, button, chapter }: CRUDChapterModalProps) => {
   return (
     <ModalProvider>
       <Modal width="450px" title={title}>

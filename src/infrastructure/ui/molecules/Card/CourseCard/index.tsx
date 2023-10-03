@@ -1,22 +1,35 @@
 'use client';
-import { Iconify } from '~/shared/ui/components';
+import { SyntheticEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import Image from '~/infrastructure/ui/atoms/Image';
 import { Box, Card, CardActionArea, CardContent, Typography } from '@mui/material';
 
 import styles from './CourseCard.module.scss';
 
 type CourseCardProps = {
-  href: string;
+  href?: string;
   image: string;
   title: string;
   lock?: boolean;
   description: string;
+  disableRipple?: boolean;
 };
 
-const CourseCard = ({ href, image, title, description, lock = false }: CourseCardProps) => {
+const CourseCard = ({ href, image, title, description, lock = false, disableRipple }: CourseCardProps) => {
+  const router = useRouter();
+
+  const handleOnClick = (e: SyntheticEvent) => {
+    if (href) {
+      router.push(href);
+    }
+
+    e.preventDefault();
+  };
+
   return (
     <Card elevation={2} className={styles.courseCard}>
-      <CardActionArea href={href || '#'} className={styles.container}>
+      <CardActionArea onClick={handleOnClick} className={styles.container} disableRipple={Boolean(disableRipple)}>
         <Box className={styles.imgContent}>
           <Image alt="course card" src={image} className={styles.img} />
           {lock && (

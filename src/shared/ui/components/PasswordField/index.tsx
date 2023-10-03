@@ -18,7 +18,7 @@ export const PasswordField = forwardRef<unknown, TextFieldProps>((props, ref) =>
       {...props}
       ref={ref}
       type={showPassword ? 'text' : 'password'}
-      inputProps={{ autoComplete: 'new-password' }}
+      inputProps={{ autoComplete: 'news-password' }}
       endAdornment={
         <IconButton
           sx={{

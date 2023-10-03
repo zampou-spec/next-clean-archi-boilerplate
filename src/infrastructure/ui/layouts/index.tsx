@@ -1,8 +1,9 @@
 'use client';
+import dynamic from 'next/dynamic';
 import React, { ReactNode } from 'react';
 import { User } from '~/domain/entities';
 import { useSession } from 'next-auth/react';
-import Header from '~/infrastructure/ui/organismes/Header';
+const Header = dynamic(() => import('~/infrastructure/ui/organismes/Header'), { ssr: false });
 
 import styles from './Layout.module.scss';
 

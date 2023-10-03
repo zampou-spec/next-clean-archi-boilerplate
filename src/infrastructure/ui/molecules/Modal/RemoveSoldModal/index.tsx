@@ -1,17 +1,18 @@
 import { Button } from '@mui/material';
 import RemoveSoldForm from '~/infrastructure/ui/molecules/Form/RemoveSoldForm';
 import { SubscribesData } from '~/infrastructure/ui/molecules/Table/UsersTable';
-import { Iconify, Modal, ModalOpenButton, ModalProvider } from '~/shared/ui/components';
+import { Modal, ModalOpenButton, ModalProvider } from '~/shared/ui/components';
+import { Iconify } from '~/shared/ui/components/Iconify';
 
-export type RemoveSoldModalBasicProps = {
+export type RemoveSoldModalProps = {
   userId: string;
   subscribes: SubscribesData[];
 };
 
-const RemoveSoldModal = ({ userId, subscribes }: RemoveSoldModalBasicProps) => {
+const RemoveSoldModal = ({ userId, subscribes }: RemoveSoldModalProps) => {
   return (
     <ModalProvider>
-      <Modal width="450px" title="Basic Remove Sold">
+      <Modal width="450px" title="Retirez une seance">
         <RemoveSoldForm userId={userId} subscribes={subscribes} />
       </Modal>
       <ModalOpenButton>

@@ -1,6 +1,6 @@
 'use client';
 import { stringToColor } from '~/shared/utils';
-import { Iconify } from '~/shared/ui/components';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import { truncateString } from '~/shared/utils/truncateString';
 import { Card, CardContent, Box, Typography, Avatar } from '@mui/material';
 

@@ -1,7 +1,7 @@
 'use client';
 import classNames from 'classnames';
 import * as NextImage from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, DragEvent } from 'react';
 
 import styles from './Image.module.scss';
 
@@ -15,9 +15,10 @@ type ImageProps = {
   imageSize?: ImageSize;
   src: string | NextImage.StaticImageData;
   className?: string | number | symbol | undefined;
+  onDragStart?: (e: DragEvent) => void;
 };
 
-const Image = ({ src, alt, imageSize, className }: ImageProps) => {
+const Image = ({ src, alt, imageSize, className, onDragStart }: ImageProps) => {
   const [localImageSize, setLocalImageSize] = useState<{ width: number; height: number }>({ width: 200, height: 200 });
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const Image = ({ src, alt, imageSize, className }: ImageProps) => {
       });
     }
   }, [src]);
+
   return (
     <div
       className={classNames(styles.imageContainer, {
@@ -48,6 +50,7 @@ const Image = ({ src, alt, imageSize, className }: ImageProps) => {
       <NextImage.default
         src={src}
         alt={alt}
+        onDragStart={onDragStart}
         width={localImageSize.width || 200}
         height={localImageSize.height || 200}
         className={styles.customImage}

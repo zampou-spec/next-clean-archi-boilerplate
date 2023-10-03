@@ -30,7 +30,7 @@ const UnlockCourseModal = ({ infos, button }: AddSoldProps) => {
 
   return (
     <ModalProvider>
-      <Modal width="450px" title="Basic Remove Sold">
+      <Modal width="450px" title="Deverouiller le cours">
         <Image alt="course card" src={infos?.image} className={styles.img} />
         <Box className={styles.unlockCourseModal}>
           <Typography variant="h4">{infos?.title}</Typography>

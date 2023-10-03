@@ -1,6 +1,7 @@
 import { ModalProps } from './Modal.type';
-import { Iconify } from '~/shared/ui/components';
-import { alpha, Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
+import { alpha } from '@mui/material/styles';
+import { Iconify } from '~/shared/ui/components/Iconify';
+import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 
 const ModalLayout = ({ dialogTitleProps, title, children, contentProps, onClose, PaperProps, width, ...props }: ModalProps) => (
   <Dialog

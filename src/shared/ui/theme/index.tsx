@@ -3,8 +3,8 @@ import { frFR } from '@mui/material/locale';
 import pxToRem from '~/shared/utils/pxToRem';
 import { Montserrat } from 'next/font/google';
 import { pink, red } from '@mui/material/colors';
+import { Shadows, createTheme, Components } from '@mui/material/styles';
 import { responsiveFontSizes } from '~/shared/utils/responsiveFontSizes';
-import { Shadows, alpha, createTheme, useTheme, Components } from '@mui/material';
 
 export const montserrat = Montserrat({
   display: 'swap',
@@ -127,7 +127,7 @@ export const theme = createTheme(
     },
     shadows: [
       'none',
-      `${alpha('#505050', 0.2)} 0px 8px 24px`,
+      `rgba(80, 80, 80, 0.02) 0px 8px 24px`,
       'rgba(0, 0, 0, 0.16) 0px 1px 4px',
       'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
       ...Array(23).fill('')
@@ -138,6 +138,4 @@ export const theme = createTheme(
 
 theme.components = components(theme) as Components;
 
-export { useTheme };
 export default theme;
-export * from './MuiThemeProvider';

@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import classNames from 'classnames';
 import { Button, NoSsr } from '@mui/material';
-import { Iconify } from '~/shared/ui/components';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import { useGetCourseChapters } from '~/infrastructure/api';
 import { MRT_Localization_FR } from 'material-react-table/locales/fr';
 import { MaterialReactTable, type MRT_ColumnDef } from 'material-react-table';

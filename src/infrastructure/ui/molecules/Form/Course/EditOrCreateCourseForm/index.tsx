@@ -73,7 +73,7 @@ const EditOrCreateCourseForm = ({ type, course }: EditOrCreateCourseForm) => {
                 <FKTextField type="number" label="Prix en presentiel" name="price_classroom" fullWidth />
               </Grid>
               <Grid xs={12}>
-                <FKTextField label="Description" name="description" fullWidth />
+                <FKTextField label="Description" multiline rows={4} name="description" fullWidth />
               </Grid>
               <Grid xs={12}>
                 <DropImage

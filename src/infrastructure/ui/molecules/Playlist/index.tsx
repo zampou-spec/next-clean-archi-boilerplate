@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import { Iconify } from '~/shared/ui/components';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import { Video, Chapter } from '~/domain/entities';
 import ChapterItem from '~/infrastructure/ui/atoms/ChapterItem';
 import PlaylistItem from '~/infrastructure/ui/atoms/PlaylistItem';

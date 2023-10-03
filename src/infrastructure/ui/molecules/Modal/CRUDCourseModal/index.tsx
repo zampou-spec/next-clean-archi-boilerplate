@@ -4,14 +4,14 @@ import { CoursesDatable } from 'src/infrastructure/ui/molecules/Table/CoursesTab
 import DeleteCourseForm from '~/infrastructure/ui/molecules/Form/Course/DeleteCourseForm';
 import EditOrCreateCourseForm from 'src/infrastructure/ui/molecules/Form/Course/EditOrCreateCourseForm';
 
-export type EditOrCreateCourseModalProps = {
+export type CRUDCourseModalProps = {
   title: string;
   button: ReactElement;
   course: CoursesDatable;
   type: 'edit' | 'create' | 'delete';
 };
 
-const CRUDCourseModal = ({ type, title, button, course }: EditOrCreateCourseModalProps) => {
+const CRUDCourseModal = ({ type, title, button, course }: CRUDCourseModalProps) => {
   return (
     <ModalProvider>
       <Modal width="450px" title={title}>

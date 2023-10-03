@@ -1,6 +1,6 @@
 'use client';
 import { useSession } from 'next-auth/react';
-import { Iconify } from '~/shared/ui/components';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import { useGetSubscribes } from '~/infrastructure/api';
 import { Fab, Box, Unstable_Grid2 as Grid } from '@mui/material';
 import SoldCard from '~/infrastructure/ui/molecules/Card/SoldCard';

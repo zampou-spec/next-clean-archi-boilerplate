@@ -2,7 +2,7 @@
 import screenfull from 'screenfull';
 import classNames from 'classnames';
 import PrettoSlider from '../PrettoSlider';
-import { Iconify } from '~/shared/ui/components';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import { OnProgressProps } from 'react-player/base';
 import ReactPlayer, { ReactPlayerProps } from 'react-player';
 import { truncateString } from '~/shared/utils/truncateString';

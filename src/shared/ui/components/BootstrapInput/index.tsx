@@ -1,6 +1,7 @@
+import { InputBase } from '@mui/material';
 import type { InputBaseProps } from '@mui/material';
+import { styled, alpha } from '@mui/material/styles';
 import type { StyledComponent } from '@emotion/styled';
-import { InputBase, styled, alpha } from '@mui/material';
 
 const BootstrapInput: StyledComponent<{ xs?: 'xs' } & InputBaseProps> = styled(InputBase)(({ theme, error, endAdornment }) => {
   return {

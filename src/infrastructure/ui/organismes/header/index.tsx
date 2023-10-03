@@ -1,7 +1,7 @@
 'use client';
 import { User } from '~/domain/entities';
 import { signOut } from 'next-auth/react';
-import { Iconify } from '~/shared/ui/components';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import { AppBar, Toolbar, Button } from '@mui/material';
 import UserMenu from '~/infrastructure/ui/molecules/UserMenu';
 import LogoHeader from 'src/infrastructure/ui/atoms/Logo/Header';

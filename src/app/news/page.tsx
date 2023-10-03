@@ -1,5 +1,5 @@
 import NewsTemplate from '~/infrastructure/ui/templates/News';
 
-const News = () => <NewsTemplate />;
+const NewsPage = () => <NewsTemplate />;
 
-export default News;
+export default NewsPage;

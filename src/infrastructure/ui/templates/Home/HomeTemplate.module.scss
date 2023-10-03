@@ -1,3 +1,20 @@
-.homeTemplate {
+.about {
+  .text {
+    margin: 0 auto;
+    margin-top: 10px;
+    max-width: 1210px;
+
+    font-size: 20px;
+    text-align: justify;
+    font-weight: normal;
+  }
+
+  .cta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
 
 }

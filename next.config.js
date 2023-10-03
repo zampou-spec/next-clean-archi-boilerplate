@@ -2,12 +2,9 @@
 const nextConfig = {
   swcMinify: true,
   reactStrictMode: true,
-  experimental: {
-    appDir: true
-  },
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['placehold.co', 'localhost', 'i.ytimg.com']
+    domains: ['placehold.co', 'localhost', 'i.ytimg.com', 'picsum.photos']
   }
 };
 

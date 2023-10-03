@@ -9,6 +9,9 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children, session }: RootLayoutProps) => (
   <html lang="fr">
+    <head>
+      <meta name="theme-color" content="#b80042" />
+    </head>
     <body>
       <RootProvider session={session}>{children}</RootProvider>
     </body>

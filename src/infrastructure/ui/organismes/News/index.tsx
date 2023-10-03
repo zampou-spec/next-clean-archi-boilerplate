@@ -3,7 +3,7 @@ import { Masonry } from '@mui/lab';
 import NewsCard from '~/infrastructure/ui/molecules/Card/NewsCard';
 
 import styles from './News.module.scss';
-import { useGetAllNews } from '~/infrastructure/api/new/getAllNews';
+import { useGetAllNews } from '~/infrastructure/api/news/getAllNews';
 
 const News = () => {
   const { data: news } = useGetAllNews();
@@ -22,7 +22,7 @@ const News = () => {
             title={newItem.title}
             image={newItem.image}
             author={newItem.author}
-            category={newItem.category}
+            category={newItem.category as string[]}
             href={`/news/${newItem.id}`}
             description={newItem.description}
           />

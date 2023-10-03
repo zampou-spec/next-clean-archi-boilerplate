@@ -1,46 +1,98 @@
 'use client';
 import { useMemo } from 'react';
 import classNames from 'classnames';
-import { Button, NoSsr } from '@mui/material';
-import { Iconify } from '~/shared/ui/components';
-import { useGetCourseChapters } from '~/infrastructure/api';
+import { News } from '~/domain/entities';
+import { Iconify } from '~/shared/ui/components/Iconify';
+import Image from '~/infrastructure/ui/atoms/Image';
+import { useGetAllNews } from '~/infrastructure/api';
+import { truncateString } from '~/shared/utils/truncateString';
+import { Button, Chip, NoSsr, Typography } from '@mui/material';
 import { MRT_Localization_FR } from 'material-react-table/locales/fr';
 import { MaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
-import CRUDChapterModal from '~/infrastructure/ui/molecules/Modal/CRUDChapterModal';
+import CRUDNewsModal from '~/infrastructure/ui/molecules/Modal/CRUDNewsModal';
 
-import styles from './ChapterTable.module.scss';
+import styles from './NewsTable.module.scss';
 
-export type ChapterDatable = {
-  id: number;
-  name: string;
-  course_id: number;
-  playlist_id: string;
+type NewsTableProps = {
+  className?: string | number | symbol | undefined;
 };
 
-interface ChapterTableProps {
-  courseId: number;
-  className?: string | number | symbol | undefined;
-}
+const NewsTable = ({ className }: NewsTableProps) => {
+  const { data } = useGetAllNews();
 
-const ChapterTable = ({ courseId, className }: ChapterTableProps) => {
-  const { data } = useGetCourseChapters(courseId);
-
-  const columns = useMemo<MRT_ColumnDef<ChapterDatable>[]>(
+  const columns = useMemo<MRT_ColumnDef<News>[]>(
     () => [
       {
         accessorKey: 'id',
         header: 'ID',
-        size: 150
+        size: 5
       },
       {
-        accessorKey: 'name',
-        header: 'Nom',
-        size: 150
+        accessorKey: 'title',
+        header: 'Titre',
+        size: 150,
+        Cell: ({ cell }) => {
+          const title = cell.getValue<string>();
+          return <Typography variant="body2">{truncateString(title, 48)}</Typography>;
+        }
       },
       {
-        accessorKey: 'playlist_id',
-        header: 'Playliste ID',
-        size: 150
+        accessorKey: 'image',
+        header: 'Image',
+        size: 150,
+        Cell: ({ cell }) => {
+          const image = cell.getValue<string>();
+
+          return (
+            <Image
+              src={image}
+              alt=""
+              imageSize={{
+                width: 100,
+                height: 100
+              }}
+            />
+          );
+        }
+      },
+      {
+        accessorKey: 'author',
+        header: 'Auteur',
+        size: 50
+      },
+      {
+        accessorKey: 'category',
+        header: 'Categories',
+        Cell: ({ cell }) => {
+          const category = cell.getValue<string[]>();
+
+          return (
+            <div
+              style={{
+                display: 'flex',
+                gap: '5px',
+                flexWrap: 'wrap'
+              }}
+            >
+              {category && category?.length > 0 ? (
+                category.map((cate, key) => {
+                  return <Chip key={key} size="small" color="success" label={cate} />;
+                })
+              ) : (
+                <Chip size="small" color="error" label="Pas Categorie" />
+              )}
+            </div>
+          );
+        }
+      },
+      {
+        accessorKey: 'description',
+        header: 'Description',
+        size: 300,
+        Cell: ({ cell }) => {
+          const description = cell.getValue<string>();
+          return <Typography variant="body2">{truncateString(description, 95)}</Typography>;
+        }
       }
     ],
     []
@@ -48,7 +100,7 @@ const ChapterTable = ({ courseId, className }: ChapterTableProps) => {
 
   return (
     <div
-      className={classNames(styles.courseTable, {
+      className={classNames(styles.newsTable, {
         [className || '']: Boolean(className)
       })}
     >
@@ -60,11 +112,13 @@ const ChapterTable = ({ courseId, className }: ChapterTableProps) => {
             columns={columns}
             positionActionsColumn="last"
             renderRowActions={({ row }) => {
-              const chapter: ChapterDatable = {
+              const news: News = {
                 id: row.getValue<number>('id'),
-                name: row.getValue<string>('name'),
-                course_id: courseId,
-                playlist_id: row.getValue<string>('playlist_id')
+                title: row.getValue<string>('title'),
+                image: row.getValue<string>('image'),
+                author: row.getValue<string>('author'),
+                description: row.getValue<string>('description'),
+                category: row.getValue<string[]>('category').join(', ') as string
               };
 
               return (
@@ -75,35 +129,42 @@ const ChapterTable = ({ courseId, className }: ChapterTableProps) => {
                     justifyContent: 'center'
                   }}
                 >
-                  <CRUDChapterModal
+                  <CRUDNewsModal
                     type="edit"
-                    chapter={chapter}
+                    news={news}
                     button={
                       <Button variant="contained">
                         <Iconify icon="mdi:pencil" fontSize={20} />
                       </Button>
                     }
-                    title="Mettre a jours le chapitre"
+                    title="Mettre a jours l'actualité"
                   />
-                  <CRUDChapterModal
+
+                  <Button variant="contained" href={`/dashboard/admin/news/${news.id}`}>
+                    <Iconify icon="mdi:eye" fontSize={20} />
+                  </Button>
+
+                  <CRUDNewsModal
                     type="delete"
-                    chapter={chapter}
+                    news={news}
                     button={
                       <Button variant="contained" color="error">
                         <Iconify icon="mdi:delete" fontSize={20} />
                       </Button>
                     }
-                    title="Supprimer le chapitre"
+                    title="Supprimer l'actualité"
                   />
                 </div>
               );
             }}
             renderTopToolbarCustomActions={() => {
-              const chapter: ChapterDatable = {
+              const news: News = {
                 id: 0,
-                name: '',
-                course_id: courseId,
-                playlist_id: ''
+                title: '',
+                image: '',
+                author: '',
+                category: '',
+                description: ''
               };
 
               return (
@@ -113,15 +174,15 @@ const ChapterTable = ({ courseId, className }: ChapterTableProps) => {
                     justifyContent: 'center'
                   }}
                 >
-                  <CRUDChapterModal
+                  <CRUDNewsModal
                     type="create"
-                    chapter={chapter}
+                    news={news}
                     button={
                       <Button variant="contained">
                         <Iconify icon="mdi:plus" fontSize={20} />
                       </Button>
                     }
-                    title="Crée un chapitre"
+                    title="Crée un cours"
                   />
                 </div>
               );
@@ -134,4 +195,4 @@ const ChapterTable = ({ courseId, className }: ChapterTableProps) => {
   );
 };
 
-export default ChapterTable;
+export default NewsTable;

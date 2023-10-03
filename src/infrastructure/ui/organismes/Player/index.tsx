@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { Iconify } from '~/shared/ui/components';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import { Chapter, Video } from '~/domain/entities';
 import Image from '~/infrastructure/ui/atoms/Image';
 import { Box, Button, Typography } from '@mui/material';

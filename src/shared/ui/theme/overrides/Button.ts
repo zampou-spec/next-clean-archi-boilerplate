@@ -1,4 +1,5 @@
-import { Theme, alpha } from '@mui/material';
+import { Theme } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 
 type ownerStateType = {
   ownerState: {
