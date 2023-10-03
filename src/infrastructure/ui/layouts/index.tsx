@@ -1,9 +1,9 @@
 'use client';
-import dynamic from 'next/dynamic';
+import { NoSsr } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { User } from '~/domain/entities';
 import { useSession } from 'next-auth/react';
-const Header = dynamic(() => import('~/infrastructure/ui/organismes/Header'), { ssr: false });
+import Header from '~/infrastructure/ui/organismes/Header';
 
 import styles from './Layout.module.scss';
 
@@ -16,7 +16,9 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
-      <Header user={session?.user as User} />
+      <NoSsr>
+        <Header user={session?.user as User} />
+      </NoSsr>
       <main className={styles.layout}>{children}</main>
     </>
   );
