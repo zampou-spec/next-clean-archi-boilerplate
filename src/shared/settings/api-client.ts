@@ -56,7 +56,7 @@ const kyDefaultOptions: Options = {
 
 const apiClient = ky
   .create({
-    prefixUrl: 'https://api-vamos.mlmhipe.com'
+    prefixUrl: 'http://localhost:8000' //'https://api-vamos.mlmhipe.com'
   })
   .extend(kyDefaultOptions);
 

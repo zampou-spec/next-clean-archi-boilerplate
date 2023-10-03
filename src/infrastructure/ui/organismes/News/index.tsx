@@ -13,7 +13,7 @@ const News = () => {
       spacing={2}
       className={styles.news}
       columns={{ xs: 1, sm: 2, md: 3 }}
-      sx={{ alignContent: 'center', margin: 'unset' }}
+      sx={{ alignContent: 'center', margin: 'unset', maxWidth: '1440px !important' }}
     >
       {news && news?.length > 0 ? (
         news?.map((newItem, i) => (
