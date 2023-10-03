@@ -1,8 +1,8 @@
 'use client';
 import { User } from '~/domain/entities';
 import { signOut } from 'next-auth/react';
-import { Iconify } from '~/shared/ui/components/Iconify';
 import { AppBar, Toolbar, Button } from '@mui/material';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import UserMenu from '~/infrastructure/ui/molecules/UserMenu';
 import LogoHeader from 'src/infrastructure/ui/atoms/Logo/Header';
 
@@ -12,7 +12,9 @@ interface HeaderProps {
   user?: User;
 }
 
-const MainHeader = ({ user }: HeaderProps) => {
+// Recommit moi ça
+
+const Header = ({ user }: HeaderProps) => {
   return (
     <AppBar color="secondary" position="fixed" className={styles.header}>
       <Toolbar disableGutters className={styles.headerContent}>
@@ -34,4 +36,4 @@ const MainHeader = ({ user }: HeaderProps) => {
   );
 };
 
-export default MainHeader;
+export default Header;
