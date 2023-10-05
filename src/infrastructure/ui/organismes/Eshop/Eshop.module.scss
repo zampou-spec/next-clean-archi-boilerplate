@@ -1,15 +1,87 @@
 .eshop {
+  margin-bottom: 0;
   background: #b80042;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: space-evenly;
-  padding-top: 25px !important;
-  padding-bottom: 25px !important;
-  margin-top: 0px !important;
+  padding-top: 45px !important;
+  padding-bottom: 45px !important;
 
-  @media (min-width: 1024px) {
-    height: 500px;
+  .eshopContainer {
+    max-width: 768px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    grid-template-rows: 300px 1fr;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    .productsSlide {
+      overflow: hidden;
+
+      .slide {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+
+        @media (min-width: 768px) {
+          width: 370px;
+          height: 370px;
+        }
+
+        img {
+          object-fit: contain;
+        }
+      }
+    }
+
+    .text {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 30px;
+      text-align: center;
+
+      @media (min-width: 768px) {
+        text-align: left;
+        align-items: start;
+      }
+
+      .subtitle {
+        color: #fff;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 25px;
+
+        @media (min-width: 768px) {
+          font-size: 33px;
+          line-height: 40px;
+        }
+      }
+
+      .title {
+        margin: 5px 0 15px 0;
+        color: #fff;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 40px;
+
+        @media (min-width: 768px) {
+          font-size: 70px;
+        }
+      }
+
+      .action,
+      .action:hover {
+        color: #b80042;
+        background: #fff;
+        padding: 10px 20px;
+      }
+    }
   }
 }

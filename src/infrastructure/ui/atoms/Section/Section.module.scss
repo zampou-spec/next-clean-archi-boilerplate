@@ -11,4 +11,11 @@
     margin: 40px 0;
     padding: 0 40px;
   }
+
+  @media (min-width: 1024px) {
+    padding: 0 40px !important;
+    max-width: 1440px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 }

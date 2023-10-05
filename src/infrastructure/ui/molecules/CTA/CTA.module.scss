@@ -5,16 +5,15 @@
   flex-wrap: wrap;
   gap: 15px;
   justify-content: space-between;
-  padding-top: 25px !important;
-  padding-bottom: 25px !important;
+  padding-top: 30px !important;
   margin-top: 0px !important;
+  padding-bottom: 30px !important;
 
   @media (min-width: 1024px) {
     height: 150px;
   }
 
   .text {
-    // max-width: 50%;
     .title,
     .subtitle {
       color: #fff !important;
@@ -25,7 +24,8 @@
     }
   }
 
-  .action {
+  .action,
+  .action:hover {
     color: #b80042;
     background: #fff;
     padding: 10px 20px;

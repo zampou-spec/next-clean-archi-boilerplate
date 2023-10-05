@@ -1,0 +1,113 @@
+.footer {
+  padding: 40px 25px;
+  background: #000;
+
+  @media (min-width: 768px) {
+    padding: 40px 60px;
+  }
+  @media (min-width: 1024px) {
+    padding: 40px 75px;
+  }
+  @media (min-width: 1440px) {
+    padding: 40px 100px;
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: 1210px !important;
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      gap: 10px;
+
+      @media (min-width: 768px) {
+        padding: 30px 0;
+        flex-direction: row;
+      }
+
+      .socials {
+        margin-bottom: 10px;
+
+        @media (min-width: 768px) {
+          margin-bottom: unset;
+        }
+
+        svg {
+          font-size: 50px;
+          color: #fff;
+        }
+      }
+    }
+
+    .divider {
+      height: 2px;
+      background: #fff;
+    }
+
+    .bottom {
+      margin-top: 30px;
+
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      flex-direction: column;
+      gap: 10px;
+
+      @media (min-width: 522px) {
+        margin-top: unset;
+        padding: 30px 0;
+        flex-direction: row;
+      }
+      .item {
+        color: #fff;
+        h3 {
+          color: inherit;
+          font-style: normal;
+          font-weight: 900;
+          padding: 10px 0;
+
+          @media (min-width: 768px) {
+            font-size: 25px;
+          }
+
+          &::before {
+            display: inline-block;
+            content: '';
+            width: 15px;
+            height: 15px;
+            background: #b80042;
+            border-radius: 50%;
+            margin-right: 10px;
+          }
+
+          a {
+            color: inherit;
+          }
+        }
+
+        ul {
+          margin: 0;
+          font-style: normal;
+          font-weight: 300;
+          padding-left: 25px;
+          list-style-type: none;
+
+          li {
+            padding: 5px 0;
+
+            @media (min-width: 768px) {
+              font-size: 18px;
+            }
+
+            a {
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}

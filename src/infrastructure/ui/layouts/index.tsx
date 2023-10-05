@@ -3,6 +3,7 @@ import { NoSsr } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { User } from '~/domain/entities';
 import { useSession } from 'next-auth/react';
+import Footer from '~/infrastructure/ui/organismes/Footer';
 import Header from '~/infrastructure/ui/organismes/Header';
 
 import styles from './Layout.module.scss';
@@ -20,6 +21,7 @@ const Layout = ({ children }: LayoutProps) => {
         <Header user={session?.user as User} />
       </NoSsr>
       <main className={styles.layout}>{children}</main>
+      <Footer />
     </>
   );
 };
