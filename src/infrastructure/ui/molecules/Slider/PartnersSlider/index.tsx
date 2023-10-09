@@ -25,8 +25,9 @@ const PartnersSlide = () => {
         autoPlayInterval={0}
         disableDotsControls
         disableButtonsControls
-        animationDuration={1500}
+        animationDuration={2000}
         responsive={responsive}
+        animationEasingFunction="linear"
         items={[
           <PartnerCard key={1} image={logo1} />,
           <PartnerCard key={2} image={logo2} />,

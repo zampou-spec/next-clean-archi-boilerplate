@@ -6,7 +6,7 @@ type ModalCloseButtonProps = {
   children: ReactElement;
 };
 
-function ModalCloseButton({ children: child }: ModalCloseButtonProps) {
+const ModalCloseButton = ({ children: child }: ModalCloseButtonProps) => {
   const [, setIsOpen] = useModalContext();
 
   return Children.only(
@@ -15,6 +15,6 @@ function ModalCloseButton({ children: child }: ModalCloseButtonProps) {
       title: 'Fermer'
     })
   );
-}
+};
 
 export { ModalCloseButton };

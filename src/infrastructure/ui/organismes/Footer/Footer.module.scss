@@ -3,17 +3,17 @@
   background: #000;
 
   @media (min-width: 768px) {
-    padding: 40px 60px;
+    padding: 10px 60px;
   }
   @media (min-width: 1024px) {
-    padding: 40px 75px;
+    padding: 10px 75px;
   }
   @media (min-width: 1440px) {
-    padding: 40px 100px;
+    padding: 10px 100px;
   }
 
   .container {
-    margin: 0 auto;
+    margin: 0 auto !important;
     max-width: 1210px !important;
 
     .top {
@@ -29,7 +29,9 @@
       }
 
       .socials {
-        margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
         @media (min-width: 768px) {
           margin-bottom: unset;
@@ -45,13 +47,12 @@
     .divider {
       height: 2px;
       background: #fff;
+      margin: 10px 0;
     }
 
     .bottom {
-      margin-top: 30px;
-
       display: flex;
-      align-items: start;
+      align-items: flex-start;
       justify-content: space-between;
       flex-direction: column;
       gap: 10px;

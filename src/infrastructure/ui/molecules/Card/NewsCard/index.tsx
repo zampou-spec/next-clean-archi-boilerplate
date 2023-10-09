@@ -15,7 +15,7 @@ type NewsCardProps = {
   title: string;
   author: string;
   fixSize?: boolean;
-  category: string[];
+  category?: string[];
   description?: string;
   disableRipple?: boolean;
 };

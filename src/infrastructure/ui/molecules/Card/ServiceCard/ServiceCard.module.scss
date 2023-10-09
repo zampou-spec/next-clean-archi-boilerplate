@@ -1,0 +1,49 @@
+.serviceCard {
+  flex: 1;
+  width: 30%;
+  display: flex;
+  min-width: 700px;
+  grid-row-gap: 2rem;
+  align-items: center;
+  grid-column-gap: 2rem;
+  flex-direction: column;
+  border-radius: 0 !important;
+  // background-color: #b80042;
+  background-color: #0f2940;
+  justify-content: space-between;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: #b80042;
+    // background: #0f2940;
+  }
+
+  color: #fff;
+
+  .container {
+    padding: 5%;
+
+    .cardContent {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      .title {
+        margin: 15px 0;
+        text-transform: uppercase;
+      }
+
+      .description {
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .title,
+      .description {
+        color: #fff;
+        text-align: center;
+      }
+    }
+  }
+}

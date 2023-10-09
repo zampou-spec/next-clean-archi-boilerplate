@@ -1,13 +1,21 @@
 'use client';
 import { Form, Formik } from 'formik';
+import { useRouter } from 'next/navigation';
 import Yup from '~/shared/settings/yup-setup';
+import { useSignup } from '~/infrastructure/api';
+import { objectToFormData } from '~/shared/utils';
+import { getCountryName } from '~/shared/utils/getCountryName';
 import { Button, Unstable_Grid2 as Grid, Stack } from '@mui/material';
 import { FKPasswordField, FKPhoneNumberField, FKTextField } from '~/shared/ui/formik';
 
 import styles from './SignUpForm.module.scss';
-import { getCountryName } from '~/shared/utils/getCountryName';
 
 const SignUpForm = () => {
+  const router = useRouter();
+  const { mutate: signup } = useSignup(() => {
+    router.push('/auth/signin');
+  });
+
   const initialValues = {
     email: '',
     country: '',
@@ -15,16 +23,19 @@ const SignUpForm = () => {
     last_name: '',
     first_name: '',
     mobile_number: '',
-    confirmation_password: ''
+    password_confirmation: ''
   };
-
+  // salijukeg@mailinator.com
+  // +225 7575985859
   const validationSchema = Yup.object({
     email: Yup.string().required('Ce champ est require'),
     password: Yup.string().required('Ce champ est require'),
     last_name: Yup.string().required('Ce champ est require'),
     first_name: Yup.string().required('Ce champ est require'),
     mobile_number: Yup.string().min(7).required('Ce champ est require'),
-    confirmation_password: Yup.string().required('Ce champ est require')
+    password_confirmation: Yup.string()
+      .oneOf([Yup.ref('password')], 'Les mots de passe doivent correspondre')
+      .required('Ce champ est requis')
   });
 
   return (
@@ -32,9 +43,8 @@ const SignUpForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        console.log('**************************');
-        console.log('[values]: ', values);
-        console.log('**************************');
+        const formData = objectToFormData(values);
+        signup(formData);
       }}
     >
       {({ setFieldValue }) => (
@@ -71,7 +81,7 @@ const SignUpForm = () => {
                 <FKPasswordField
                   fullWidth
                   label="Confiramtion de Mot de passe"
-                  name="confirmation_password"
+                  name="password_confirmation"
                   autoComplete="password"
                 />
               </Grid>

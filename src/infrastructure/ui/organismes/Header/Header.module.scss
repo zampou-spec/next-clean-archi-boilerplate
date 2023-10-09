@@ -3,10 +3,14 @@
     display: flex;
     justify-content: space-between;
 
-    margin: 3px 20px;
+    margin: 5px 20px;
 
-    .login {
-      width: 120px;
+    .logo {
+      width: 100px;
+
+      @media (min-width: 950px) {
+        width: 120px;
+      }
     }
 
     .auth {

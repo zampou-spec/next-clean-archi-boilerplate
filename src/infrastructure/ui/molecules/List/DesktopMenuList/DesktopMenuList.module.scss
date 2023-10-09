@@ -1,0 +1,34 @@
+.desktopMenuList {
+  .list {
+    display: flex;
+
+    .listItem {
+      width: unset;
+
+      .listItemButton {
+        padding: 8px 20px !important;
+        border-bottom: solid 3px transparent;
+        background: transparent;
+        color: #0f2940;
+
+        &.active,
+        &:hover {
+          color: #b80042;
+          padding-bottom: 3px;
+          border-bottom: solid 3px #b80042;
+        }
+
+        .listItemText {
+          text-align: center;
+          color: inherit;
+
+          span {
+            color: inherit;
+            font-weight: 600;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}

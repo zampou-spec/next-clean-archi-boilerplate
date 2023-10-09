@@ -7,7 +7,6 @@
     position: relative;
     height: 350px ;
     overflow: hidden;
-    margin-top: -18px;
 
     .overlay {
       position: absolute;
@@ -26,12 +25,10 @@
 
   .descContainer {
     @media (min-width: 768px) {
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
+      position: relative;
       width: 100%;
       max-width: 1024px;
+      margin: -17% auto 0 auto;
     }
 
     .descContent {

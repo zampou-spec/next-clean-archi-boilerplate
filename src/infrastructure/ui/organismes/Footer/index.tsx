@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import menus from '~/infrastructure/ui/atoms/Menu';
 import Section from '~/infrastructure/ui/atoms/Section';
 import { Iconify } from '~/shared/ui/components/Iconify';
 import LogoFooter from '~/infrastructure/ui/atoms/Logo/Footer';
@@ -54,21 +55,13 @@ const Footer = () => {
             </ul>
           </Box>
           <Box className={styles.item}>
-            <Typography variant="h3">
-              <Link href="#" passHref>
-                Le club
-              </Link>
-            </Typography>
-            <Typography variant="h3">
-              <Link href="#" passHref>
-                Prestations
-              </Link>
-            </Typography>
-            <Typography variant="h3">
-              <Link href="#" passHref>
-                Actualités
-              </Link>
-            </Typography>
+            {menus.map((menu, i) => (
+              <Typography key={i} variant="h3">
+                <Link href={menu.link} passHref>
+                  {menu.title}
+                </Link>
+              </Typography>
+            ))}
           </Box>
         </Box>
       </Section>

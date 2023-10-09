@@ -2,7 +2,6 @@
 import { DragEvent } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import Image from '~/infrastructure/ui/atoms/Image';
-import { Unstable_Grid2 as Grid } from '@mui/material';
 import Section from '~/infrastructure/ui/atoms/Section';
 import { Box, Button, Typography, NoSsr } from '@mui/material';
 
@@ -22,14 +21,15 @@ const Eshop = () => {
             <AliceCarousel
               infinite
               mouseTracking
-              autoPlayInterval={5000}
+              autoPlayInterval={0}
               disableDotsControls
               disableButtonsControls
-              // animationDuration={5500}
+              animationDuration={2000}
               animationType="fadeout"
+              animationEasingFunction="linear"
               items={[
-                <Image alt="" src={t1} className={styles.slide} onDragStart={handleDragStart} />,
-                <Image alt="" src={t2} className={styles.slide} onDragStart={handleDragStart} />
+                <Image key={1} alt="" src={t1} className={styles.slide} onDragStart={handleDragStart} />,
+                <Image key={2} alt="" src={t2} className={styles.slide} onDragStart={handleDragStart} />
               ]}
               autoPlay
             />

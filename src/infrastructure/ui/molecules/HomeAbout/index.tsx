@@ -24,6 +24,6 @@ const HomeAbout = () => {
       </Box>
     </Box>
   );
-}
+};
 
-export default HomeAbout
+export default HomeAbout;

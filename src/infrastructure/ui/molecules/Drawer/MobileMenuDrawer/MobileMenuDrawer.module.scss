@@ -1,0 +1,14 @@
+.mobileMenuDrawer {
+  &, &:hover {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    background: #b80042;
+    border-radius: 3px;
+
+    svg {
+      color: #fff;
+      font-size: 25px;
+    }
+  }
+}

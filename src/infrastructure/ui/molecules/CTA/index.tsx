@@ -2,10 +2,15 @@ import { Box, Button, Typography } from '@mui/material';
 
 import styles from './CTA.module.scss';
 import Section from '../../atoms/Section';
+import classNames from 'classnames';
 
-const CTA = () => {
+type CTAProps = {
+  className?: string | number | symbol | undefined;
+};
+
+const CTA = ({ className }: CTAProps) => {
   return (
-    <Section className={styles.cta}>
+    <Section className={classNames(styles.cta, { [className || '']: Boolean(className) })}>
       <Box className={styles.text}>
         <Typography variant="h4" className={styles.title}>
           Rejoignez notre communauté de danseurs

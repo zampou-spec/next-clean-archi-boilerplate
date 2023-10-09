@@ -2,15 +2,18 @@
 import { useRef } from 'react';
 import classNames from 'classnames';
 import { Box, Fab } from '@mui/material';
-import { Iconify } from '~/shared/ui/components/Iconify';
 import AliceCarousel from 'react-alice-carousel';
+import { Iconify } from '~/shared/ui/components/Iconify';
+import { truncateString } from '~/shared/utils/truncateString';
 import NewsCard from '~/infrastructure/ui/molecules/Card/NewsCard';
+import { useGetAllNews } from '~/infrastructure/api/news/getAllNews';
 
 import './customDot.css';
 import styles from './ActualitySlider.module.scss';
 
 const ActualitySlider = () => {
   const carousel = useRef<AliceCarousel>(null);
+  const { data: news } = useGetAllNews();
 
   const responsive = {
     0: { items: 1.2 },
@@ -18,15 +21,15 @@ const ActualitySlider = () => {
     1024: { items: 3.5 }
   };
 
-  const slides = [...Array.from({ length: 10 })].map((_, i) => (
+  const slides = news?.map((newItem, i) => (
     <NewsCard
       key={i}
       fixSize
-      disableRipple
-      title={'La rue'}
-      author={'Femme claire'}
-      category={['Femme', 'Homme']}
-      image={'https://placehold.co/400.webp'}
+      title={newItem.title}
+      image={newItem.image}
+      author={newItem.author}
+      href={`/news/${newItem.id}`}
+      description={truncateString(newItem.description, 60)}
     />
   ));
 

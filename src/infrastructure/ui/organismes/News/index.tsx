@@ -1,9 +1,9 @@
 'use client';
 import { Masonry } from '@mui/lab';
 import NewsCard from '~/infrastructure/ui/molecules/Card/NewsCard';
+import { useGetAllNews } from '~/infrastructure/api/news/getAllNews';
 
 import styles from './News.module.scss';
-import { useGetAllNews } from '~/infrastructure/api/news/getAllNews';
 
 const News = () => {
   const { data: news } = useGetAllNews();

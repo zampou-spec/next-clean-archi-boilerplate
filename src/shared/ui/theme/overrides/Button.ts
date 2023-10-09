@@ -18,8 +18,9 @@ const muiButton = (theme: Theme) => ({
     root: ({ ownerState }: ownerStateType) => ({
       fontWeight: 'bold',
       border: '2px solid',
-      padding: '5px 10px',
+      padding: '5px 15px',
       borderRadius: '4px',
+      textTransform: 'uppercase',
       ...(ownerState?.disabled && {
         border: '2px solid !important'
       }),

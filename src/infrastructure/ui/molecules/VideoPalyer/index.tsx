@@ -24,8 +24,8 @@ const VideoPlayer = ({ url, title, className }: VideoPlayerProps) => (
               controls: 0,
               disablekb: 1,
               wmode: 'opaque',
-              modestbranding: 0,
-              origin: 'http://localhost:3000'
+              modestbranding: 1,
+              fs: 0
             }
           }
         }}

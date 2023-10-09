@@ -6,7 +6,7 @@ type ModalOpenButtonProps = {
   children: ReactElement;
 };
 
-function ModalOpenButton({ children: child }: ModalOpenButtonProps) {
+const ModalOpenButton = ({ children: child }: ModalOpenButtonProps) => {
   const [, setIsOpen] = useModalContext();
 
   return Children.only(
@@ -14,6 +14,6 @@ function ModalOpenButton({ children: child }: ModalOpenButtonProps) {
       onClick: callAll(() => setIsOpen(true), child.props.onClick)
     })
   );
-}
+};
 
 export { ModalOpenButton };
