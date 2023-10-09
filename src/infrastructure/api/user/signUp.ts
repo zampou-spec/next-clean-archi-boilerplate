@@ -1,6 +1,5 @@
 'use client';
 import { toast } from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import apiClient from '~/shared/settings/api-client';
 
@@ -23,7 +22,7 @@ const signupFetcher = async (data: FormData): Promise<signupFetcherProps> =>
 const useSignup = (onSuccess?: () => void) =>
   useMutation({
     mutationFn: (data: FormData) => signupFetcher(data),
-    onSuccess: async (result: signupFetcherProps, variables, context) => {
+    onSuccess: async (result: signupFetcherProps) => {
       if (result.result) {
         if (onSuccess) onSuccess();
         toast.success('Inscription réussite avec succès');
