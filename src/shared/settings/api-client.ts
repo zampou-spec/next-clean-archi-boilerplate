@@ -56,7 +56,7 @@ const kyDefaultOptions: Options = {
 
 const apiClient = ky
   .create({
-    prefixUrl: 'https://vamos-api.hilton-meta-bot.com/'
+    prefixUrl:  'https://vamos-api.hilton-meta-bot.com'
   })
   .extend(kyDefaultOptions);
 
