@@ -1,18 +1,23 @@
 'use client';
+import { useState } from 'react';
 import { Form, Formik } from 'formik';
+import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/navigation';
 import Yup from '~/shared/settings/yup-setup';
 import { useSignup } from '~/infrastructure/api';
 import { objectToFormData } from '~/shared/utils';
 import { getCountryName } from '~/shared/utils/getCountryName';
-import { Button, Unstable_Grid2 as Grid, Stack } from '@mui/material';
+import { Unstable_Grid2 as Grid, Stack } from '@mui/material';
 import { FKPasswordField, FKPhoneNumberField, FKTextField } from '~/shared/ui/formik';
 
 import styles from './SignUpForm.module.scss';
 
 const SignUpForm = () => {
   const router = useRouter();
+  const [disabledBtnIfOK, setDisabledBtnIfOK] = useState(false);
+
   const { mutate: signup } = useSignup(() => {
+    setDisabledBtnIfOK(true);
     router.push('/auth/signin');
   });
 
@@ -25,8 +30,7 @@ const SignUpForm = () => {
     mobile_number: '',
     password_confirmation: ''
   };
-  // salijukeg@mailinator.com
-  // +225 7575985859
+
   const validationSchema = Yup.object({
     email: Yup.string().required('Ce champ est require'),
     password: Yup.string().required('Ce champ est require'),
@@ -47,7 +51,7 @@ const SignUpForm = () => {
         signup(formData);
       }}
     >
-      {({ setFieldValue }) => (
+      {({ setFieldValue, isSubmitting }) => (
         <Form className={styles.signUpForm}>
           <Stack maxWidth="450px" spacing={2.5}>
             <Grid container columnSpacing={1} rowSpacing={2.5}>
@@ -66,6 +70,7 @@ const SignUpForm = () => {
                   fullWidth
                   name="mobile_number"
                   label="Numéro de téléphone"
+                  helperText="Exemple: +225 xx xx xx xx xx"
                   onChange={(value) => {
                     const phone = `${value}` || '';
                     const country = getCountryName(value);
@@ -86,9 +91,9 @@ const SignUpForm = () => {
                 />
               </Grid>
               <Grid xs={12} sx={{ mt: 1.5 }}>
-                <Button fullWidth type="submit" variant="contained">
+                <LoadingButton fullWidth loading={isSubmitting} disabled={disabledBtnIfOK} type="submit" variant="contained">
                   Envoyez
-                </Button>
+                </LoadingButton>
               </Grid>
             </Grid>
           </Stack>
