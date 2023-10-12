@@ -9,16 +9,14 @@ interface SectionProps {
   className?: string | number | symbol | undefined;
 }
 
-const Section = ({ children, className }: SectionProps) => {
-  return (
-    <section
-      className={classNames(styles.section, {
-        [className || '']: Boolean(className)
-      })}
-    >
-      {children}
-    </section>
-  );
-};
+const Section = ({ children, className }: SectionProps) => (
+  <section
+    className={classNames(styles.section, {
+      [className || '']: Boolean(className)
+    })}
+  >
+    {children}
+  </section>
+);
 
 export default Section;

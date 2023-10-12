@@ -1,5 +1,5 @@
 'use client';
-// import Link from 'next/link';
+import Link from 'next/link';
 import { User } from '~/domain/entities';
 import { stringAvatar } from '~/shared/utils';
 import { useState, MouseEvent, useEffect } from 'react';
@@ -52,11 +52,11 @@ const UserMenu = ({ user, onLogout }: UserMenuProps) => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {/* <Link href="/" passHref>
+        <Link href="/dashboard" passHref>
           <MenuItem onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">Profil</Typography>
+            <Typography textAlign="center">Dashboard</Typography>
           </MenuItem>
-        </Link> */}
+        </Link>
         <MenuItem onClick={onLogout}>
           <Typography textAlign="center">Déconnexion</Typography>
         </MenuItem>

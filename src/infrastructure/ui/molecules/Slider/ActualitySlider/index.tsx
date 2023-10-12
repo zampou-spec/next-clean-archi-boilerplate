@@ -12,8 +12,8 @@ import './customDot.css';
 import styles from './ActualitySlider.module.scss';
 
 const ActualitySlider = () => {
-  const carousel = useRef<AliceCarousel>(null);
   const { data: news } = useGetAllNews();
+  const carousel = useRef<AliceCarousel>(null);
 
   const responsive = {
     0: { items: 1.2 },

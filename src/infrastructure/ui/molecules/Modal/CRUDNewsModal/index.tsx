@@ -11,15 +11,13 @@ export type CRUDNewsModalProps = {
   type: 'edit' | 'create' | 'delete';
 };
 
-const CRUDNewsModal = ({ type, title, button, news }: CRUDNewsModalProps) => {
-  return (
-    <ModalProvider>
-      <Modal width="450px" title={title}>
-        {type === 'delete' ? <DeleteNewsForm newId={news.id as number} /> : <EditOrCreateNewsForm type={type} news={news} />}
-      </Modal>
-      <ModalOpenButton>{button}</ModalOpenButton>
-    </ModalProvider>
-  );
-};
+const CRUDNewsModal = ({ type, title, button, news }: CRUDNewsModalProps) => (
+  <ModalProvider>
+    <Modal width="450px" title={title}>
+      {type === 'delete' ? <DeleteNewsForm newId={news.id as number} /> : <EditOrCreateNewsForm type={type} news={news} />}
+    </Modal>
+    <ModalOpenButton>{button}</ModalOpenButton>
+  </ModalProvider>
+);
 
 export default CRUDNewsModal;

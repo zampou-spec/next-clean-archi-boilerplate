@@ -2,16 +2,16 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { Iconify } from '~/shared/ui/components/Iconify';
 import { Chapter, Video } from '~/domain/entities';
 import Image from '~/infrastructure/ui/atoms/Image';
 import { Box, Button, Typography } from '@mui/material';
+import { Iconify } from '~/shared/ui/components/Iconify';
 import Playlist from '~/infrastructure/ui/molecules/Playlist';
 import VideoPlayer from '~/infrastructure/ui/molecules/VideoPalyer';
+import UnlockCourseModal from '~/infrastructure/ui/molecules/Modal/UnlockCourseModal';
 import { useGetChapterAndVideos } from '~/infrastructure/api/chapter/getChapterAndVideos';
 
 import styles from './Player.module.scss';
-import UnlockCourseModal from '~/infrastructure/ui/molecules/Modal/UnlockCourseModal';
 
 export type infosType = {
   id: number;

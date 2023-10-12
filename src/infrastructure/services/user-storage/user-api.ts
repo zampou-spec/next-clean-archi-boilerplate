@@ -11,7 +11,6 @@ export class UserApi implements IUserStorage {
       const res = await apiClient.post('api/auth/login', { json: { id, password, mode } });
       user = await res.json();
     } catch (error) {
-      // console.log(error);
       return left(new Error('Credential is not correct.'));
     }
 

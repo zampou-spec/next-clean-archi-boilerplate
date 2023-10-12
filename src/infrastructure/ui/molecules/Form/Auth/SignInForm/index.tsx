@@ -41,7 +41,7 @@ const SignInForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={async (values) => {
-        const id = values?.email || values?.mobile_number;
+        const id = values.login_mode === 'email' ? values?.email : values?.mobile_number;
 
         const res = await signIn('credentials', {
           id,

@@ -11,15 +11,13 @@ export type CRUDCourseModalProps = {
   type: 'edit' | 'create' | 'delete';
 };
 
-const CRUDCourseModal = ({ type, title, button, course }: CRUDCourseModalProps) => {
-  return (
-    <ModalProvider>
-      <Modal width="450px" title={title}>
-        {type === 'delete' ? <DeleteCourseForm courseId={course.id} /> : <EditOrCreateCourseForm type={type} course={course} />}
-      </Modal>
-      <ModalOpenButton>{button}</ModalOpenButton>
-    </ModalProvider>
-  );
-};
+const CRUDCourseModal = ({ type, title, button, course }: CRUDCourseModalProps) => (
+  <ModalProvider>
+    <Modal width="450px" title={title}>
+      {type === 'delete' ? <DeleteCourseForm courseId={course.id} /> : <EditOrCreateCourseForm type={type} course={course} />}
+    </Modal>
+    <ModalOpenButton>{button}</ModalOpenButton>
+  </ModalProvider>
+);
 
 export default CRUDCourseModal;

@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Box, Typography } from '@mui/material';
 import Image from '~/infrastructure/ui/atoms/Image';
 
 import styles from './DropImage.module.scss';
-import { useState } from 'react';
 
 type onChanheType = {
   image: File;

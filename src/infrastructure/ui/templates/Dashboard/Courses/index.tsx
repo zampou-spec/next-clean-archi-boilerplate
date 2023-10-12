@@ -6,7 +6,7 @@ import styles from './CoursesDashboard.module.scss';
 
 const CoursesDashboard = () => (
   <>
-    <Hero image="https://placehold.co/400.webp" title="Lorem ipsum dolor sit amet consectetur adipisicing elit." subtitle="" />
+    <Hero image="https://placehold.co/400.webp" title="Mes cours" height="200px" />
     <Section className={styles.coursesDashboard}>
       <Courses />
     </Section>

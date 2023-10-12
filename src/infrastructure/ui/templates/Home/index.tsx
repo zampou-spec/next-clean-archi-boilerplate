@@ -11,38 +11,36 @@ import HeroSlider from '~/infrastructure/ui/molecules/Slider/HeroSlider';
 import PartnersSlider from '~/infrastructure/ui/molecules/Slider/PartnersSlider';
 import ActualitySlider from '~/infrastructure/ui/molecules/Slider/ActualitySlider';
 
-const HomeTemplate = () => {
-  return (
-    <Layout>
-      <HeroSlider />
-      <CTA />
-      <Section>
-        <SectionTitle>Cours et Tutos</SectionTitle>
-        <AllCourses />
-      </Section>
-      <Section>
-        <SectionTitle>Vamos Vacilar</SectionTitle>
-        <HomeAbout />
-      </Section>
-      <Section>
-        <SectionTitle>Actualités</SectionTitle>
-        <NoSsr>
-          <ActualitySlider />
-        </NoSsr>
-      </Section>
-      <Section>
-        <SectionTitle>Nos Professeurs</SectionTitle>
-        <Teams />
-      </Section>
-      <Section>
-        <SectionTitle>Nos partenaires</SectionTitle>
-        <NoSsr>
-          <PartnersSlider />
-        </NoSsr>
-      </Section>
-      <Eshop />
-    </Layout>
-  );
-};
+const HomeTemplate = () => (
+  <Layout>
+    <HeroSlider />
+    <CTA />
+    <Section>
+      <SectionTitle>Cours et Tutos</SectionTitle>
+      <AllCourses />
+    </Section>
+    <Section>
+      <SectionTitle>Vamos Vacilar</SectionTitle>
+      <HomeAbout />
+    </Section>
+    <Section>
+      <SectionTitle>Actualités</SectionTitle>
+      <NoSsr>
+        <ActualitySlider />
+      </NoSsr>
+    </Section>
+    <Section>
+      <SectionTitle>Nos Professeurs</SectionTitle>
+      <Teams />
+    </Section>
+    <Section>
+      <SectionTitle>Nos partenaires</SectionTitle>
+      <NoSsr>
+        <PartnersSlider />
+      </NoSsr>
+    </Section>
+    <Eshop />
+  </Layout>
+);
 
 export default HomeTemplate;

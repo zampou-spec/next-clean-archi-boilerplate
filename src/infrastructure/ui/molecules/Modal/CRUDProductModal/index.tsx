@@ -11,19 +11,17 @@ export type CRUDProductModalProps = {
   type: 'edit' | 'create' | 'delete';
 };
 
-const CRUDProductModal = ({ type, title, button, product }: CRUDProductModalProps) => {
-  return (
-    <ModalProvider>
-      <Modal width="450px" title={title}>
-        {type === 'delete' ? (
-          <DeleteProductForm productId={product.id as number} />
-        ) : (
-          <EditOrCreateProductForm type={type} product={product} />
-        )}
-      </Modal>
-      <ModalOpenButton>{button}</ModalOpenButton>
-    </ModalProvider>
-  );
-};
+const CRUDProductModal = ({ type, title, button, product }: CRUDProductModalProps) => (
+  <ModalProvider>
+    <Modal width="450px" title={title}>
+      {type === 'delete' ? (
+        <DeleteProductForm productId={product.id as number} />
+      ) : (
+        <EditOrCreateProductForm type={type} product={product} />
+      )}
+    </Modal>
+    <ModalOpenButton>{button}</ModalOpenButton>
+  </ModalProvider>
+);
 
 export default CRUDProductModal;

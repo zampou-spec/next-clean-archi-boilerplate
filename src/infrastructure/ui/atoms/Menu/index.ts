@@ -5,6 +5,10 @@ type menuType = {
 
 const menus: menuType[] = [
   {
+    link: '/',
+    title: 'Accueil'
+  },
+  {
     link: '/club',
     title: 'Le club'
   },

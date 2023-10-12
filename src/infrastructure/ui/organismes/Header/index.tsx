@@ -47,7 +47,7 @@ const Desktop = ({ user }: HeaderProps) => {
 };
 
 const Header = ({ user }: HeaderProps) => {
-  const matches = useMediaQuery('(min-width:950px)');
+  const matches = useMediaQuery('(min-width: 1024px)');
 
   return (
     <AppBar color="secondary" position="fixed" className={styles.header}>

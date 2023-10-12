@@ -1,11 +1,12 @@
 export type User = {
   id: string;
   email: string;
-  first_name: string;
+  image: string;
   last_name: string;
-  mobile_number: string;
-  access_token?: string;
+  first_name: string;
   token_type?: string;
   expires_in?: number;
+  mobile_number: string;
+  access_token?: string;
   role: 'user' | 'admin';
 };

@@ -9,7 +9,7 @@ type CredentialsProps = {
   login_mode: string;
 };
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -35,7 +35,11 @@ export const authOptions: NextAuthOptions = {
     signIn: '/auth/signin'
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === 'update') {
+        return { ...token, ...session.user };
+      }
+
       return { ...token, ...user };
     },
     async session({ session, token }) {
@@ -52,4 +56,5 @@ export const authOptions: NextAuthOptions = {
   }
 };
 
-export default NextAuth(authOptions);
+const handle = NextAuth(authOptions);
+export { handle as GET, handle as POST };

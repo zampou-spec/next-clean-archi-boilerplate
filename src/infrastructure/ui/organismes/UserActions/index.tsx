@@ -13,7 +13,9 @@ const UserActions = () => {
       <Button variant="contained" href="/dashboard/courses">
         Mes cours
       </Button>
-      <Button variant="outlined">Mes événements</Button>
+      <Button variant="outlined" href="/news">
+        Mes événements
+      </Button>
       {data?.user.role === 'admin' && (
         <Button variant="outlined" href="/dashboard/admin">
           Dashboard Admin

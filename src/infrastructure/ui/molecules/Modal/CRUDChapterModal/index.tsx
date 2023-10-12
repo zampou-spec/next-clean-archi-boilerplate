@@ -11,19 +11,17 @@ export type CRUDChapterModalProps = {
   type: 'edit' | 'create' | 'delete';
 };
 
-const CRUDChapterModal = ({ type, title, button, chapter }: CRUDChapterModalProps) => {
-  return (
-    <ModalProvider>
-      <Modal width="450px" title={title}>
-        {type === 'delete' ? (
-          <DeleteChapterForm chapterId={chapter.id} />
-        ) : (
-          <EditOrCreateChapterForm type={type} chapter={chapter} />
-        )}
-      </Modal>
-      <ModalOpenButton>{button}</ModalOpenButton>
-    </ModalProvider>
-  );
-};
+const CRUDChapterModal = ({ type, title, button, chapter }: CRUDChapterModalProps) => (
+  <ModalProvider>
+    <Modal width="450px" title={title}>
+      {type === 'delete' ? (
+        <DeleteChapterForm chapterId={chapter.id} />
+      ) : (
+        <EditOrCreateChapterForm type={type} chapter={chapter} />
+      )}
+    </Modal>
+    <ModalOpenButton>{button}</ModalOpenButton>
+  </ModalProvider>
+);
 
 export default CRUDChapterModal;

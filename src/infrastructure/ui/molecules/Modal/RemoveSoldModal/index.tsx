@@ -9,19 +9,17 @@ export type RemoveSoldModalProps = {
   subscribes: SubscribesData[];
 };
 
-const RemoveSoldModal = ({ userId, subscribes }: RemoveSoldModalProps) => {
-  return (
-    <ModalProvider>
-      <Modal width="450px" title="Retirez une seance">
-        <RemoveSoldForm userId={userId} subscribes={subscribes} />
-      </Modal>
-      <ModalOpenButton>
-        <Button variant="contained">
-          <Iconify icon="mdi:numeric-negative-1" fontSize={20} />
-        </Button>
-      </ModalOpenButton>
-    </ModalProvider>
-  );
-};
+const RemoveSoldModal = ({ userId, subscribes }: RemoveSoldModalProps) => (
+  <ModalProvider>
+    <Modal width="450px" title="Retirez une seance">
+      <RemoveSoldForm userId={userId} subscribes={subscribes} />
+    </Modal>
+    <ModalOpenButton>
+      <Button variant="contained">
+        <Iconify icon="mdi:numeric-negative-1" fontSize={20} />
+      </Button>
+    </ModalOpenButton>
+  </ModalProvider>
+);
 
 export default RemoveSoldModal;

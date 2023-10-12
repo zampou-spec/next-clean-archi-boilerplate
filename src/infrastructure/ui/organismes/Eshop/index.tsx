@@ -1,17 +1,29 @@
 'use client';
-import { DragEvent } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import Image from '~/infrastructure/ui/atoms/Image';
 import Section from '~/infrastructure/ui/atoms/Section';
+import { useGetAllProducts } from '~/infrastructure/api';
 import { Box, Button, Typography, NoSsr } from '@mui/material';
-
-import t1 from '~/infrastructure/ui/assets/images/products/tee-shirt-1.png';
-import t2 from '~/infrastructure/ui/assets/images/products/tee-shirt-2.png';
+import { DragEvent, ReactElement, useEffect, useState } from 'react';
+import OrderProductModal from '~/infrastructure/ui/molecules/Modal/OrderProductModal';
 
 import styles from './Eshop.module.scss';
 
 const Eshop = () => {
+  const { data: products } = useGetAllProducts();
+  const [product, setProduct] = useState<ReactElement[]>([]);
   const handleDragStart = (e: DragEvent) => e.preventDefault();
+
+  useEffect(() => {
+    const data: ReactElement[] = [];
+    products?.map((product, i) => {
+      data.push(<Image key={i} alt="" src={product.image} className={styles.slide} onDragStart={handleDragStart} />);
+    });
+
+    if (data) {
+      setProduct(data);
+    }
+  }, [products]);
 
   return (
     <Section className={styles.eshop}>
@@ -27,10 +39,7 @@ const Eshop = () => {
               animationDuration={2000}
               animationType="fadeout"
               animationEasingFunction="linear"
-              items={[
-                <Image key={1} alt="" src={t1} className={styles.slide} onDragStart={handleDragStart} />,
-                <Image key={2} alt="" src={t2} className={styles.slide} onDragStart={handleDragStart} />
-              ]}
+              items={product}
               autoPlay
             />
           </NoSsr>
@@ -42,9 +51,14 @@ const Eshop = () => {
           <Typography variant="h4" className={styles.title}>
             e-shop
           </Typography>
-          <Button variant="contained" className={styles.action} size="large">
-            Commander
-          </Button>
+          <OrderProductModal
+            title="Passez votre commande"
+            button={
+              <Button variant="contained" className={styles.action} size="large">
+                Commander
+              </Button>
+            }
+          />
         </Box>
       </Box>
     </Section>

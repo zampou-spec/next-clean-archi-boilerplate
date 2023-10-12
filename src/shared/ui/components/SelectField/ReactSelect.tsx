@@ -99,13 +99,11 @@ export const ReactSelect = ({ error, ...props }: ReactSelectProps) => {
   );
 };
 
-const NoOptionsMessage = () => {
-  return (
-    <Typography variant="body2" textAlign="center" px={1}>
-      Aucune donnée
-    </Typography>
-  );
-};
+const NoOptionsMessage = () => (
+  <Typography variant="body2" textAlign="center" px={1}>
+    Aucune donnée
+  </Typography>
+);
 
 export default ReactSelect;
 ReactSelect.displayName = 'ReactSelect';

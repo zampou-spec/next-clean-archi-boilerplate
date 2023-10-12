@@ -15,7 +15,7 @@ const useMakePayment = (onSuccess?: (data: { link: string }) => void) =>
     mutationFn: (data: makePaymentMutationType) => makePaymentFetcher(data.course_id, data.subscribe_type),
     onSuccess: async (data) => {
       if (onSuccess) onSuccess(data);
-      toast.success('Solde retiré sur la cour succès');
+      toast.success('Ajout de solde en cours');
     },
     onError: () => toast.error('Une erreur ses produits veilleurs réessayait plus tard')
   });

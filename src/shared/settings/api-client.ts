@@ -6,7 +6,6 @@ import ky, { HTTPError, NormalizedOptions, Options } from 'ky';
 async function normalizeErrorMessage(error: HTTPError) {
   if (typeof window !== 'undefined') {
     const errorJson = await error.response.json();
-    console.log('[] error', error.response.status);
 
     if (error.response.status === 401) {
       toast.error("Vous n'êtes pas autorisé à accéder à cette page");
@@ -14,8 +13,6 @@ async function normalizeErrorMessage(error: HTTPError) {
       toast.error(errorJson.error.kind.message || errorJson.error.messages[0] || error.message);
     }
   }
-
-  console.log(error);
 
   return error;
 }
@@ -56,7 +53,7 @@ const kyDefaultOptions: Options = {
 
 const apiClient = ky
   .create({
-    prefixUrl: 'https://vamos-api.hilton-meta-bot.com'
+    prefixUrl: 'http://localhost:8000'
   })
   .extend(kyDefaultOptions);
 

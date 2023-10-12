@@ -37,9 +37,10 @@ const AddSoldForm = () => {
   }, [courses]);
 
   const getCoursePrice = (data: optionType) => {
-    const price = courses?.find((values) => values.id === data?.value);
-    if (price) {
-      setCoursePrice(price.price_classroom);
+    const course = courses?.find((course) => course.id === data?.value);
+
+    if (course) {
+      setCoursePrice(course.price_classroom);
     }
   };
 

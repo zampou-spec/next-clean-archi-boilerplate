@@ -1,6 +1,9 @@
+'use client';
 import classNames from 'classnames';
+import { useSession } from 'next-auth/react';
 import { Iconify } from '~/shared/ui/components/Iconify';
-import { Avatar, Badge, Fab, Typography } from '@mui/material';
+import { Avatar, Badge, Fab, Typography, Tooltip } from '@mui/material';
+import EditAccountModal from '~/infrastructure/ui/molecules/Modal/EditAccountModal';
 
 import styles from './UserAvatar.module.scss';
 
@@ -9,6 +12,8 @@ type UserAvatarProps = {
 };
 
 const UserAvatar = ({ className }: UserAvatarProps) => {
+  const { data: session } = useSession();
+
   return (
     <div
       className={classNames(styles.userAvatar, {
@@ -21,13 +26,24 @@ const UserAvatar = ({ className }: UserAvatarProps) => {
       <Badge
         overlap="circular"
         badgeContent={
-          <Fab color="primary" size="small" href="#">
-            <Iconify icon="mdi:pencil" fontSize={20} />
-          </Fab>
+          <EditAccountModal
+            title="Edit Account Modal"
+            button={
+              <Tooltip title="Editez mon compte" placement="top">
+                <Fab color="primary" size="small">
+                  <Iconify icon="mdi:pencil" fontSize={20} />
+                </Fab>
+              </Tooltip>
+            }
+          />
         }
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
-        <Avatar alt="Travis Howard" src="https://placehold.co/400" sx={{ width: 150, height: 150 }} />
+        <Avatar
+          alt="Travis Howard"
+          sx={{ width: 150, height: 150 }}
+          src={session?.user?.image || "https://placehold.co/400?text=''"}
+        />
       </Badge>
     </div>
   );

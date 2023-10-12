@@ -5,19 +5,17 @@ import { DrawerOpenButton, DrawerProvider, Drawer } from '~/shared/ui/components
 
 import styles from './MobileAuthDrawer.module.scss';
 
-const MobileAuthDrawer = () => {
-  return (
-    <DrawerProvider>
-      <Drawer anchor="right">
-        <MobileAuthList />
-      </Drawer>
-      <DrawerOpenButton>
-        <IconButton className={styles.mobileAuthDrawer}>
-          <Iconify icon="mdi:account-circle-outline" />
-        </IconButton>
-      </DrawerOpenButton>
-    </DrawerProvider>
-  );
-};
+const MobileAuthDrawer = () => (
+  <DrawerProvider>
+    <Drawer anchor="right">
+      <MobileAuthList />
+    </Drawer>
+    <DrawerOpenButton>
+      <IconButton className={styles.mobileAuthDrawer}>
+        <Iconify icon="mdi:account-circle-outline" />
+      </IconButton>
+    </DrawerOpenButton>
+  </DrawerProvider>
+);
 
 export default MobileAuthDrawer;
