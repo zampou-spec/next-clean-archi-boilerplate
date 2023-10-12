@@ -15,19 +15,17 @@ type LogoHeaderProps = {
   className?: string | number | symbol | undefined;
 };
 
-const LogoHeader = ({ imageSize, className }: LogoHeaderProps) => {
-  return (
-    <Link href="/" passHref>
-      <Image
-        src={logo}
-        alt="header logo"
-        imageSize={imageSize}
-        className={classNames(styles.logoHeader, {
-          [className || '']: Boolean(className)
-        })}
-      />
-    </Link>
-  );
-};
+const LogoHeader = ({ imageSize, className }: LogoHeaderProps) => (
+  <Link href="/" passHref>
+    <Image
+      src={logo}
+      alt="header logo"
+      imageSize={imageSize}
+      className={classNames(styles.logoHeader, {
+        [className || '']: Boolean(className)
+      })}
+    />
+  </Link>
+);
 
 export default LogoHeader;
