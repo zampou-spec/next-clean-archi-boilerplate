@@ -2,20 +2,25 @@
   flex: 1;
   width: 30%;
   display: flex;
-  min-width: 700px;
+  min-width: 32rem;
   grid-row-gap: 2rem;
   align-items: center;
   grid-column-gap: 2rem;
   flex-direction: column;
   border-radius: 0 !important;
-  // background-color: #b80042;
   background-color: #0f2940;
   justify-content: space-between;
   transition: background-color 0.2s;
 
+
+  @media screen and (max-width: 991px) {
+    width: 100%;
+    min-width: 0;
+    flex: 0 auto;
+  }
+
   &:hover {
     background: #b80042;
-    // background: #0f2940;
   }
 
   color: #fff;
