@@ -1,3 +1,7 @@
 .layout {
-  margin-top: 75px;
+  margin-top: 68px;
+
+  @media (min-width: 619px) {
+    margin-top: 75px;
+  }
 }
