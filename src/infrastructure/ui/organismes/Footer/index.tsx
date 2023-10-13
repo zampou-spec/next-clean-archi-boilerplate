@@ -38,18 +38,30 @@ const Footer = () => (
           </Typography>
           <ul>
             <li>
-              <Link href="#" passHref>
-                <span>Tel:</span> +225 07 09 60 57 62
+              <Link href="tel:+225 07 09 60 57 62" passHref>
+                <span className={styles.icon}>
+                  <Iconify icon="mdi:phone" fontSize={18} />
+                </span>
+                <span className={styles.name}>Tel:</span> <span className={styles.value}>+225 07 09 60 57 62</span>
               </Link>
             </li>
             <li>
-              <Link href="#" passHref>
-                <span>Email:</span> info@vamosavacilar.com
+              <Link href="mailto:info@vamosavacilar.com" passHref>
+                <span className={styles.icon}>
+                  <Iconify icon="mdi:email-variant" fontSize={18} />
+                </span>
+                <span className={styles.name}>Email:</span> <span className={styles.value}>info@vamosavacilar.com</span>
               </Link>
             </li>
             <li>
-              <Link href="#" passHref>
-                <span>Adresse:</span> Cocody Danga, espace théren, <br /> Abidjan, Côte d’Ivoire
+              <Link href="https://maps.app.goo.gl/TCeiJvFz1TSNWkgb7" passHref>
+                <span className={styles.icon}>
+                  <Iconify icon="mdi:map-marker-radius" fontSize={18} />
+                </span>
+                <span className={styles.name}>Adresse:</span>
+                <span className={styles.value}>
+                  Cocody Danga, espace théren, <br /> Abidjan, Côte d’Ivoire
+                </span>
               </Link>
             </li>
           </ul>
