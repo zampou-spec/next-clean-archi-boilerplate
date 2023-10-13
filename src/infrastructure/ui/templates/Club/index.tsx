@@ -6,19 +6,21 @@ import About from '~/infrastructure/ui/molecules/About';
 import Section from '~/infrastructure/ui/atoms/Section';
 import Teams from '~/infrastructure/ui/organismes/Teams';
 import SectionTitle from '~/infrastructure/ui/atoms/SectionTitle';
-import VideoPlayer from '~/infrastructure/ui/molecules/VideoPalyer';
 import PartnersSlider from '~/infrastructure/ui/molecules/Slider/PartnersSlider';
+
+import hbAboutBg from '~/infrastructure/ui/assets/images/hb-about-bg.png';
 
 import styles from './Club.module.scss';
 
 const ClubTemplate = () => (
   <Layout>
-    <Hero image="https://placehold.co/400.webp" title="A props du club" subtitle="" />
+    <Hero image={hbAboutBg} title="A props du club" subtitle="" />
     <Section>
       <About />
     </Section>
     <Section>
-      <VideoPlayer className={styles.videoPlayer} title={'Presentations du culb vamos'} url={'https://youtu.be/vwGp16NXgQU'} />
+      <SectionTitle>Informations</SectionTitle>
+      <p>..... a revoir</p>
     </Section>
     <Section>
       <SectionTitle>Nos Professeurs</SectionTitle>

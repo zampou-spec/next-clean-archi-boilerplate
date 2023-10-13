@@ -39,17 +39,17 @@ const Footer = () => (
           <ul>
             <li>
               <Link href="#" passHref>
-                <span>Tel:</span> +225 xx xx xx xx xx
+                <span>Tel:</span> +225 07 09 60 57 62
               </Link>
             </li>
             <li>
               <Link href="#" passHref>
-                <span>Email:</span> contact@vamos.com
+                <span>Email:</span> info@vamosavacilar.com
               </Link>
             </li>
             <li>
               <Link href="#" passHref>
-                <span>Adresse:</span> Abidjan, Cocody, Faya
+                <span>Adresse:</span> Cocody Danga, espace théren, <br /> Abidjan, Côte d’Ivoire
               </Link>
             </li>
           </ul>

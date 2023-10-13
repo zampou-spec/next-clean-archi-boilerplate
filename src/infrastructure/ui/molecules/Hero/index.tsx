@@ -3,12 +3,13 @@ import { Box, Typography } from '@mui/material';
 import Image from '~/infrastructure/ui/atoms/Image';
 
 import styles from './Hero.module.scss';
+import { StaticImageData } from 'next/image';
 
 type HeroProps = {
-  image: string;
   title: string;
   height?: string;
   subtitle?: string;
+  image: string | StaticImageData;
 };
 
 const Hero = ({ title, height, image, subtitle }: HeroProps) => (

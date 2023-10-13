@@ -1,8 +1,14 @@
 .teamCard {
-  max-width: 300px;
+  height: 365px;
+  // max-width: 500px;
+  // max-width: 300px;
   border-radius: 15px !important;
   margin: 0 auto;
-  
+
+  @media (max-width: 528px) {
+    height: unset;
+  }
+
   .cardContent {
     display: flex;
     flex-direction: column;
@@ -10,8 +16,10 @@
     justify-content: center;
 
     .imgContainer {
-      width: 130px;
-      height: 130px;
+      // width: 130px;
+      // height: 130px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       overflow: hidden;
 

@@ -3,16 +3,31 @@ import Image from '~/infrastructure/ui/atoms/Image';
 import { Box, Card, CardContent, IconButton, Typography } from '@mui/material';
 
 import styles from './TeamCard.module.scss';
+import { StaticImageData } from 'next/image';
 
-const TeamCard = () => (
+type TeamCardProps = {
+  job: string;
+  name: string;
+  description: string;
+  image: string | StaticImageData;
+};
+
+const TeamCard = ({ job, name, description, image }: TeamCardProps) => (
   <Card className={styles.teamCard}>
     <CardContent className={styles.cardContent}>
       <Box className={styles.imgContainer}>
-        <Image alt="" src="https://placehold.co/400.webp" className={styles.img} />
+        <Image alt="" src={image} className={styles.img} />
       </Box>
       <Box className={styles.description}>
-        <Typography variant="h4">Jean Yve Benoird</Typography>
-        <Typography variant="body1"> Coach de Salsa</Typography>
+        <Typography variant="h4" sx={{ color: '#b80042' }}>
+          {name}
+        </Typography>
+        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+          {job}
+        </Typography>
+        <Typography variant="body2" sx={{ mt: '5px' }}>
+          {description}
+        </Typography>
       </Box>
       <Box className={styles.socials}>
         <IconButton size="small" className={styles.iconButton}>
