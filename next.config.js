@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['placehold.co', 'localhost', 'i.ytimg.com', 'picsum.photos']
+    domains: ['localhost', 'i.ytimg.com', 'placehold.co', 'picsum.photos', 'api-vamos.vamosavacilar.com']
   }
 };
 
