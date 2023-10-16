@@ -64,7 +64,7 @@ const EditAccountForm = () => {
         editUser(formData);
       }}
     >
-      {({ setFieldValue, values, errors, touched }) => (
+      {({ setFieldValue, values, errors, touched, isSubmitting }) => (
         <Form>
           <Stack maxWidth="450px" spacing={2.5}>
             <Grid container columnSpacing={1} rowSpacing={2.5}>
@@ -108,8 +108,8 @@ const EditAccountForm = () => {
                 ) : null}
               </Grid>
               <Grid xs={12} sx={{ mt: 1.5 }}>
-                <LoadingButton fullWidth type="submit" variant="contained">
-                  Envoyez
+                <LoadingButton loading={isSubmitting} fullWidth type="submit" variant="contained">
+                  Mettre à jour
                 </LoadingButton>
               </Grid>
             </Grid>

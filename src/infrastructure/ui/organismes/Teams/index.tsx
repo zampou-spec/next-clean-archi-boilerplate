@@ -11,7 +11,7 @@ const Teams = () => (
     <Grid xs={12} sm={12} md={6} lg={6}>
       <TeamCard
         image={hamed}
-        name="Jean Yve Benoird"
+        name="Coach Hamed"
         job="Coach de Salsa"
         description="Ahmed vous permettra de développer votre créativité grâce à une approche innovante."
       />
@@ -19,7 +19,7 @@ const Teams = () => (
     <Grid xs={12} sm={12} md={6} lg={6}>
       <TeamCard
         image={maud}
-        name="Jean Yve Benoird"
+        name="Coach Maud"
         job="Coach de Salsa"
         description="Maud  possède une grande expérience en danses afro-cubaines ( Rumba , Afro ...) avec de nombreux stages, festivals et séjours immersifs à son actif."
       />

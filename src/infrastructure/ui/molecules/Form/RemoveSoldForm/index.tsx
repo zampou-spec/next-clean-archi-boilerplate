@@ -67,7 +67,7 @@ const RemoveSoldForm = ({ userId, subscribes }: RemoveSoldModalProps) => {
               </Grid>
               <Grid xs={12} sx={{ mt: 1.5 }}>
                 <LoadingButton fullWidth loading={isSubmitting} type="submit" variant="contained">
-                  Envoyez
+                  Supprimer
                 </LoadingButton>
               </Grid>
             </Grid>

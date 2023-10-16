@@ -55,7 +55,7 @@ const EditOrCreateNewsForm = ({ type, news }: EditOrCreateNewsFormProps) => {
         }
       }}
     >
-      {({ setFieldValue, values, errors, touched }) => (
+      {({ setFieldValue, values, errors, touched, isSubmitting }) => (
         <Form>
           <Stack maxWidth="450px" spacing={2.5}>
             <Grid container columnSpacing={1} rowSpacing={2.5}>
@@ -87,8 +87,8 @@ const EditOrCreateNewsForm = ({ type, news }: EditOrCreateNewsFormProps) => {
                 ) : null}
               </Grid>
               <Grid xs={12} sx={{ mt: 1.5 }}>
-                <LoadingButton fullWidth type="submit" variant="contained">
-                  Envoyez
+                <LoadingButton loading={isSubmitting} fullWidth type="submit" variant="contained">
+                  {type === 'create' ? 'Créer' : 'Mettre à jour'}
                 </LoadingButton>
               </Grid>
             </Grid>

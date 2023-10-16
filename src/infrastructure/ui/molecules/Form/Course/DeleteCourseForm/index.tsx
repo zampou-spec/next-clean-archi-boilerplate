@@ -29,7 +29,7 @@ const DeleteCourseForm = ({ courseId }: DeleteCourseFormProps) => {
         deleteCourse(values.id);
       }}
     >
-      {() => (
+      {({ isSubmitting }) => (
         <Form>
           <Stack maxWidth="450px" spacing={2.5}>
             <Grid container columnSpacing={1} rowSpacing={2.5}>
@@ -43,7 +43,7 @@ const DeleteCourseForm = ({ courseId }: DeleteCourseFormProps) => {
                   </LoadingButton>
                 </Grid>
                 <Grid xs={12} md={6}>
-                  <LoadingButton fullWidth type="submit" variant="contained">
+                  <LoadingButton loading={isSubmitting} fullWidth type="submit" variant="contained">
                     Oui supprimer
                   </LoadingButton>
                 </Grid>
