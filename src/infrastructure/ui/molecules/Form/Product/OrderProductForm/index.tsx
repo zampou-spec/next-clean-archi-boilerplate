@@ -56,7 +56,7 @@ const OrderProductForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (values) => {
+      onSubmit={(values) => {
         const formData = objectToFormData(values);
         orderProduct(formData);
       }}

@@ -54,7 +54,7 @@ const AddSoldForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async ({ course_id }) => {
+      onSubmit={({ course_id }) => {
         if (typeof course_id === 'number') {
           const data: makePaymentMutationType = {
             course_id: course_id,

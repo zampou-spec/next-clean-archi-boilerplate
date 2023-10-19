@@ -24,7 +24,7 @@ const DeleteChapterForm = ({ chapterId }: DeleteChapterFormProps) => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (values) => {
+      onSubmit={(values) => {
         deleteChapter(values.id);
       }}
     >

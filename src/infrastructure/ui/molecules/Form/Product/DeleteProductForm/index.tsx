@@ -25,7 +25,7 @@ const DeleteProductForm = ({ productId }: DeleteProductFormProps) => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (values) => {
+      onSubmit={(values) => {
         deleteProduct(values.id);
       }}
     >

@@ -40,7 +40,7 @@ const EditOrCreateProductForm = ({ type, product }: EditOrCreateProductFormProps
     <Formik
       initialValues={product}
       validationSchema={validationSchema}
-      onSubmit={async (values: Product) => {
+      onSubmit={(values: Product) => {
         const formData = objectToFormData(values);
 
         if (type === 'edit') {

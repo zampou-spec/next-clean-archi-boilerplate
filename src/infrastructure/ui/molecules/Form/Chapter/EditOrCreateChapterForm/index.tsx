@@ -31,7 +31,7 @@ const EditOrCreateChapterForm = ({ type, chapter }: EditOrCreateChapterFormProps
     <Formik
       initialValues={chapter}
       validationSchema={validationSchema}
-      onSubmit={async (values: ChapterDatable) => {
+      onSubmit={(values: ChapterDatable) => {
         const formData = objectToFormData(values);
 
         if (type === 'edit') {

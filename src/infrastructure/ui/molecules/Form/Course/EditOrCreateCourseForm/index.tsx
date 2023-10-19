@@ -49,7 +49,7 @@ const EditOrCreateCourseForm = ({ type, course }: EditOrCreateCourseForm) => {
     <Formik
       initialValues={course}
       validationSchema={validationSchema}
-      onSubmit={async (values: CouresDataForm) => {
+      onSubmit={(values: CouresDataForm) => {
         const formData = objectToFormData(values);
 
         if (type === 'edit') {

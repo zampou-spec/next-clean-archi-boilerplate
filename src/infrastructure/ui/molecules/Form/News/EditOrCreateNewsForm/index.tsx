@@ -42,7 +42,7 @@ const EditOrCreateNewsForm = ({ type, news }: EditOrCreateNewsFormProps) => {
     <Formik
       initialValues={news}
       validationSchema={validationSchema}
-      onSubmit={async (values: News) => {
+      onSubmit={(values: News) => {
         const formData = objectToFormData({
           ...values,
           category: values.category as string

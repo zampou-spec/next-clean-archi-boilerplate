@@ -24,7 +24,7 @@ const DeleteNewsForm = ({ newId }: DeleteNewsFormProps) => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (values) => {
+      onSubmit={(values) => {
         deleteNews(values.id);
       }}
     >

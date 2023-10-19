@@ -50,11 +50,12 @@ const RemoveSoldForm = ({ userId, subscribes }: RemoveSoldModalProps) => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (values) => {
+      onSubmit={(values) => {
         const data: removeSoldMutationType = {
           user_id: parseInt(userId),
           subscribe: values.courses as SubscribesData
         };
+
         removeSoldMutation(data);
       }}
     >

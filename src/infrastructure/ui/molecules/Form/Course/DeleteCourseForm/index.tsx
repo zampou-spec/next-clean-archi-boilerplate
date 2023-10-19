@@ -25,7 +25,7 @@ const DeleteCourseForm = ({ courseId }: DeleteCourseFormProps) => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (values) => {
+      onSubmit={(values) => {
         deleteCourse(values.id);
       }}
     >

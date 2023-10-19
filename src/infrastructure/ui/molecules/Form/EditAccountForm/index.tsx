@@ -59,7 +59,7 @@ const EditAccountForm = () => {
         'access_token'
       ])}
       validationSchema={validationSchema}
-      onSubmit={async (values: User) => {
+      onSubmit={(values: User) => {
         const formData = objectToFormData(values);
         editUser(formData);
       }}
