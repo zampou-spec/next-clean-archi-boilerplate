@@ -1,7 +1,8 @@
-import { User } from '~/domain/entities';
 import NextAuth, { NextAuthOptions } from 'next-auth';
-import { userFactory } from '~/infrastructure/factories';
+
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { User } from '~/domain/entities';
+import { userFactory } from '~/infrastructure/factories';
 
 type CredentialsProps = {
   id: string;

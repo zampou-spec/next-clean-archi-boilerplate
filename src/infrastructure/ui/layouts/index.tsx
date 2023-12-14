@@ -1,12 +1,13 @@
 'use client';
-import dynamic from 'next/dynamic';
-import React, { ReactNode } from 'react';
-import { User } from '~/domain/entities';
-import { useSession } from 'next-auth/react';
-import Footer from '~/infrastructure/ui/organismes/Footer';
-const Header = dynamic(() => import('~/infrastructure/ui/organismes/Header'), { ssr: false });
 
+import React, { ReactNode } from 'react';
+
+import Footer from '~/infrastructure/ui/organismes/Footer';
+import { User } from '~/domain/entities';
+import dynamic from 'next/dynamic';
 import styles from './Layout.module.scss';
+import { useSession } from 'next-auth/react';
+const Header = dynamic(() => import('~/infrastructure/ui/organismes/Header'), { ssr: false });
 
 export type LayoutProps = {
   children: ReactNode;

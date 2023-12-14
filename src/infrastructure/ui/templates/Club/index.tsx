@@ -1,15 +1,14 @@
-import { NoSsr } from '@mui/material';
-import Layout from '~/infrastructure/ui/layouts';
+import About from '~/infrastructure/ui/molecules/About';
 import CTA from '~/infrastructure/ui//molecules/CTA';
 import Hero from '~/infrastructure/ui/molecules/Hero';
-import About from '~/infrastructure/ui/molecules/About';
-import Section from '~/infrastructure/ui/atoms/Section';
-import Teams from '~/infrastructure/ui/organismes/Teams';
-import SectionTitle from '~/infrastructure/ui/atoms/SectionTitle';
+import Information from '~/infrastructure/ui/molecules/Information';
+import Layout from '~/infrastructure/ui/layouts';
+import { NoSsr } from '@mui/material';
 import PartnersSlider from '~/infrastructure/ui/molecules/Slider/PartnersSlider';
-
+import Section from '~/infrastructure/ui/atoms/Section';
+import SectionTitle from '~/infrastructure/ui/atoms/SectionTitle';
+import Teams from '~/infrastructure/ui/organismes/Teams';
 import hbAboutBg from '~/infrastructure/ui/assets/images/hb-about-bg.png';
-
 import styles from './Club.module.scss';
 
 const ClubTemplate = () => (
@@ -20,7 +19,7 @@ const ClubTemplate = () => (
     </Section>
     <Section>
       <SectionTitle>Informations</SectionTitle>
-      <p>..... a revoir</p>
+      <Information />
     </Section>
     <Section>
       <SectionTitle>Nos Professeurs</SectionTitle>

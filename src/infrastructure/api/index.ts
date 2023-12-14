@@ -5,3 +5,4 @@ export * from './sold';
 export * from './course';
 export * from './chapter';
 export * from './product';
+export * from './resetPassword';

@@ -1,43 +1,36 @@
 'use client';
 
-import { FKPasswordField, FKPhoneNumberField, FKTextField } from '~/shared/ui/formik';
+import { FKPasswordField, FKTextField } from '~/shared/ui/formik';
 import { Form, Formik } from 'formik';
 import { Unstable_Grid2 as Grid, Stack } from '@mui/material';
 
 import { LoadingButton } from '@mui/lab';
+import SendCodeResetPasswordModal from '~/infrastructure/ui/molecules/Modal/SendCodeResetPasswordModal';
 import Yup from '~/shared/settings/yup-setup';
-import { getCountryName } from '~/shared/utils/getCountryName';
 import { objectToFormData } from '~/shared/utils';
-import styles from './SignUpForm.module.scss';
+import styles from './ForgotPasswordForm.module.scss';
+import { useResetPassword } from '~/infrastructure/api';
 import { useRouter } from 'next/navigation';
-import { useSignup } from '~/infrastructure/api';
 import { useState } from 'react';
 
-const SignUpForm = () => {
+const ForgotPasswordForm = () => {
   const router = useRouter();
   const [disabledBtnIfOK, setDisabledBtnIfOK] = useState(false);
 
-  const { mutate: signup } = useSignup(() => {
+  const { mutate: resetPassword } = useResetPassword(() => {
     setDisabledBtnIfOK(true);
     router.push('/auth/signin');
   });
 
   const initialValues = {
-    email: '',
-    country: '',
+    code: '',
     password: '',
-    last_name: '',
-    first_name: '',
-    mobile_number: '',
     password_confirmation: ''
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().required('Ce champ est require'),
+    code: Yup.string().required('Ce champ est require'),
     password: Yup.string().required('Ce champ est require'),
-    last_name: Yup.string().required('Ce champ est require'),
-    first_name: Yup.string().required('Ce champ est require'),
-    mobile_number: Yup.string().min(7).required('Ce champ est require'),
     password_confirmation: Yup.string()
       .oneOf([Yup.ref('password')], 'Les mots de passe doivent correspondre')
       .required('Ce champ est requis')
@@ -49,38 +42,14 @@ const SignUpForm = () => {
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         const formData = objectToFormData(values);
-        signup(formData);
+        resetPassword(formData);
         setSubmitting(false);
       }}
     >
-      {({ setFieldValue, isSubmitting }) => (
-        <Form className={styles.signUpForm}>
+      {({ isSubmitting }) => (
+        <Form className={styles.forgotPasswordForm}>
           <Stack maxWidth="450px" spacing={2.5}>
             <Grid container columnSpacing={1} rowSpacing={2.5}>
-              <Grid xs={12} md={6}>
-                <FKTextField fullWidth label="Nom" type="text" name="first_name" autoComplete="username" />
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FKTextField fullWidth label="Prémon(s)" type="text" name="last_name" autoComplete="username" />
-              </Grid>
-
-              <Grid xs={12}>
-                <FKTextField fullWidth label="E-mail" type="email" name="email" autoComplete="username" />
-              </Grid>
-              <Grid xs={12}>
-                <FKPhoneNumberField
-                  fullWidth
-                  name="mobile_number"
-                  label="Numéro de téléphone"
-                  helperText="Exemple: +225 xx xx xx xx xx"
-                  onChange={(value) => {
-                    const phone = `${value}` || '';
-                    const country = getCountryName(value);
-                    setFieldValue('country', country);
-                    setFieldValue('mobile_number', phone);
-                  }}
-                />
-              </Grid>
               <Grid xs={12}>
                 <FKPasswordField fullWidth label="Mot de passe" name="password" autoComplete="password" />
               </Grid>
@@ -90,6 +59,18 @@ const SignUpForm = () => {
                   label="Confiramtion de Mot de passe"
                   name="password_confirmation"
                   autoComplete="password"
+                />
+              </Grid>
+              <Grid xs={12} md={4}>
+                <FKTextField fullWidth label="Code" type="text" name="code" />
+              </Grid>
+              <Grid xs={12} md={8}>
+                <SendCodeResetPasswordModal
+                  button={
+                    <LoadingButton sx={{ mt: 2.85 }} fullWidth variant="contained">
+                      Demandez le code
+                    </LoadingButton>
+                  }
                 />
               </Grid>
               <Grid xs={12} sx={{ mt: 1.5 }}>
@@ -105,4 +86,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default ForgotPasswordForm;

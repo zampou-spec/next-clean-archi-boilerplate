@@ -1,15 +1,17 @@
 'use client';
-import { useState } from 'react';
+
 import { Form, Formik } from 'formik';
+import { Unstable_Grid2 as Grid, FormHelperText as MuiFormHelperText, Stack } from '@mui/material';
+import { useCreateCourse, useEditCourse } from '~/infrastructure/api';
+
+import { CoursesDatable } from 'src/infrastructure/ui/molecules/Table/CoursesTable';
+import DropImage from '~/infrastructure/ui/molecules/DropImage';
+import { FKTextField } from '~/shared/ui/formik';
 import { LoadingButton } from '@mui/lab';
 import Yup from '~/shared/settings/yup-setup';
-import { FKTextField } from '~/shared/ui/formik';
 import { objectToFormData } from '~/shared/utils';
 import { useModalContext } from '~/shared/ui/components';
-import DropImage from '~/infrastructure/ui/molecules/DropImage';
-import { useEditCourse, useCreateCourse } from '~/infrastructure/api';
-import { CoursesDatable } from 'src/infrastructure/ui/molecules/Table/CoursesTable';
-import { FormHelperText as MuiFormHelperText, Stack, Unstable_Grid2 as Grid } from '@mui/material';
+import { useState } from 'react';
 
 type EditOrCreateCourseForm = {
   course: CoursesDatable;
@@ -35,6 +37,7 @@ const EditOrCreateCourseForm = ({ type, course }: EditOrCreateCourseForm) => {
   const validationSchema = Yup.object({
     id: Yup.number().required('Ce champ est require'),
     name: Yup.string().required('Ce champ est require'),
+    rank: Yup.number().required('Ce champ est require'),
     image: Yup.mixed()
       .test('is-string-or-file', "L'entrée doit être une chaîne ou un fichier", (value) => {
         return value instanceof File || typeof value === 'string';
@@ -65,6 +68,9 @@ const EditOrCreateCourseForm = ({ type, course }: EditOrCreateCourseForm) => {
             <Grid container columnSpacing={1} rowSpacing={2.5}>
               <Grid xs={12}>
                 <FKTextField label="Nom du cours" name="name" fullWidth />
+              </Grid>
+              <Grid xs={12}>
+                <FKTextField type="number" label="Rang" name="rank" fullWidth />
               </Grid>
               <Grid xs={12}>
                 <FKTextField type="number" label="Prix en ligne" name="price_online" fullWidth />

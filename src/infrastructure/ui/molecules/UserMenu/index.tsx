@@ -1,10 +1,11 @@
 'use client';
+
+import { Avatar, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/material';
+import { MouseEvent, useEffect, useState } from 'react';
+
 import Link from 'next/link';
 import { User } from '~/domain/entities';
 import { stringAvatar } from '~/shared/utils';
-import { useState, MouseEvent, useEffect } from 'react';
-import { Menu, IconButton, MenuItem, Typography, Tooltip, Avatar } from '@mui/material';
-
 import styles from './UserMenu.module.scss';
 
 export type UserMenuProps = {
@@ -20,7 +21,7 @@ const UserMenu = ({ user, onLogout }: UserMenuProps) => {
   const handleOpenUserMenu = (e: MouseEvent<HTMLElement>) => setAnchorElUser(e.currentTarget);
 
   useEffect(() => {
-    setFullName(`${user?.first_name} ${user?.last_name}`);
+    setFullName(`${user?.last_name} ${user?.first_name}`);
   }, [user]);
 
   return (

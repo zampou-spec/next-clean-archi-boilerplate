@@ -1,8 +1,10 @@
 'use client';
-import classNames from 'classnames';
-import * as NextImage from 'next/image';
-import { useEffect, useState, DragEvent } from 'react';
 
+import * as NextImage from 'next/image';
+
+import { DragEvent, useEffect, useState } from 'react';
+
+import classNames from 'classnames';
 import styles from './Image.module.scss';
 
 type ImageSize = {

@@ -1,7 +1,8 @@
-import { User } from '~/domain/entities';
 import { left, right } from '~/shared/either';
-import apiClient from '~/shared/settings/api-client';
+
 import { IUserStorage } from '~/application/protocols/services';
+import { User } from '~/domain/entities';
+import apiClient from '~/shared/settings/api-client';
 
 export class UserApi implements IUserStorage {
   async signIn(id: string, password: string, mode: string): IUserStorage.output {

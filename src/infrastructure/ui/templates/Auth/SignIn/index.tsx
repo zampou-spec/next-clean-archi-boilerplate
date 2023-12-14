@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import { Paper, Stack, Typography } from '@mui/material';
-import LogoHeader from '~/infrastructure/ui/atoms/Logo/Header';
-import LoginForm from '~/infrastructure/ui/molecules/Form/Auth/SignInForm';
 
+import Link from 'next/link';
+import LoginForm from '~/infrastructure/ui/molecules/Form/Auth/SignInForm';
+import LogoHeader from '~/infrastructure/ui/atoms/Logo/Header';
 import styles from './SignInTemplate.module.scss';
 
 const SignInTemplate = () => (
@@ -20,6 +20,12 @@ const SignInTemplate = () => (
           Vous n&apos;avez pas de compte ?{' '}
           <Link href="/auth/signup" passHref className={styles.signUp}>
             S&apos;inscrire ici
+          </Link>
+        </Typography>
+        <Typography variant="body2" className={styles.text}>
+          Mot de passe oubliez ?{' '}
+          <Link href="/auth/signup" passHref className={styles.signUp}>
+            réinitialisez ici
           </Link>
         </Typography>
       </Stack>

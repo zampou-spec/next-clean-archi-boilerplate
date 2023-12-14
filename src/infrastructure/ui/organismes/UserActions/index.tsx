@@ -1,9 +1,10 @@
 'use client';
-import React from 'react';
-import { Box, Button } from '@mui/material';
-import { useSession } from 'next-auth/react';
 
+import { Box, Button } from '@mui/material';
+
+import React from 'react';
 import styles from './UserActions.module.scss';
+import { useSession } from 'next-auth/react';
 
 const UserActions = () => {
   const { data } = useSession();
@@ -11,7 +12,7 @@ const UserActions = () => {
   return (
     <Box className={styles.userActions}>
       <Button variant="contained" href="/dashboard/courses">
-        Mes cours
+        Mes cours en ligne
       </Button>
       <Button variant="outlined" href="/news">
         Mes événements

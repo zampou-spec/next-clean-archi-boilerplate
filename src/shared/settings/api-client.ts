@@ -1,7 +1,8 @@
-import { toast } from 'react-hot-toast';
-import { User } from '~/domain/entities';
 import { getSession, signOut } from 'next-auth/react';
 import ky, { HTTPError, NormalizedOptions, Options } from 'ky';
+
+import { User } from '~/domain/entities';
+import { toast } from 'react-hot-toast';
 
 async function normalizeErrorMessage(error: HTTPError) {
   if (typeof window !== 'undefined') {
@@ -53,7 +54,7 @@ const kyDefaultOptions: Options = {
 
 const apiClient = ky
   .create({
-    prefixUrl: 'https://api-vamos.vamosavacilar.com' // jgbsljgbdsljbglj
+    prefixUrl: 'http://127.0.0.1:8000' // https://api-vamos.vamosavacilar.com'
   })
   .extend(kyDefaultOptions);
 

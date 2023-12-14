@@ -1,6 +1,7 @@
-import { ReactElement } from 'react';
-import AddSoldForm from '~/infrastructure/ui/molecules/Form/AddSoldForm';
 import { Modal, ModalOpenButton, ModalProvider } from '~/shared/ui/components';
+
+import AddSoldForm from '~/infrastructure/ui/molecules/Form/AddSoldForm';
+import { ReactElement } from 'react';
 
 type AddSoldProps = {
   title: string;

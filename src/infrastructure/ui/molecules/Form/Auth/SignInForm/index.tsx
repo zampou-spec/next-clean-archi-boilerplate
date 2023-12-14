@@ -1,19 +1,20 @@
 'use client';
-import { Form, Formik } from 'formik';
-import { toast } from 'react-hot-toast';
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import Yup from '~/shared/settings/yup-setup';
-import { useState, SyntheticEvent } from 'react';
-import { TabContext, TabList, TabPanel, LoadingButton } from '@mui/lab';
-import { Stack, Box, Tab, Unstable_Grid2 as Grid } from '@mui/material';
-import { FKPasswordField, FKPhoneNumberField, FKTextField } from '~/shared/ui/formik';
 
+import { Box, Unstable_Grid2 as Grid, Stack, Tab } from '@mui/material';
+import { FKPasswordField, FKPhoneNumberField, FKTextField } from '~/shared/ui/formik';
+import { Form, Formik } from 'formik';
+import { LoadingButton, TabContext, TabList, TabPanel } from '@mui/lab';
+import { SyntheticEvent, useState } from 'react';
+
+import Yup from '~/shared/settings/yup-setup';
+import { signIn } from 'next-auth/react';
 import styles from './SignInForm.module.scss';
+import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const SignInForm = () => {
   const router = useRouter();
-  const [tabSelected, setTabSelected] = useState('email');
+  const [tabSelected, setTabSelected] = useState('mobile_number');
   const [disabledBtnIfOK, setDisabledBtnIfOK] = useState(false);
 
   const initialValues = {
@@ -40,7 +41,7 @@ const SignInForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (values) => {
+      onSubmit={async (values, { setSubmitting }) => {
         const id = values.login_mode === 'email' ? values?.email : values?.mobile_number;
 
         const res = await signIn('credentials', {
@@ -58,6 +59,8 @@ const SignInForm = () => {
         } else {
           toast.error('Identifiant ou mot de passe incorrect.');
         }
+
+        setSubmitting(false);
       }}
     >
       {({ setFieldValue, isSubmitting }) => (
@@ -74,8 +77,8 @@ const SignInForm = () => {
                       }}
                       aria-label="email or mobile number"
                     >
-                      <Tab label="E-mail" value="email" />
                       <Tab label="Numéro de téléphone" value="mobile_number" />
+                      <Tab label="E-mail" value="email" />
                     </TabList>
                   </Box>
                   <TabPanel value="email" sx={{ padding: 0, paddingTop: '20px' }}>

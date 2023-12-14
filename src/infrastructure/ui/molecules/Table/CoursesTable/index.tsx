@@ -16,6 +16,7 @@ export type CoursesDatable = {
   id: number;
   name: string;
   image: string;
+  rank?: number;
   price_online: number;
   price_classroom: number;
   description: string;
@@ -31,9 +32,9 @@ const CoursesTable = ({ className }: CoursesTableProps) => {
   const columns = useMemo<MRT_ColumnDef<CoursesDatable>[]>(
     () => [
       {
-        accessorKey: 'id',
-        header: 'ID',
-        size: 5
+        accessorKey: 'rank',
+        header: 'Rang',
+        size: 2
       },
       {
         accessorKey: 'name',
@@ -99,6 +100,7 @@ const CoursesTable = ({ className }: CoursesTableProps) => {
               const course: CoursesDatable = {
                 id: row.getValue<number>('id'),
                 name: row.getValue<string>('name'),
+                rank: row.getValue<number>('rank'),
                 image: row.getValue<string>('image'),
                 price_online: row.getValue<number>('price_online'),
                 price_classroom: row.getValue<number>('price_classroom'),
@@ -144,6 +146,7 @@ const CoursesTable = ({ className }: CoursesTableProps) => {
             renderTopToolbarCustomActions={() => {
               const course: CoursesDatable = {
                 id: 0,
+                rank: 0,
                 name: '',
                 image: '',
                 description: '',

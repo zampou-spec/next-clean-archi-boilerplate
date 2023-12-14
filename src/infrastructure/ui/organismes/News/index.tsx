@@ -1,9 +1,10 @@
 'use client';
+
 import { Masonry } from '@mui/lab';
 import NewsCard from '~/infrastructure/ui/molecules/Card/NewsCard';
-import { useGetAllNews } from '~/infrastructure/api/news/getAllNews';
-
 import styles from './News.module.scss';
+import { truncateString } from '~/shared/utils/truncateString';
+import { useGetAllNews } from '~/infrastructure/api/news/getAllNews';
 
 const News = () => {
   const { data: news } = useGetAllNews();
@@ -24,7 +25,7 @@ const News = () => {
             author={newItem.author}
             category={newItem.category as string[]}
             href={`/news/${newItem.id}`}
-            description={newItem.description}
+            description={truncateString(newItem.description, 100)}
           />
         ))
       ) : (

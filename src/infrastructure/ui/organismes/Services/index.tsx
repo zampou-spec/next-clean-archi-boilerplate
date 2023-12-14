@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
 import ServiceCard from '~/infrastructure/ui/molecules/Card/ServiceCard';
-
 import styles from './Services.module.scss';
 
 const Services = () => (
@@ -11,13 +10,13 @@ const Services = () => (
       description="Nous offrons des cours particuliers pour ceux qui souhaitent avoir un accompagnement spécifique au début  de leur apprentissage. Cependant, ne perdez pas de vue que l'objectif est de danser en soirée."
     />
     <ServiceCard
-      title="Soirée de dance"
+      title="Prestation mariage"
       icon="mdi:dance-ballroom"
       description="Notre format de cours est de 3 heures pour un seul prix ! Nous offrons les niveaux Débutant Premiers pas, Débutant, Novice et Intermédiaire. C’est toujours gratuit pour les 12 ans et moins"
     />
     <ServiceCard
       icon="mdi:party-popper"
-      title="Partys Privés (Maraige, etc...)"
+      title="Animation salsa pour votre soirée"
       description="Vous souhaitez épater vos invités le jour de votre mariage tout en partageant un moment unique de complicité. Nous vous offrons un programme sur mesure pour réaliser la danse vos rêves."
     />
     <ServiceCard
@@ -27,7 +26,7 @@ const Services = () => (
     />
     <ServiceCard
       icon="mdi:island"
-      title="Événementiel"
+      title="Location sonorisation"
       description="Notre format de cours est de 3 heures pour un seul prix ! Nous offrons les niveaux Débutant Premiers pas, Débutant, Novice et Intermédiaire. C’est toujours gratuit pour les 12 ans et moins"
     />
   </Box>

@@ -1,14 +1,15 @@
 'use client';
-import { DragEvent } from 'react';
-import classNames from 'classnames';
-import { Box } from '@mui/material';
-import * as NextImage from 'next/image';
-import AliceCarousel from 'react-alice-carousel';
-import Image from '~/infrastructure/ui/atoms/Image';
-
-import slide1 from '~/infrastructure/ui/assets/images/slides/slider-1.png';
 
 import './customDot.css';
+
+import * as NextImage from 'next/image';
+
+import AliceCarousel from 'react-alice-carousel';
+import { Box } from '@mui/material';
+import { DragEvent } from 'react';
+import Image from '~/infrastructure/ui/atoms/Image';
+import classNames from 'classnames';
+import slide1 from '~/infrastructure/ui/assets/images/slides/slider-1.png';
 import styles from './HeroSlider.module.scss';
 
 type SlideProps = {
@@ -32,7 +33,16 @@ const HeroSlider = () => {
 
   return (
     <Box className={classNames('heroSlider', styles.heroSlider)}>
-      <AliceCarousel mouseTracking disableButtonsControls items={[<Slide key={3} image={slide1} />, ...slides]} />
+      <AliceCarousel
+        autoPlay
+        autoPlayStrategy="none"
+        autoPlayInterval={1000}
+        animationDuration={1000}
+        infinite
+        mouseTracking
+        disableButtonsControls
+        items={[<Slide key={3} image={slide1} />, ...slides]}
+      />
     </Box>
   );
 };

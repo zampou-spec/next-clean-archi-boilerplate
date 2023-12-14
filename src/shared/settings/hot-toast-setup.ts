@@ -2,7 +2,7 @@ import { DefaultToastOptions } from 'react-hot-toast';
 
 export const toastOptions: DefaultToastOptions = {
   style: { fontSize: '12px' },
-  position: 'top-center',
+  position: 'bottom-center',
   success: {
     duration: 6 * 1000
   },

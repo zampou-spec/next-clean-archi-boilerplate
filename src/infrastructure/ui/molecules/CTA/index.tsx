@@ -1,7 +1,7 @@
-import classNames from 'classnames';
 import { Box, Button, Typography } from '@mui/material';
-import Section from '~/infrastructure/ui/atoms/Section';
 
+import Section from '~/infrastructure/ui/atoms/Section';
+import classNames from 'classnames';
 import styles from './CTA.module.scss';
 
 type CTAProps = {
@@ -15,7 +15,7 @@ const CTA = ({ className }: CTAProps) => (
         Rejoignez notre communauté de danseurs
       </Typography>
       <Typography variant="body2" className={styles.subtitle}>
-        Dansez avec nous et faites partie de notre communauté passionnée de danseurs.
+        Dansez avec nous et partagez notre passion pour la salsa cubaine.
       </Typography>
     </Box>
     <Button variant="contained" className={styles.action} href="/auth/signup">
