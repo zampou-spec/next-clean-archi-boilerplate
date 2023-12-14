@@ -54,7 +54,7 @@ const kyDefaultOptions: Options = {
 
 const apiClient = ky
   .create({
-    prefixUrl: 'https://api-vamos.vamosavacilar.com'
+    prefixUrl: 'https://api-vamos.vamosavacilar.com jkwdfgu djhfkjdw k'
   })
   .extend(kyDefaultOptions);
 
